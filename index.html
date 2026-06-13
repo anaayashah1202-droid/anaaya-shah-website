@@ -44,7 +44,7 @@
             Marketing, social media, and PR strategist creating scroll-stopping stories for beauty, fashion, lifestyle, and wellness brands.
           </p>
           <div class="hero-actions" aria-label="Primary links">
-            <a class="button primary" href="#work-bag" data-open-bag>Open the bag</a>
+            <a class="button primary" href="#hero-bag-stage" data-open-bag>Open the bag</a>
             <a class="button secondary" href="#featured-work">View featured work</a>
             <a class="button secondary" href="#about">Meet Anaaya</a>
             <a class="button secondary" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Download resume</a>
@@ -57,37 +57,37 @@
             <h2 id="bag-hero-title">Open the bag.</h2>
             <p>Click each item to view the category it represents.</p>
           </div>
-          <div class="bag-stage" data-bag-stage>
+          <div class="bag-stage" id="hero-bag-stage" data-bag-stage>
             <button class="bag-toggle" type="button" data-bag-toggle aria-expanded="false">
               <img src="assets/generated/luxury-bag.png" alt="" aria-hidden="true" />
               <span>Open the bag</span>
             </button>
-            <a class="bag-object object-gloss" href="#mockup-visuals" aria-label="Mockup brand visuals">
+            <a class="bag-object object-gloss" href="#mockup-visuals" data-popup-tab="mockups" aria-label="Mockup brand visuals">
               <span class="object-icon">Lip Gloss</span>
               <span class="object-label">Mockup Visuals</span>
               <span class="object-hint">Click to view experience.</span>
             </a>
-            <a class="bag-object object-compact" href="#brand-collaborations" aria-label="Brand collaborations">
+            <a class="bag-object object-compact" href="#brand-collaborations" data-popup-tab="collabs" aria-label="Brand collaborations">
               <span class="object-icon">Compact</span>
               <span class="object-label">Brand Collaborations</span>
               <span class="object-hint">Click to view experience.</span>
             </a>
-            <a class="bag-object object-lip" href="#content" aria-label="Social media content">
+            <a class="bag-object object-lip" href="#content" data-popup-tab="content" aria-label="Social media content">
               <span class="object-icon">Lip Oil</span>
               <span class="object-label">Social Content</span>
               <span class="object-hint">Click to view experience.</span>
             </a>
-            <a class="bag-object object-folder" href="#pr-materials" aria-label="PR media materials">
+            <a class="bag-object object-folder" href="#pr-materials" data-popup-tab="pr" aria-label="PR media materials">
               <span class="object-icon">PR Folder</span>
               <span class="object-label">PR Materials</span>
               <span class="object-hint">Click to view experience.</span>
             </a>
-            <a class="bag-object object-camera" href="#content" aria-label="Reels and UGC">
+            <a class="bag-object object-camera" href="#content" data-popup-tab="reels" aria-label="Reels and UGC">
               <span class="object-icon">Camera</span>
               <span class="object-label">Reels & UGC</span>
               <span class="object-hint">Click to view experience.</span>
             </a>
-            <a class="bag-object object-laptop" href="#contact" aria-label="Resume and contact">
+            <a class="bag-object object-laptop" href="#contact" data-popup-tab="contact" aria-label="Resume and contact">
               <span class="object-icon">Card</span>
               <span class="object-label">Resume & Contact</span>
               <span class="object-hint">Click to view experience.</span>
@@ -277,9 +277,9 @@
         <div class="section-heading split">
           <div>
             <p class="eyebrow">Inside the bag</p>
-            <h2 id="bag-title">Strategy samples inside the bag.</h2>
+            <h2 id="bag-title">Inside the bag.</h2>
           </div>
-          <p>Click each object-inspired tab to explore the marketing skill, featured proof, and work sample behind it.</p>
+          <p>Choose a tab to explore strategy, PR, content, creative direction, and performance proof.</p>
         </div>
         <div class="bag-layout">
           <div class="bag-menu" role="tablist" aria-label="Portfolio categories">
@@ -602,6 +602,83 @@
       <p>Anaaya Shah | Marketing Portfolio</p>
       <a href="mailto:anaayashah1202@gmail.com">anaayashah1202@gmail.com</a>
     </footer>
+
+    <div class="portfolio-popup is-hidden" data-portfolio-popup role="dialog" aria-modal="true" aria-labelledby="portfolio-popup-title">
+      <button class="popup-backdrop" type="button" data-popup-close aria-label="Close portfolio preview"></button>
+      <div class="popup-card">
+        <div class="popup-header">
+          <div>
+            <p class="eyebrow">What’s in my bag</p>
+            <h2 id="portfolio-popup-title">Portfolio preview.</h2>
+          </div>
+          <button class="popup-close" type="button" data-popup-close aria-label="Close portfolio preview">Close</button>
+        </div>
+        <div class="popup-tabs" role="tablist" aria-label="Bag portfolio categories">
+          <button class="is-active" type="button" role="tab" aria-selected="true" data-modal-tab="mockups">Mockups</button>
+          <button type="button" role="tab" aria-selected="false" data-modal-tab="collabs">Collabs</button>
+          <button type="button" role="tab" aria-selected="false" data-modal-tab="content">Content</button>
+          <button type="button" role="tab" aria-selected="false" data-modal-tab="pr">PR</button>
+          <button type="button" role="tab" aria-selected="false" data-modal-tab="reels">Reels</button>
+          <button type="button" role="tab" aria-selected="false" data-modal-tab="contact">Resume</button>
+        </div>
+        <div class="popup-body">
+          <article class="popup-panel" data-modal-panel="mockups">
+            <img src="assets/work-samples/rhode-haus-labs-visuals.jpg" alt="Rhode x Haus Labs mockup visuals" />
+            <div>
+              <span>Beauty Brand Mockups</span>
+              <h3>Launch-ready visual direction.</h3>
+              <p>Concept visuals for Rhode x Haus Labs and Huda Beauty x NARS, showing product positioning, campaign mood, and beauty storytelling.</p>
+              <a class="text-link" href="#mockup-visuals" data-popup-jump>View full mockup section</a>
+            </div>
+          </article>
+          <article class="popup-panel is-hidden" data-modal-panel="collabs">
+            <img src="assets/generated/brand-collaborations-cover.png" alt="Brand collaboration cover" />
+            <div>
+              <span>Creator Partnerships</span>
+              <h3>Fashion, lifestyle, and beauty collaborations.</h3>
+              <p>Direct Instagram collaboration proof with therefore, BHAB, Union Club Hotel, and JW PEI.</p>
+              <a class="text-link" href="#brand-collaborations" data-popup-jump>View collaboration links</a>
+            </div>
+          </article>
+          <article class="popup-panel is-hidden" data-modal-panel="content">
+            <img src="assets/anaaya-instagram-profile.png" alt="Anaaya Shah Instagram profile" />
+            <div>
+              <span>Social Media Content</span>
+              <h3>Creator-led social portfolio.</h3>
+              <p>Instagram and TikTok creator experience across beauty, fashion, lifestyle, hooks, editing, and platform-native storytelling.</p>
+              <a class="text-link" href="#content" data-popup-jump>View social content</a>
+            </div>
+          </article>
+          <article class="popup-panel is-hidden" data-modal-panel="pr">
+            <img src="assets/generated/pr-infographic-thumbnail.png" alt="PR media materials preview" />
+            <div>
+              <span>PR Materials</span>
+              <h3>Writing, pitching, and media relations.</h3>
+              <p>Infographic, media backgrounder, media pitch, media list, and writing sample built for clear communication.</p>
+              <a class="text-link" href="#pr-materials" data-popup-jump>View PR materials</a>
+            </div>
+          </article>
+          <article class="popup-panel is-hidden" data-modal-panel="reels">
+            <img src="assets/work-samples/product-video-campaigns.jpg" alt="Product video campaign previews" />
+            <div>
+              <span>Reels + UGC</span>
+              <h3>Short-form product storytelling.</h3>
+              <p>Mock product videos and creator content with visual hooks, beauty pacing, close-up product detail, and editing rhythm.</p>
+              <a class="text-link" href="#content" data-popup-jump>View reels and content</a>
+            </div>
+          </article>
+          <article class="popup-panel is-hidden" data-modal-panel="contact">
+            <img src="assets/anaaya-shah-profile.jpg" alt="Anaaya Shah profile photo" />
+            <div>
+              <span>Resume + Contact</span>
+              <h3>Recruiter quick links.</h3>
+              <p>Resume, email, LinkedIn, and Instagram links for social media, PR, influencer marketing, and brand marketing roles.</p>
+              <a class="text-link" href="#contact" data-popup-jump>Go to contact</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>

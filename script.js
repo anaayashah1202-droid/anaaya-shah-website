@@ -11,8 +11,14 @@ window.addEventListener("scroll", setHeaderShadow, { passive: true });
 const bagStage = document.querySelector("[data-bag-stage]");
 const bagToggle = document.querySelector("[data-bag-toggle]");
 const heroBagLinks = document.querySelectorAll("[data-open-bag]");
+const bagObjects = document.querySelectorAll("[data-popup-tab]");
 const bagButtons = document.querySelectorAll("[data-bag-tab]");
 const bagPanels = document.querySelectorAll("[data-bag-panel]");
+const portfolioPopup = document.querySelector("[data-portfolio-popup]");
+const popupCloseButtons = document.querySelectorAll("[data-popup-close]");
+const popupTabs = document.querySelectorAll("[data-modal-tab]");
+const popupPanels = document.querySelectorAll("[data-modal-panel]");
+const popupJumpLinks = document.querySelectorAll("[data-popup-jump]");
 
 const openPortfolioTab = (selectedTab) => {
   bagButtons.forEach((item) => {
@@ -24,6 +30,31 @@ const openPortfolioTab = (selectedTab) => {
   bagPanels.forEach((panel) => {
     panel.classList.toggle("is-hidden", panel.dataset.bagPanel !== selectedTab);
   });
+};
+
+const openPopupTab = (selectedTab) => {
+  popupTabs.forEach((item) => {
+    const isActive = item.dataset.modalTab === selectedTab;
+    item.classList.toggle("is-active", isActive);
+    item.setAttribute("aria-selected", String(isActive));
+  });
+
+  popupPanels.forEach((panel) => {
+    panel.classList.toggle("is-hidden", panel.dataset.modalPanel !== selectedTab);
+  });
+};
+
+const openPortfolioPopup = (selectedTab) => {
+  if (!portfolioPopup) return;
+  openPopupTab(selectedTab);
+  portfolioPopup.classList.remove("is-hidden");
+  document.body.classList.add("has-popup");
+};
+
+const closePortfolioPopup = () => {
+  if (!portfolioPopup) return;
+  portfolioPopup.classList.add("is-hidden");
+  document.body.classList.remove("has-popup");
 };
 
 if (bagStage && bagToggle) {
@@ -41,13 +72,16 @@ if (bagStage && bagToggle) {
 }
 
 heroBagLinks.forEach((link) => {
-  link.addEventListener("click", () => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
     if (!bagStage || !bagToggle) return;
     if (!bagStage.classList.contains("is-open")) {
       bagStage.classList.add("is-open");
       bagToggle.setAttribute("aria-expanded", "true");
       bagToggle.querySelector("span").textContent = "Choose an item";
     }
+
+    bagStage.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 });
 
@@ -61,6 +95,33 @@ bagButtons.forEach((button) => {
   button.addEventListener("click", () => {
     openPortfolioTab(button.dataset.bagTab);
   });
+});
+
+bagObjects.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    openPortfolioPopup(link.dataset.popupTab);
+  });
+});
+
+popupTabs.forEach((button) => {
+  button.addEventListener("click", () => {
+    openPopupTab(button.dataset.modalTab);
+  });
+});
+
+popupCloseButtons.forEach((button) => {
+  button.addEventListener("click", closePortfolioPopup);
+});
+
+popupJumpLinks.forEach((link) => {
+  link.addEventListener("click", closePortfolioPopup);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closePortfolioPopup();
+  }
 });
 
 const reelFrame = document.querySelector("[data-reel-frame]");
