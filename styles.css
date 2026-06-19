@@ -2178,6 +2178,125 @@ h3 {
   max-width: 460px;
 }
 
+.social-work-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  grid-column: 1 / -1;
+}
+
+.social-work-card {
+  position: relative;
+  display: grid;
+  min-height: 280px;
+  align-content: end;
+  gap: 12px;
+  overflow: hidden;
+  padding: 24px;
+  background:
+    linear-gradient(180deg, rgba(36, 33, 36, 0.02), rgba(36, 33, 36, 0.72)),
+    radial-gradient(circle at 18% 16%, rgba(244, 180, 196, 0.42), transparent 34%),
+    linear-gradient(145deg, rgba(255, 252, 246, 0.98), rgba(250, 231, 226, 0.86));
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 16px 38px rgba(86, 42, 48, 0.12);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.social-work-card::before {
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(255, 247, 235, 0.34);
+  border-radius: 9px;
+  content: "";
+  pointer-events: none;
+}
+
+.social-work-card::after {
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  background: rgba(255, 252, 246, 0.86);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--rose);
+  content: "IG";
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 900;
+}
+
+.social-work-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px rgba(86, 42, 48, 0.18);
+}
+
+.social-work-card span,
+.social-work-card strong,
+.social-work-card p,
+.social-work-card em {
+  position: relative;
+  z-index: 1;
+}
+
+.social-work-card span {
+  color: rgba(255, 247, 235, 0.86);
+  font-size: 0.74rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.social-work-card strong {
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.55rem, 2.7vw, 2.35rem);
+  line-height: 0.98;
+}
+
+.social-work-card p {
+  margin-bottom: 0;
+  color: rgba(255, 247, 235, 0.86);
+  font-size: 0.92rem;
+}
+
+.social-work-card em {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 38px;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255, 252, 246, 0.9);
+  border-radius: 999px;
+  color: var(--rose);
+  font-size: 0.82rem;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.therefore-card {
+  background:
+    linear-gradient(180deg, rgba(36, 33, 36, 0.03), rgba(36, 33, 36, 0.76)),
+    linear-gradient(145deg, rgba(122, 38, 49, 0.84), rgba(36, 33, 36, 0.9));
+}
+
+.purdue-card {
+  background:
+    linear-gradient(180deg, rgba(36, 33, 36, 0.02), rgba(36, 33, 36, 0.72)),
+    linear-gradient(145deg, rgba(122, 38, 49, 0.76), rgba(231, 186, 104, 0.54));
+}
+
+.nasha-card {
+  background:
+    linear-gradient(180deg, rgba(36, 33, 36, 0.02), rgba(36, 33, 36, 0.72)),
+    linear-gradient(145deg, rgba(122, 38, 49, 0.7), rgba(244, 180, 196, 0.58));
+}
+
 .youtube-section {
   padding-top: clamp(42px, 6vw, 76px);
 }
@@ -2544,6 +2663,7 @@ h3 {
   .campaign-video-grid,
   .insight-dashboard,
   .audience-mini-board,
+  .social-work-board,
   .analysis-cards {
     grid-template-columns: 1fr;
   }
@@ -2749,6 +2869,10 @@ h3 {
 
   .youtube-window {
     min-height: 220px;
+  }
+
+  .social-work-card {
+    min-height: 240px;
   }
 
   .youtube-thumbs {
