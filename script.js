@@ -8,6 +8,28 @@ const setHeaderShadow = () => {
 setHeaderShadow();
 window.addEventListener("scroll", setHeaderShadow, { passive: true });
 
+document.documentElement.classList.add("js-reveal");
+
+const revealItems = document.querySelectorAll(".section, .case-file, .visual-card, .pr-card, .phone-card, .youtube-card, .social-work-card");
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -12% 0px", threshold: 0.12 }
+  );
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("in-view"));
+}
+
 const bagStage = document.querySelector("[data-bag-stage]");
 const bagToggle = document.querySelector("[data-bag-toggle]");
 const heroBagLinks = document.querySelectorAll("[data-open-bag]");
