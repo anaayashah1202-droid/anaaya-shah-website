@@ -10,7 +10,9 @@ window.addEventListener("scroll", setHeaderShadow, { passive: true });
 
 document.documentElement.classList.add("js-reveal");
 
-const revealItems = document.querySelectorAll(".section, .case-file, .visual-card, .pr-card, .phone-card, .youtube-card, .social-work-card");
+const revealItems = document.querySelectorAll(
+  ".section, .case-file, .visual-card, .pr-card, .youtube-card, .social-work-card, .editorial-card, .campaign-video-card, .campaign-note-card, .managed-grid a, .ugc-intro-card, .reel-phone"
+);
 
 if ("IntersectionObserver" in window) {
   const revealObserver = new IntersectionObserver(
@@ -33,51 +35,6 @@ if ("IntersectionObserver" in window) {
 const bagStage = document.querySelector("[data-bag-stage]");
 const bagToggle = document.querySelector("[data-bag-toggle]");
 const heroBagLinks = document.querySelectorAll("[data-open-bag]");
-const bagObjects = document.querySelectorAll("[data-popup-tab]");
-const bagButtons = document.querySelectorAll("[data-bag-tab]");
-const bagPanels = document.querySelectorAll("[data-bag-panel]");
-const portfolioPopup = document.querySelector("[data-portfolio-popup]");
-const popupCloseButtons = document.querySelectorAll("[data-popup-close]");
-const popupTabs = document.querySelectorAll("[data-modal-tab]");
-const popupPanels = document.querySelectorAll("[data-modal-panel]");
-const popupJumpLinks = document.querySelectorAll("[data-popup-jump]");
-
-const openPortfolioTab = (selectedTab) => {
-  bagButtons.forEach((item) => {
-    const isActive = item.dataset.bagTab === selectedTab;
-    item.classList.toggle("is-active", isActive);
-    item.setAttribute("aria-selected", String(isActive));
-  });
-
-  bagPanels.forEach((panel) => {
-    panel.classList.toggle("is-hidden", panel.dataset.bagPanel !== selectedTab);
-  });
-};
-
-const openPopupTab = (selectedTab) => {
-  popupTabs.forEach((item) => {
-    const isActive = item.dataset.modalTab === selectedTab;
-    item.classList.toggle("is-active", isActive);
-    item.setAttribute("aria-selected", String(isActive));
-  });
-
-  popupPanels.forEach((panel) => {
-    panel.classList.toggle("is-hidden", panel.dataset.modalPanel !== selectedTab);
-  });
-};
-
-const openPortfolioPopup = (selectedTab) => {
-  if (!portfolioPopup) return;
-  openPopupTab(selectedTab);
-  portfolioPopup.classList.remove("is-hidden");
-  document.body.classList.add("has-popup");
-};
-
-const closePortfolioPopup = () => {
-  if (!portfolioPopup) return;
-  portfolioPopup.classList.add("is-hidden");
-  document.body.classList.remove("has-popup");
-};
 
 if (bagStage && bagToggle) {
   bagToggle.addEventListener("click", () => {
@@ -105,45 +62,6 @@ heroBagLinks.forEach((link) => {
 
     bagStage.scrollIntoView({ behavior: "smooth", block: "center" });
   });
-});
-
-document.querySelectorAll("[data-open-tab]").forEach((link) => {
-  link.addEventListener("click", () => {
-    openPortfolioTab(link.dataset.openTab);
-  });
-});
-
-bagButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    openPortfolioTab(button.dataset.bagTab);
-  });
-});
-
-bagObjects.forEach((link) => {
-  link.addEventListener("click", (event) => {
-    event.preventDefault();
-    openPortfolioPopup(link.dataset.popupTab);
-  });
-});
-
-popupTabs.forEach((button) => {
-  button.addEventListener("click", () => {
-    openPopupTab(button.dataset.modalTab);
-  });
-});
-
-popupCloseButtons.forEach((button) => {
-  button.addEventListener("click", closePortfolioPopup);
-});
-
-popupJumpLinks.forEach((link) => {
-  link.addEventListener("click", closePortfolioPopup);
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    closePortfolioPopup();
-  }
 });
 
 const reelFrame = document.querySelector("[data-reel-frame]");
