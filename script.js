@@ -13,7 +13,7 @@ window.addEventListener("scroll", setHeaderShadow, { passive: true });
 document.documentElement.classList.add("js-reveal");
 
 const revealItems = document.querySelectorAll(
-  ".section, .marquee-strip, .case-file, .visual-card, .pr-card, .youtube-card, .social-work-card, .editorial-card, .campaign-video-card, .campaign-note-card, .managed-grid a, .ugc-intro-card, .reel-phone"
+  ".section, .marquee-strip, .case-file, .visual-card, .pr-card, .youtube-card, .social-work-card, .editorial-card, .campaign-video-card, .campaign-note-card, .managed-grid a, .ugc-intro-card, .reel-phone, .featured-card, .work-row"
 );
 
 if ("IntersectionObserver" in window) {
@@ -231,3 +231,67 @@ const scrollPreviewTrack = (direction) => {
 
 previewNext?.addEventListener("click", () => scrollPreviewTrack(1));
 previewPrev?.addEventListener("click", () => scrollPreviewTrack(-1));
+
+const hero = document.querySelector(".editorial-hero");
+const parallaxTiles = document.querySelectorAll("[data-parallax]");
+
+if (hero && parallaxTiles.length && window.matchMedia("(pointer: fine)").matches) {
+  hero.addEventListener("pointermove", (event) => {
+    const rect = hero.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    parallaxTiles.forEach((tile, index) => {
+      const strength = 14 + index * 4;
+      const rotate = (index % 2 === 0 ? -1 : 1) * (6 + x * 5);
+      tile.style.transform = `translate(${x * strength}px, ${y * strength}px) rotate(${rotate}deg)`;
+    });
+  });
+
+  hero.addEventListener("pointerleave", () => {
+    parallaxTiles.forEach((tile) => {
+      tile.style.transform = "";
+    });
+  });
+}
+
+const cursorBubble = document.querySelector("[data-cursor-bubble]");
+
+if (cursorBubble && window.matchMedia("(pointer: fine)").matches) {
+  document.addEventListener(
+    "pointermove",
+    (event) => {
+      cursorBubble.style.setProperty("--cursor-x", `${event.clientX}px`);
+      cursorBubble.style.setProperty("--cursor-y", `${event.clientY}px`);
+    },
+    { passive: true }
+  );
+
+  document.querySelectorAll("[data-cursor-label]").forEach((item) => {
+    item.addEventListener("pointerenter", () => {
+      cursorBubble.textContent = item.dataset.cursorLabel || "View";
+      cursorBubble.classList.add("is-visible");
+    });
+
+    item.addEventListener("pointerleave", () => {
+      cursorBubble.classList.remove("is-visible");
+    });
+  });
+}
+
+const magneticTargets = document.querySelectorAll(".button, .header-action, .phone-cta, .drawer-actions a");
+
+if (window.matchMedia("(pointer: fine)").matches) {
+  magneticTargets.forEach((target) => {
+    target.addEventListener("pointermove", (event) => {
+      const rect = target.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      target.style.transform = `translate(${x * 8}px, ${y * 6}px)`;
+    });
+
+    target.addEventListener("pointerleave", () => {
+      target.style.transform = "";
+    });
+  });
+}

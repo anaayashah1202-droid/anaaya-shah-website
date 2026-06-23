@@ -41,28 +41,35 @@
 
     <main id="top">
       <section class="hero editorial-hero">
+        <div class="hero-float-grid" aria-hidden="true">
+          <span class="parallax-tile tile-one" data-parallax></span>
+          <span class="parallax-tile tile-two" data-parallax></span>
+          <span class="parallax-tile tile-three" data-parallax></span>
+          <span class="parallax-tile tile-four" data-parallax></span>
+        </div>
         <div class="hero-copy">
           <p class="eyebrow">Marketing | Social Media | PR | Brand Strategy</p>
           <h1>Anaaya Shah</h1>
-          <p class="hero-kicker">Social Media · PR · Brand Marketing · Creator</p>
-          <span class="availability-pill">Available August 2026 · Open to marketing, PR, and social media roles</span>
+          <p class="hero-kicker">Creating digital culture through strategic communication.</p>
+          <p class="hero-brief">I transform raw data and fast-moving trends into unforgettable brand stories.</p>
+          <span class="availability-pill">Available August 2026 · Open to Marketing, PR &amp; Social Media Roles</span>
           <div class="hero-stat-chips" aria-label="Portfolio highlights">
             <span>332K+ Views</span>
             <span>Gold Carpet Award</span>
             <span>Sol de Janeiro · JW Pei · Medix 5.5</span>
           </div>
           <div class="hero-actions">
-            <a class="button primary" href="#work-bag" data-open-bag>View My Work</a>
-            <a class="button secondary" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Download resume</a>
+            <a class="button primary" href="#work-bag" data-open-bag data-cursor-label="Open">View My Work</a>
+            <a class="button secondary" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf" data-cursor-label="Download">Download resume</a>
           </div>
         </div>
       </section>
 
       <div class="marquee-strip" aria-label="Portfolio highlights">
         <div class="marquee-track">
-          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro Collab · JW Pei Collab · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
-          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro Collab · JW Pei Collab · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
-          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro Collab · JW Pei Collab · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
+          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro · JW Pei · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
+          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro · JW Pei · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
+          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro · JW Pei · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
         </div>
       </div>
 
@@ -79,17 +86,91 @@
           </div>
           <div class="about-copy">
             <p class="eyebrow">Meet me</p>
-            <h2 id="about-title">Creative marketer with a performance mindset.</h2>
-            <p>I’m a Purdue University Communication graduate specializing in Public Relations and Strategic Communication, with experience across social media marketing, PR writing, creator partnerships, content strategy, and brand storytelling.</p>
-            <p>As an Instagram and TikTok creator, I understand how beauty, fashion, lifestyle, and wellness content has to feel native to culture while still supporting business goals.</p>
-            <div class="skill-pills" aria-label="Core marketing strengths">
-              <span>PR writing</span>
-              <span>Brand strategy</span>
-              <span>Instagram + TikTok</span>
-              <span>Influencer marketing</span>
-              <span>Campaign analytics</span>
+            <h2 id="about-title">Purdue Grad. Digital Stylist. Narrative Builder.</h2>
+            <p>I operate where strategic communication meets digital aesthetic. Grounded in media theory at Purdue and fueled by real-world digital creation, I build campaigns tailored for Gen-Z and modern audiences. Less noise, more resonance.</p>
+            <div class="trait-pills" aria-label="Creative traits">
+              <button class="trait-pill" type="button">
+                <span>Trend Forester</span>
+                <em>I watch cultural signals early, then turn them into campaign angles.</em>
+              </button>
+              <button class="trait-pill" type="button">
+                <span>Pop-Culture Obsessed</span>
+                <em>I build content that feels native to beauty, fashion, and lifestyle feeds.</em>
+              </button>
+              <button class="trait-pill" type="button">
+                <span>Data-Driven</span>
+                <em>I use reach, views, saves, and audience behavior to sharpen creative decisions.</em>
+              </button>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="section featured-slider-section" id="featured-work" aria-labelledby="featured-title">
+        <div class="section-heading split compact-heading">
+          <div>
+            <p class="eyebrow">Featured work</p>
+            <h2 id="featured-title">Campaigns in one swipe.</h2>
+          </div>
+          <p>Short previews. Clear strategy. No endless scroll.</p>
+        </div>
+        <div class="featured-slider" aria-label="Featured portfolio work">
+          <a class="featured-card product" href="#work-bag" data-open-bag data-cursor-label="Open">
+            <span>01</span>
+            <h3>Brand Strategy</h3>
+            <p>Rhode, Lululemon vs Alo, and product launch thinking.</p>
+          </a>
+          <a class="featured-card visual" href="#mockup-visuals" data-cursor-label="View">
+            <span>02</span>
+            <h3>Visual Direction</h3>
+            <p>Beauty mockups, product pairing, and campaign mood.</p>
+          </a>
+          <a class="featured-card pr" href="#pr-materials" data-cursor-label="Read">
+            <span>03</span>
+            <h3>PR Materials</h3>
+            <p>Pitching, media lists, backgrounders, and writing.</p>
+          </a>
+          <a class="featured-card content" href="#social" data-cursor-label="Watch">
+            <span>04</span>
+            <h3>Social Content</h3>
+            <p>Reels, creator partnerships, UGC, and account work.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="section hover-showcase" id="showcase" aria-labelledby="showcase-title">
+        <div class="section-heading split compact-heading">
+          <div>
+            <p class="eyebrow">Showcase</p>
+            <h2 id="showcase-title">Hover to reveal the proof.</h2>
+          </div>
+          <p>Writing, PR strategy, and content direction in a compact interactive view.</p>
+        </div>
+        <div class="work-accordion" aria-label="Interactive work categories">
+          <a class="work-row editorial-row" href="https://www.hercampus.com/school/purdue/september-writer-of-the-month-anaaya-shah/" target="_blank" rel="noreferrer" data-cursor-label="Read">
+            <span>01/ Editorial Writing</span>
+            <strong>Published voice with culture-first framing.</strong>
+            <div class="work-preview">
+              <img src="assets/generated/pr-writing-cover.jpg" alt="Published writing preview" />
+              <p>Editorial clarity, voice, and audience-aware storytelling.</p>
+            </div>
+          </a>
+          <a class="work-row pr-row" href="assets/media-materials/media-pitch.pdf" target="_blank" rel="noreferrer" data-cursor-label="Open">
+            <span>02/ Strategic PR</span>
+            <strong>Media-ready pitch, backgrounder, list, and infographic.</strong>
+            <div class="work-preview">
+              <img src="assets/generated/pr-pitch-cover.jpg" alt="PR materials preview" />
+              <p>Angle, hook, context, and journalist-ready outreach.</p>
+            </div>
+          </a>
+          <a class="work-row content-row" href="#social" data-cursor-label="Watch">
+            <span>03/ Digital Content</span>
+            <strong>Reels, UGC, creator work, and account storytelling.</strong>
+            <div class="work-preview">
+              <img src="assets/personal/anaaya-tiktok-profile-2.png" alt="Digital content preview" />
+              <p>Hooks, styling, pacing, and social-native creative judgment.</p>
+            </div>
+          </a>
         </div>
       </section>
 
@@ -110,32 +191,32 @@
             <a class="bag-object object-gloss" href="#mockup-visuals" data-bag-preview="mockups" aria-label="Mockup brand visuals">
               <span class="object-icon">Gloss</span>
               <span class="object-label">Mockup Visuals</span>
-              <span class="object-hint">Click to view experience.</span>
+              <span class="object-hint">Campaigns</span>
             </a>
             <a class="bag-object object-compact" href="#brand-collaborations" data-bag-preview="collabs" aria-label="Brand collaborations">
               <span class="object-icon">Compact</span>
               <span class="object-label">Collaborations</span>
-              <span class="object-hint">Click to view experience.</span>
+              <span class="object-hint">Brand Collabs</span>
             </a>
             <a class="bag-object object-lip" href="#social" data-bag-preview="social" aria-label="Social media content">
               <span class="object-icon">Lip Oil</span>
               <span class="object-label">Social Content</span>
-              <span class="object-hint">Click to view experience.</span>
+              <span class="object-hint">Social Content</span>
             </a>
             <a class="bag-object object-folder" href="#pr-materials" data-bag-preview="pr" aria-label="PR media materials">
               <span class="object-icon">PR</span>
               <span class="object-label">PR Materials</span>
-              <span class="object-hint">Click to view experience.</span>
+              <span class="object-hint">PR Materials</span>
             </a>
             <a class="bag-object object-camera" href="#campaigns" data-bag-preview="video" aria-label="Reels and UGC">
               <span class="object-icon">Camera</span>
               <span class="object-label">Video Work</span>
-              <span class="object-hint">Click to view experience.</span>
+              <span class="object-hint">Video Work</span>
             </a>
             <a class="bag-object object-laptop" href="#contact" data-bag-preview="contact" aria-label="Resume and contact">
               <span class="object-icon">Card</span>
               <span class="object-label">Contact</span>
-              <span class="object-hint">Click to view experience.</span>
+              <span class="object-hint">Contact</span>
             </a>
           </div>
         </div>
@@ -150,13 +231,13 @@
           <p>Beauty visuals designed to show taste, product storytelling, and brand-fit creative direction.</p>
         </div>
         <div class="editorial-scroll" aria-label="Visual work carousel">
-          <a class="editorial-card" href="assets/work-samples/rhode-haus-labs-visuals.jpg" target="_blank" rel="noreferrer">
+          <a class="editorial-card" href="assets/work-samples/rhode-haus-labs-visuals.jpg" target="_blank" rel="noreferrer" data-cursor-label="View">
             <img src="assets/work-samples/rhode-haus-labs-visuals.jpg" alt="Rhode x Haus Labs visuals" />
             <span>Rhode x Haus Labs</span>
             <p>Complexion glow concept with product pairing and social launch appeal.</p>
             <strong>View →</strong>
           </a>
-          <a class="editorial-card" href="assets/work-samples/huda-nars-visuals.jpg" target="_blank" rel="noreferrer">
+          <a class="editorial-card" href="assets/work-samples/huda-nars-visuals.jpg" target="_blank" rel="noreferrer" data-cursor-label="View">
             <img src="assets/work-samples/huda-nars-visuals.jpg" alt="Huda Beauty x NARS visuals" />
             <span>Huda Beauty x NARS</span>
             <p>Bold beauty collaboration concept with premium campaign styling.</p>
@@ -174,7 +255,7 @@
           <p>Short-form ideas built around hooks, styling, detail shots, pacing, and product storytelling.</p>
         </div>
         <div class="campaign-grid">
-          <a class="campaign-video-card" href="https://youtu.be/tJezH4-1aKE?si=sBs0DrtvwAaPhPjH" target="_blank" rel="noreferrer">
+          <a class="campaign-video-card" href="https://youtu.be/tJezH4-1aKE?si=sBs0DrtvwAaPhPjH" target="_blank" rel="noreferrer" data-cursor-label="Watch">
             <div class="campaign-art kindly-art" aria-hidden="true">
               <span></span><span></span><span></span>
             </div>
@@ -184,7 +265,7 @@
               <strong>Soft beauty product story</strong>
             </div>
           </a>
-          <a class="campaign-video-card" href="https://youtu.be/ClEIrnJ8KRI?si=zdH4sM6XNusCTA_R" target="_blank" rel="noreferrer">
+          <a class="campaign-video-card" href="https://youtu.be/ClEIrnJ8KRI?si=zdH4sM6XNusCTA_R" target="_blank" rel="noreferrer" data-cursor-label="Watch">
             <div class="campaign-art jewels-art" aria-hidden="true">
               <span></span><span></span><span></span>
             </div>
@@ -302,31 +383,31 @@
           <p>Media-ready documents and writing samples that show clear communication and outreach strategy.</p>
         </div>
         <div class="pr-grid">
-          <a class="pr-card infographic" href="assets/media-materials/boilermaker-golf-complex-infographic.pdf" target="_blank" rel="noreferrer">
+          <a class="pr-card infographic" href="assets/media-materials/boilermaker-golf-complex-infographic.pdf" target="_blank" rel="noreferrer" data-cursor-label="Open">
             <img src="assets/generated/pr-infographic-thumbnail.png" alt="Birck Boilermaker Golf Complex infographic" />
             <span>Infographic</span>
             <p>Visual media asset for Birck Boilermaker Golf Complex.</p>
             <strong>View →</strong>
           </a>
-          <a class="pr-card" href="assets/media-materials/media-backgrounder.pdf" target="_blank" rel="noreferrer">
+          <a class="pr-card" href="assets/media-materials/media-backgrounder.pdf" target="_blank" rel="noreferrer" data-cursor-label="Open">
             <div class="doc-cover"><span>Media Kit</span><strong>Backgrounder</strong><em>Facts · Context · Brand Details</em></div>
             <span>Media Backgrounder</span>
             <p>Context, facts, and brand details for media outreach.</p>
             <strong>View →</strong>
           </a>
-          <a class="pr-card" href="assets/media-materials/media-pitch.pdf" target="_blank" rel="noreferrer">
+          <a class="pr-card" href="assets/media-materials/media-pitch.pdf" target="_blank" rel="noreferrer" data-cursor-label="Open">
             <div class="doc-cover pitch"><span>Pitch File</span><strong>Media Pitch</strong><em>Angle · Hook · Outreach</em></div>
             <span>Media Pitch</span>
             <p>Story angle and journalist-ready outreach sample.</p>
             <strong>View →</strong>
           </a>
-          <a class="pr-card" href="assets/media-materials/media-list.pdf" target="_blank" rel="noreferrer">
+          <a class="pr-card" href="assets/media-materials/media-list.pdf" target="_blank" rel="noreferrer" data-cursor-label="Open">
             <div class="doc-cover list"><span>Research File</span><strong>Media List</strong><em>Outlets · Contacts · Targets</em></div>
             <span>Media List</span>
             <p>Targeted media research and pitching workflow.</p>
             <strong>View →</strong>
           </a>
-          <a class="pr-card" href="https://www.hercampus.com/school/purdue/september-writer-of-the-month-anaaya-shah/" target="_blank" rel="noreferrer">
+          <a class="pr-card" href="https://www.hercampus.com/school/purdue/september-writer-of-the-month-anaaya-shah/" target="_blank" rel="noreferrer" data-cursor-label="Read">
             <div class="doc-cover writing"><span>Published Writing</span><strong>Her Campus</strong><em>Editorial Feature</em></div>
             <span>Writing Sample</span>
             <p>Published editorial writing sample with a clear voice.</p>
@@ -444,6 +525,7 @@
       </div>
     </aside>
 
+    <div class="cursor-bubble" data-cursor-bubble aria-hidden="true">View</div>
     <script src="script.js"></script>
   </body>
 </html>
