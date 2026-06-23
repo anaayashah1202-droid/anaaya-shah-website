@@ -1,4 +1,6 @@
 const header = document.querySelector("[data-header]");
+const navToggle = document.querySelector("[data-nav-toggle]");
+const nav = document.querySelector("[data-nav]");
 
 const setHeaderShadow = () => {
   if (!header) return;
@@ -11,7 +13,7 @@ window.addEventListener("scroll", setHeaderShadow, { passive: true });
 document.documentElement.classList.add("js-reveal");
 
 const revealItems = document.querySelectorAll(
-  ".section, .case-file, .visual-card, .pr-card, .youtube-card, .social-work-card, .editorial-card, .campaign-video-card, .campaign-note-card, .managed-grid a, .ugc-intro-card, .reel-phone"
+  ".section, .marquee-strip, .case-file, .visual-card, .pr-card, .youtube-card, .social-work-card, .editorial-card, .campaign-video-card, .campaign-note-card, .managed-grid a, .ugc-intro-card, .reel-phone"
 );
 
 if ("IntersectionObserver" in window) {
@@ -35,6 +37,114 @@ if ("IntersectionObserver" in window) {
 const bagStage = document.querySelector("[data-bag-stage]");
 const bagToggle = document.querySelector("[data-bag-toggle]");
 const heroBagLinks = document.querySelectorAll("[data-open-bag]");
+const bagPreviewLinks = document.querySelectorAll("[data-bag-preview]");
+const bagDrawer = document.querySelector("[data-bag-drawer]");
+const drawerMedia = document.querySelector("[data-drawer-media]");
+const drawerKicker = document.querySelector("[data-drawer-kicker]");
+const drawerTitle = document.querySelector("[data-drawer-title]");
+const drawerCopy = document.querySelector("[data-drawer-copy]");
+const drawerActions = document.querySelector("[data-drawer-actions]");
+const drawerCloseButtons = document.querySelectorAll("[data-drawer-close]");
+
+const drawerContent = {
+  mockups: {
+    kicker: "Visual work",
+    title: "Beauty collaboration mockups",
+    copy: "Campaign-style visuals for Rhode x Haus Labs and Huda Beauty x NARS, focused on product pairing, launch aesthetics, and brand fit.",
+    media: '<img src="assets/work-samples/rhode-haus-labs-visuals.jpg" alt="Rhode x Haus Labs campaign mockup" />',
+    actions: [{ label: "View mockups", href: "#mockup-visuals" }],
+  },
+  collabs: {
+    kicker: "Creator partnerships",
+    title: "Brand collaborations",
+    copy: "Fashion, beauty, lifestyle, and hospitality collaborations with direct post links and platform-native storytelling.",
+    media: '<div class="drawer-doc-icon">Collabs</div>',
+    actions: [{ label: "View accounts", href: "#brand-collaborations" }],
+  },
+  social: {
+    kicker: "Social media",
+    title: "Creator content",
+    copy: "Instagram and TikTok content built around hooks, pacing, editing, styling, beauty, fashion, and audience fit.",
+    media: '<img src="assets/personal/anaaya-blue-lifestyle.png" alt="Anaaya Shah creator portrait" />',
+    actions: [
+      { label: "Instagram", href: "https://www.instagram.com/anaaya.shah/?hl=en" },
+      { label: "TikTok", href: "https://www.tiktok.com/@beautywanaaya" },
+    ],
+  },
+  pr: {
+    kicker: "PR materials",
+    title: "Media-ready documents",
+    copy: "Infographic, media backgrounder, media pitch, media list, and writing samples for clear communications work.",
+    media: '<div class="drawer-doc-icon">PR Kit</div>',
+    actions: [
+      { label: "Open infographic", href: "assets/media-materials/boilermaker-golf-complex-infographic.pdf" },
+      { label: "Open pitch", href: "assets/media-materials/media-pitch.pdf" },
+    ],
+  },
+  video: {
+    kicker: "Video work",
+    title: "Product video concepts",
+    copy: "Short-form product storytelling built around hooks, detail shots, styling, pacing, and conversion-friendly framing.",
+    media: '<iframe src="https://www.youtube.com/embed/tJezH4-1aKE" title="Kindly product video campaign" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+    actions: [
+      { label: "Kindly video", href: "https://youtu.be/tJezH4-1aKE?si=sBs0DrtvwAaPhPjH" },
+      { label: "AH&E Jewels video", href: "https://youtu.be/ClEIrnJ8KRI?si=zdH4sM6XNusCTA_R" },
+    ],
+  },
+  contact: {
+    kicker: "Resume + contact",
+    title: "Let’s work together",
+    copy: "Open to social media, PR, influencer marketing, brand marketing, content marketing, and digital marketing roles.",
+    media: '<div class="drawer-doc-icon">AS</div>',
+    actions: [
+      { label: "Download resume", href: "assets/anaaya-shah-resume.pdf", download: "Anaaya-Shah-Resume.pdf" },
+      { label: "Contact", href: "#contact" },
+    ],
+  },
+};
+
+const toggleMobileNav = (forceOpen) => {
+  if (!nav || !navToggle) return;
+  const willOpen = typeof forceOpen === "boolean" ? forceOpen : !nav.classList.contains("is-open");
+  nav.classList.toggle("is-open", willOpen);
+  navToggle.classList.toggle("is-open", willOpen);
+  navToggle.setAttribute("aria-expanded", String(willOpen));
+  document.body.classList.toggle("menu-open", willOpen);
+};
+
+navToggle?.addEventListener("click", () => toggleMobileNav());
+
+nav?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => toggleMobileNav(false));
+});
+
+const closeDrawer = () => {
+  if (!bagDrawer) return;
+  bagDrawer.classList.remove("is-open");
+  bagDrawer.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("has-drawer");
+};
+
+const openDrawer = (key) => {
+  const content = drawerContent[key];
+  if (!content || !bagDrawer || !drawerMedia || !drawerKicker || !drawerTitle || !drawerCopy || !drawerActions) return;
+
+  drawerMedia.innerHTML = content.media;
+  drawerKicker.textContent = content.kicker;
+  drawerTitle.textContent = content.title;
+  drawerCopy.textContent = content.copy;
+  drawerActions.innerHTML = content.actions
+    .map((action) => {
+      const target = action.href.startsWith("#") ? "" : ' target="_blank" rel="noreferrer"';
+      const download = action.download ? ` download="${action.download}"` : "";
+      return `<a href="${action.href}"${target}${download}>${action.label}</a>`;
+    })
+    .join("");
+
+  bagDrawer.classList.add("is-open");
+  bagDrawer.setAttribute("aria-hidden", "false");
+  document.body.classList.add("has-drawer");
+};
 
 if (bagStage && bagToggle) {
   bagToggle.addEventListener("click", () => {
@@ -62,6 +172,31 @@ heroBagLinks.forEach((link) => {
 
     bagStage.scrollIntoView({ behavior: "smooth", block: "center" });
   });
+});
+
+bagPreviewLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    openDrawer(link.dataset.bagPreview);
+  });
+});
+
+drawerCloseButtons.forEach((button) => {
+  button.addEventListener("click", closeDrawer);
+});
+
+drawerActions?.addEventListener("click", (event) => {
+  const link = event.target.closest("a");
+  if (link?.getAttribute("href")?.startsWith("#")) {
+    closeDrawer();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeDrawer();
+    toggleMobileNav(false);
+  }
 });
 
 const reelFrame = document.querySelector("[data-reel-frame]");

@@ -12,6 +12,9 @@
     <meta property="og:description" content="A visual portfolio of marketing strategy, social media, PR, creator content, and brand storytelling." />
     <meta property="og:image" content="assets/personal/anaaya-editorial-city.png" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css?v=ugc-visual-redesign" />
   </head>
   <body>
@@ -20,7 +23,11 @@
         <span class="brand-mark">AS</span>
         <span>Anaaya Shah</span>
       </a>
-      <nav class="nav" aria-label="Primary navigation">
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="primary-nav" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="primary-nav" data-nav aria-label="Primary navigation">
         <a href="#about">About</a>
         <a href="#work-bag">Work</a>
         <a href="#work-bag">Bag</a>
@@ -29,7 +36,7 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a class="header-action" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Resume</a>
+      <a class="header-action" href="#contact">Hire Me</a>
     </header>
 
     <main id="top">
@@ -37,24 +44,27 @@
         <div class="hero-copy">
           <p class="eyebrow">Marketing | Social Media | PR | Brand Strategy</p>
           <h1>Anaaya Shah</h1>
-          <p class="hero-kicker">Marketing, social media, and PR strategist for beauty, fashion, lifestyle, and consumer brands.</p>
+          <p class="hero-kicker">Social Media · PR · Brand Marketing · Creator</p>
+          <span class="availability-pill">Available August 2026 · Open to marketing, PR, and social media roles</span>
+          <div class="hero-stat-chips" aria-label="Portfolio highlights">
+            <span>332K+ Views</span>
+            <span>Gold Carpet Award</span>
+            <span>Sol de Janeiro · JW Pei · Medix 5.5</span>
+          </div>
           <div class="hero-actions">
-            <a class="button primary" href="#work-bag" data-open-bag>Open the bag</a>
-            <a class="button secondary" href="#social">Social work</a>
+            <a class="button primary" href="#work-bag" data-open-bag>View My Work</a>
             <a class="button secondary" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Download resume</a>
           </div>
         </div>
-
-        <div class="hero-collage" aria-label="Anaaya Shah portfolio collage">
-          <figure class="hero-photo main-photo">
-            <img src="assets/personal/anaaya-editorial-city.png" alt="Anaaya Shah editorial portrait" />
-          </figure>
-          <div class="hero-note">
-            <b>Social-first storytelling</b>
-            <span>Strategy, visuals, PR, content, and campaign proof.</span>
-          </div>
-        </div>
       </section>
+
+      <div class="marquee-strip" aria-label="Portfolio highlights">
+        <div class="marquee-track">
+          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro Collab · JW Pei Collab · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
+          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro Collab · JW Pei Collab · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
+          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro Collab · JW Pei Collab · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
+        </div>
+      </div>
 
       <section class="section about-section" id="about" aria-labelledby="about-title">
         <div class="about-layout">
@@ -97,32 +107,32 @@
               <img src="assets/generated/luxury-bag.png" alt="" aria-hidden="true" />
               <span>Open the bag</span>
             </button>
-            <a class="bag-object object-gloss" href="#mockup-visuals" aria-label="Mockup brand visuals">
+            <a class="bag-object object-gloss" href="#mockup-visuals" data-bag-preview="mockups" aria-label="Mockup brand visuals">
               <span class="object-icon">Gloss</span>
               <span class="object-label">Mockup Visuals</span>
               <span class="object-hint">Click to view experience.</span>
             </a>
-            <a class="bag-object object-compact" href="#brand-collaborations" aria-label="Brand collaborations">
+            <a class="bag-object object-compact" href="#brand-collaborations" data-bag-preview="collabs" aria-label="Brand collaborations">
               <span class="object-icon">Compact</span>
               <span class="object-label">Collaborations</span>
               <span class="object-hint">Click to view experience.</span>
             </a>
-            <a class="bag-object object-lip" href="#social" aria-label="Social media content">
+            <a class="bag-object object-lip" href="#social" data-bag-preview="social" aria-label="Social media content">
               <span class="object-icon">Lip Oil</span>
               <span class="object-label">Social Content</span>
               <span class="object-hint">Click to view experience.</span>
             </a>
-            <a class="bag-object object-folder" href="#pr-materials" aria-label="PR media materials">
+            <a class="bag-object object-folder" href="#pr-materials" data-bag-preview="pr" aria-label="PR media materials">
               <span class="object-icon">PR</span>
               <span class="object-label">PR Materials</span>
               <span class="object-hint">Click to view experience.</span>
             </a>
-            <a class="bag-object object-camera" href="#campaigns" aria-label="Reels and UGC">
+            <a class="bag-object object-camera" href="#campaigns" data-bag-preview="video" aria-label="Reels and UGC">
               <span class="object-icon">Camera</span>
               <span class="object-label">Video Work</span>
               <span class="object-hint">Click to view experience.</span>
             </a>
-            <a class="bag-object object-laptop" href="#contact" aria-label="Resume and contact">
+            <a class="bag-object object-laptop" href="#contact" data-bag-preview="contact" aria-label="Resume and contact">
               <span class="object-icon">Card</span>
               <span class="object-label">Contact</span>
               <span class="object-hint">Click to view experience.</span>
@@ -144,11 +154,13 @@
             <img src="assets/work-samples/rhode-haus-labs-visuals.jpg" alt="Rhode x Haus Labs visuals" />
             <span>Rhode x Haus Labs</span>
             <p>Complexion glow concept with product pairing and social launch appeal.</p>
+            <strong>View →</strong>
           </a>
           <a class="editorial-card" href="assets/work-samples/huda-nars-visuals.jpg" target="_blank" rel="noreferrer">
             <img src="assets/work-samples/huda-nars-visuals.jpg" alt="Huda Beauty x NARS visuals" />
             <span>Huda Beauty x NARS</span>
             <p>Bold beauty collaboration concept with premium campaign styling.</p>
+            <strong>View →</strong>
           </a>
         </div>
       </section>
@@ -293,22 +305,32 @@
           <a class="pr-card infographic" href="assets/media-materials/boilermaker-golf-complex-infographic.pdf" target="_blank" rel="noreferrer">
             <img src="assets/generated/pr-infographic-thumbnail.png" alt="Birck Boilermaker Golf Complex infographic" />
             <span>Infographic</span>
+            <p>Visual media asset for Birck Boilermaker Golf Complex.</p>
+            <strong>View →</strong>
           </a>
           <a class="pr-card" href="assets/media-materials/media-backgrounder.pdf" target="_blank" rel="noreferrer">
             <div class="doc-cover"><span>Media Kit</span><strong>Backgrounder</strong><em>Facts · Context · Brand Details</em></div>
             <span>Media Backgrounder</span>
+            <p>Context, facts, and brand details for media outreach.</p>
+            <strong>View →</strong>
           </a>
           <a class="pr-card" href="assets/media-materials/media-pitch.pdf" target="_blank" rel="noreferrer">
             <div class="doc-cover pitch"><span>Pitch File</span><strong>Media Pitch</strong><em>Angle · Hook · Outreach</em></div>
             <span>Media Pitch</span>
+            <p>Story angle and journalist-ready outreach sample.</p>
+            <strong>View →</strong>
           </a>
           <a class="pr-card" href="assets/media-materials/media-list.pdf" target="_blank" rel="noreferrer">
             <div class="doc-cover list"><span>Research File</span><strong>Media List</strong><em>Outlets · Contacts · Targets</em></div>
             <span>Media List</span>
+            <p>Targeted media research and pitching workflow.</p>
+            <strong>View →</strong>
           </a>
           <a class="pr-card" href="https://www.hercampus.com/school/purdue/september-writer-of-the-month-anaaya-shah/" target="_blank" rel="noreferrer">
             <div class="doc-cover writing"><span>Published Writing</span><strong>Her Campus</strong><em>Editorial Feature</em></div>
             <span>Writing Sample</span>
+            <p>Published editorial writing sample with a clear voice.</p>
+            <strong>View →</strong>
           </a>
         </div>
       </section>
@@ -325,28 +347,28 @@
           <article>
             <span>Analytics</span>
             <div class="logo-cloud" aria-label="Analytics tools">
-              <i>GA4</i><i>SC</i><i>LS</i><i>XL</i><i>GS</i>
+              <i>Google Analytics 4</i><i>Looker Studio</i><i>Meta Ads Manager</i>
             </div>
             <p>KPI tracking, funnel analysis, dashboards, audience insights, and engagement reporting.</p>
           </article>
           <article>
             <span>Creative</span>
             <div class="logo-cloud" aria-label="Creative tools">
-              <i>Ca</i><i>Pr</i><i>Cc</i><i>Ps</i><i>WP</i>
+              <i>Canva</i><i>Adobe Premiere Pro</i><i>CapCut</i><i>Midjourney</i>
             </div>
             <p>Short-form editing, branded assets, social layouts, and content production.</p>
           </article>
           <article>
             <span>Social + CRM</span>
             <div class="logo-cloud" aria-label="Social and CRM tools">
-              <i>IG</i><i>TT</i><i>YT</i><i>in</i><i>HS</i>
+              <i>Sprout Social</i><i>Hootsuite</i><i>HubSpot</i>
             </div>
             <p>Content calendars, publishing, community engagement, outreach, and lead workflows.</p>
           </article>
           <article>
             <span>AI + web</span>
             <div class="logo-cloud" aria-label="AI and website tools">
-              <i>GPT</i><i>Cl</i><i>CDX</i><i>GH</i><i>V</i>
+              <i>ChatGPT</i><i>Claude</i><i>GitHub</i><i>Vercel</i>
             </div>
             <p>Research, campaign ideation, visual brainstorming, website iteration, and deployment.</p>
           </article>
@@ -398,9 +420,29 @@
     </main>
 
     <footer class="footer">
-      <p>Anaaya Shah | Marketing Portfolio</p>
+      <h2>Let's build something together.</h2>
+      <div class="footer-socials" aria-label="Social links">
+        <a href="mailto:anaayashah1202@gmail.com" aria-label="Email Anaaya">Email</a>
+        <a href="https://www.linkedin.com/in/anaaya-shah" target="_blank" rel="noreferrer" aria-label="Anaaya Shah LinkedIn">in</a>
+        <a href="https://www.instagram.com/anaaya.shah/?hl=en" target="_blank" rel="noreferrer" aria-label="Anaaya Shah Instagram">IG</a>
+        <a href="https://www.tiktok.com/@beautywanaaya" target="_blank" rel="noreferrer" aria-label="Anaaya Shah TikTok">TT</a>
+        <a href="https://www.youtube.com/@anaayashah1111" target="_blank" rel="noreferrer" aria-label="Anaaya Shah YouTube">YT</a>
+      </div>
+      <p>Seeking Social Media, PR & Marketing roles · Available August 2026.</p>
       <a href="mailto:anaayashah1202@gmail.com">anaayashah1202@gmail.com</a>
     </footer>
+
+    <aside class="bag-drawer" data-bag-drawer aria-hidden="true" aria-labelledby="bag-drawer-title">
+      <button class="drawer-backdrop" type="button" data-drawer-close aria-label="Close preview"></button>
+      <div class="drawer-panel" role="dialog" aria-modal="true">
+        <button class="drawer-close" type="button" data-drawer-close aria-label="Close preview">×</button>
+        <div class="drawer-media" data-drawer-media></div>
+        <p class="eyebrow" data-drawer-kicker>Portfolio preview</p>
+        <h2 id="bag-drawer-title" data-drawer-title></h2>
+        <p data-drawer-copy></p>
+        <div class="drawer-actions" data-drawer-actions></div>
+      </div>
+    </aside>
 
     <script src="script.js"></script>
   </body>
