@@ -21,6 +21,9 @@
         --gold: #c8a96e;
         --muted: #9e9a93;
         --rose: #c4847a;
+        --social: #9e8a6b;
+        --marketing: #6a8eb8;
+        --pr: #b87068;
         --line: rgba(245, 239, 224, 0.14);
         --dark-line: rgba(13, 12, 11, 0.12);
         --serif: "Cormorant Garamond", Georgia, serif;
@@ -198,6 +201,8 @@
         animation: wordReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         animation-delay: calc(2.05s + var(--d));
       }
+      .hero-word:nth-child(2) { color: color-mix(in srgb, var(--gold) 78%, var(--ivory)); margin-left: clamp(0px, 4vw, 74px); }
+      .hero-word:nth-child(3) { color: var(--ivory); margin-left: clamp(0px, 8vw, 148px); font-size: clamp(4rem, 12vw, 13rem); }
       .hero-media {
         position: relative;
         z-index: 1;
@@ -341,6 +346,33 @@
         border-radius: 999px;
       }
 
+      .discipline-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+        margin: 0 auto;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .discipline-card {
+        min-height: 360px;
+        display: grid;
+        align-content: space-between;
+        gap: 28px;
+        padding: clamp(24px, 4vw, 44px);
+        border-right: 1px solid var(--line);
+      }
+      .discipline-card:last-child { border-right: 0; }
+      .discipline-card h3 { color: var(--ivory); font-size: clamp(2.6rem, 5vw, 5.2rem); }
+      .discipline-card ul { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; color: var(--muted); }
+      .discipline-card li::before { color: var(--gold); content: "— "; }
+      .discipline-stat { color: var(--gold); font-family: var(--serif); font-size: clamp(2rem, 4vw, 4rem); line-height: .9; }
+      .dot-label { display: inline-flex; align-items: center; gap: 10px; }
+      .dot-label::before { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); content: ""; }
+      .discipline-card.social .dot-label::before { background: var(--social); }
+      .discipline-card.marketing .dot-label::before { background: var(--marketing); }
+      .discipline-card.pr .dot-label::before { background: var(--pr); }
+
       .section-head {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(220px, .45fr);
@@ -383,6 +415,92 @@
       }
       .service-card:hover p { opacity: 1; transform: translateY(0); }
 
+      .editorial-stack {
+        display: grid;
+        gap: clamp(34px, 6vw, 84px);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .feature-band {
+        display: grid;
+        grid-template-columns: minmax(260px, .85fr) minmax(0, 1fr);
+        gap: clamp(28px, 5vw, 72px);
+        align-items: center;
+        border-top: 1px solid var(--line);
+        padding-top: clamp(26px, 4vw, 46px);
+      }
+      .feature-band:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(260px, .85fr); }
+      .feature-band:nth-child(even) .feature-image { order: 2; }
+      .feature-image {
+        min-height: 420px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 50vw 50vw 0 0;
+        background: var(--surface);
+      }
+      .feature-band:nth-child(even) .feature-image { border-radius: 0 0 50vw 50vw; }
+      .feature-image img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; }
+      .feature-copy { display: grid; gap: 18px; }
+      .feature-copy h3 { color: var(--ivory); font-size: clamp(3rem, 7vw, 7rem); }
+      .feature-copy .big-stat { color: var(--gold); font-family: var(--serif); font-size: clamp(3rem, 8vw, 8rem); line-height: .75; }
+      .feature-copy .link-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+      .mini-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 38px;
+        padding: 10px 13px;
+        color: var(--ivory);
+        font-size: .68rem;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+        border: 1px solid var(--line);
+        transition: transform .22s ease, border-color .22s ease;
+      }
+      .mini-link:hover { transform: translateY(-3px); border-color: var(--gold); }
+
+      .document-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+      .doc-card {
+        min-height: 430px;
+        display: grid;
+        align-content: space-between;
+        gap: 24px;
+        padding: 24px;
+        background: var(--surface);
+        transition: transform .22s ease, box-shadow .22s ease;
+      }
+      .doc-card:hover { transform: translateY(-4px); box-shadow: 0 24px 60px rgba(0,0,0,.24); }
+      .doc-card img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border: 1px solid var(--line);
+      }
+      .doc-card h3 { color: var(--ivory); font-size: clamp(1.8rem, 3vw, 3rem); }
+
+      .service-list {
+        max-width: 1050px;
+        margin: 0 auto;
+        border-top: 1px solid var(--line);
+      }
+      .service-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 18px;
+        align-items: center;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .service-row h3 { color: var(--ivory); font-size: clamp(2rem, 4vw, 4rem); }
+      .service-row span { color: var(--gold); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
+
       .steps {
         position: relative;
         display: grid;
@@ -411,6 +529,7 @@
       }
       .step svg { width: 42px; height: 42px; color: var(--gold); margin-bottom: 28px; }
       .step h3 { color: var(--ivory); font-size: 2.1rem; }
+      .steps .step { min-height: 260px; }
 
       .case-track {
         display: grid;
@@ -643,7 +762,9 @@
         .hero { grid-template-columns: 1fr; align-items: center; }
         .hero-media { min-height: auto; }
         .hero-media img { min-height: 420px; border-radius: 220px 220px 0 0; }
-        .about-grid, .section-head, .experience-layout, .steps, .metrics-band { grid-template-columns: 1fr; }
+        .about-grid, .section-head, .experience-layout, .steps, .metrics-band, .discipline-grid, .feature-band, .feature-band:nth-child(even), .document-grid { grid-template-columns: 1fr; }
+        .discipline-card, .discipline-card:last-child { border-right: 0; border-bottom: 1px solid var(--line); }
+        .feature-band:nth-child(even) .feature-image { order: 0; }
         .experience-sticky { position: relative; top: auto; }
         .services-row, .case-track { grid-auto-flow: row; grid-auto-columns: unset; overflow: visible; }
         .masonry { grid-template-columns: repeat(2, 1fr); }
@@ -666,9 +787,11 @@
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation">Menu</button>
       <nav class="nav-links" data-nav>
         <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#cases">Work</a>
         <a href="#experience">Experience</a>
+        <a href="#social-work">Social</a>
+        <a href="#marketing-work">Marketing</a>
+        <a href="#pr-work">PR</a>
+        <a href="#services">Services</a>
         <a href="#recent">Recent</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -677,17 +800,17 @@
     <main id="top">
       <section class="hero">
         <div class="hero-type">
-          <span class="hero-word" style="--d:0ms">SOCIAL</span>
-          <span class="hero-word" style="--d:150ms">MEDIA</span>
-          <span class="hero-word" style="--d:300ms">MANAGER</span>
+          <span class="hero-word" style="--d:0ms">SOCIAL MEDIA</span>
+          <span class="hero-word" style="--d:150ms">MARKETING</span>
+          <span class="hero-word" style="--d:300ms">PUBLIC RELATIONS</span>
         </div>
         <figure class="hero-media" data-parallax>
           <img src="assets/personal/anaaya-editorial-city.png" alt="Anaaya Shah editorial city portrait" />
         </figure>
         <div class="hero-meta">
-          <span>US based • Creator • Brand partnerships</span>
+          <span>United States • Creator • Brand partnerships</span>
           <div class="hero-actions">
-            <a class="hero-cta" href="#cases">View Work</a>
+            <a class="hero-cta" href="#experience">View Experience</a>
             <a class="ghost-cta" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Download Resume</a>
           </div>
         </div>
@@ -719,77 +842,116 @@
         </div>
       </section>
 
-      <section class="section" id="services">
+      <section class="section" id="disciplines">
         <div class="section-head reveal">
-          <div>
-            <p class="eyebrow">02 — Services</p>
-            <h2>What I Offer</h2>
-          </div>
-          <p>Flexible creative support across social media, PR, content production, campaign thinking, and brand partnerships.</p>
+          <div><p class="eyebrow">02 — Disciplines</p><h2>Three lanes. One strategy.</h2></div>
+          <p>Social media, marketing, and PR each get their own proof, visuals, and results.</p>
         </div>
-        <div class="services-row reveal">
-          <article class="service-card"><span class="eyebrow">01</span><h3>UGC Content</h3><p>Short-form product storytelling built around hooks, native pacing, and platform fit.</p></article>
-          <article class="service-card"><span class="eyebrow">02</span><h3>Social Media Management</h3><p>Content calendars, publishing, community engagement, and account storytelling.</p></article>
-          <article class="service-card"><span class="eyebrow">03</span><h3>Brand Strategy</h3><p>Audience insights, positioning, campaign concepts, and social-first creative direction.</p></article>
-          <article class="service-card"><span class="eyebrow">04</span><h3>Photography</h3><p>Beauty, fashion, lifestyle, and editorial-style visual direction for content systems.</p></article>
-          <article class="service-card"><span class="eyebrow">05</span><h3>Videography</h3><p>Reels, campaign concepts, product detail shots, and creator-led editing workflows.</p></article>
-          <article class="service-card"><span class="eyebrow">06</span><h3>Content Direction</h3><p>Messaging, shot lists, briefs, captions, brand voice, and visual storytelling systems.</p></article>
-        </div>
-      </section>
-
-      <section class="section light" id="how">
-        <span class="section-number">03</span>
-        <div class="section-head reveal">
-          <div><p class="eyebrow">How It Works</p><h2>Clean process. Strong output.</h2></div>
-          <p>A simple creative workflow that keeps strategy visible and execution polished.</p>
-        </div>
-        <div class="steps">
-          <article class="step reveal" style="--delay:0ms"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor"/><path d="M16 25h16M24 17v16" stroke="currentColor"/></svg><h3>Book Free Call</h3><p>Align on brand goals, audience, platform, and creative direction.</p></article>
-          <article class="step reveal" style="--delay:180ms"><svg viewBox="0 0 48 48" fill="none"><path d="M14 15h20v18H14z" stroke="currentColor"/><path d="M18 21h12M18 27h8" stroke="currentColor"/></svg><h3>Strategy & Brief</h3><p>Build the angle, hook, shot plan, caption direction, and deliverables.</p></article>
-          <article class="step reveal" style="--delay:360ms"><svg viewBox="0 0 48 48" fill="none"><path d="M14 24l7 7 14-15" stroke="currentColor"/><circle cx="24" cy="24" r="18" stroke="currentColor"/></svg><h3>Content Delivery</h3><p>Deliver final assets, links, documents, or campaign materials.</p></article>
-        </div>
-      </section>
-
-      <section class="section" id="cases" data-horizontal>
-        <div class="section-head reveal">
-          <div><p class="eyebrow">04 — Case Studies</p><h2>Selected Work</h2></div>
-          <p>Strategy, visual direction, writing, and creator content in a horizontal editorial gallery.</p>
-        </div>
-        <div class="case-track" data-case-track>
-          <a class="case-card reveal" href="assets/work-samples/rhode-summer-kit-analysis.png" target="_blank" rel="noreferrer"><img src="assets/work-samples/rhode-summer-kit-analysis.png" alt="Rhode Summer Kit product marketing analysis" loading="lazy" /><div class="case-copy"><span class="eyebrow">Product Marketing</span><h3>Rhode Summer Kit</h3><span class="metric" data-count="5">0</span><p>Bundle strategy, customization, scarcity, community, and full-funnel launch thinking.</p></div></a>
-          <a class="case-card reveal" href="assets/work-samples/lululemon-alo-strategy.png" target="_blank" rel="noreferrer"><img src="assets/work-samples/lululemon-alo-strategy.png" alt="Lululemon vs Alo strategy analysis" loading="lazy" /><div class="case-copy"><span class="eyebrow">Brand Strategy</span><h3>Lululemon vs Alo</h3><span class="metric" data-count="2">0</span><p>Performance-led positioning versus culture-led aspiration in premium activewear.</p></div></a>
-          <a class="case-card reveal" href="assets/work-samples/rhode-haus-labs-visuals.jpg" target="_blank" rel="noreferrer"><img src="assets/work-samples/rhode-haus-labs-visuals.jpg" alt="Rhode x Haus Labs visual campaign mockup" loading="lazy" /><div class="case-copy"><span class="eyebrow">Creative Direction</span><h3>Beauty Mockups</h3><span class="metric" data-count="2">0</span><p>Beauty collaboration concepts, product pairing, premium visuals, and launch mood.</p></div></a>
-          <a class="case-card reveal" href="assets/media-materials/media-pitch.pdf" target="_blank" rel="noreferrer"><img src="assets/generated/pr-pitch-cover.jpg" alt="Media pitch cover" loading="lazy" /><div class="case-copy"><span class="eyebrow">PR Writing</span><h3>Pitch-ready Materials</h3><span class="metric" data-count="40">0</span><p>Media lists, pitches, backgrounders, infographic design, and outreach strategy.</p></div></a>
+        <div class="discipline-grid reveal">
+          <article class="discipline-card social"><p class="eyebrow dot-label">Social Media</p><h3>Platform-native content.</h3><ul><li>Reels, TikTok, YouTube Shorts</li><li>Content calendars and publishing</li><li>Community management and insights</li></ul><div class="discipline-stat">50+ assets</div></article>
+          <article class="discipline-card marketing"><p class="eyebrow dot-label">Marketing</p><h3>Campaigns that convert.</h3><ul><li>Brand partnerships and creator strategy</li><li>Lifecycle, GTM, and ABM support</li><li>KPIs, funnels, and audience response</li></ul><div class="discipline-stat">30+ leads/mo</div></article>
+          <article class="discipline-card pr"><p class="eyebrow dot-label">PR</p><h3>Media-ready storytelling.</h3><ul><li>Press releases and media kits</li><li>Media lists and pitch angles</li><li>Stakeholder interviews and earned media</li></ul><div class="discipline-stat">8 placements</div></article>
         </div>
       </section>
 
       <section class="section light" id="experience">
         <div class="experience-layout reveal">
           <aside class="experience-sticky">
-            <p class="eyebrow">Experience</p>
+            <p class="eyebrow">03 — Experience</p>
             <h2>The Journey</h2>
             <a class="resume-link" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Get Full Resume →</a>
+            <a class="resume-link" href="assets/anaaya-shah-social-media-resume.pdf" download="Anaaya-Shah-Social-Media-Resume.pdf">Social Resume →</a>
           </aside>
           <div class="experience-list">
-            <article class="experience-item is-open"><button class="experience-trigger" type="button" aria-expanded="true"><span>Marketing Intern</span><strong>eClinicalWorks</strong><em>Oct 2025 - May 2026</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Optimized healthtech content with audience insights and GA4 tracking, increasing engagement by 15% in 3 months.</li><li>Supported GTM, ABM, lifecycle messaging, and demand-generation campaign execution.</li><li>Tracked KPIs, funnel performance, and ROI indicators to sharpen content strategy.</li></ul></div></article>
-            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>PR & Marketing Intern</span><strong>South by Sea</strong><em>Jan 2024 - May 2026</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Managed relationships with 20+ student organizations, helping increase recurring orders by 25%.</li><li>Generated 30+ qualified leads monthly through organized outreach and CRM-style follow-up.</li><li>Built customized partnership presentations that supported a 35% close rate.</li></ul></div></article>
-            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Freelance Creator</span><strong>Instagram, YouTube & TikTok</strong><em>May 2022 - Present</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Produced 50+ short-form assets across creator channels with strong engagement performance.</li><li>Managed scripting, editing, publishing, insights review, and content calendar planning.</li><li>Created sponsored beauty, lifestyle, and fashion content with platform-native hooks.</li></ul></div></article>
-            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Marketing & Social Media Intern</span><strong>Adani Wilmar Ltd.</strong><em>May 2025 - Aug 2025</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Drafted 10+ press releases, media materials, and branded communications for PR outreach.</li><li>Supported multi-platform campaigns that improved engagement rates by 15-20%.</li><li>Designed branded marketing assets and content calendar concepts for consumer audiences.</li></ul></div></article>
-            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Communication Intern</span><strong>Purdue Marketing & Communication</strong><em>Jan 2025 - May 2025</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Created internal communications that lifted email open rates by 14% across 5,000+ stakeholders.</li><li>Analyzed content performance and audience feedback, contributing to a 12% click-through lift.</li><li>Conducted 15+ stakeholder interviews and translated insights into audience-ready narratives.</li></ul></div></article>
-            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Student Consultant</span><strong>Boiler Communication</strong><em>Aug 2024 - Dec 2024</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Executed 3 PR campaigns with audience targeting, messaging, and strategic content planning.</li><li>Analyzed 2,500+ local consumers to support audience segmentation and recommendations.</li><li>Built media lists of 40+ outlets and supported outreach that secured 8 earned media placements.</li></ul></div></article>
+            <article class="experience-item is-open"><button class="experience-trigger" type="button" aria-expanded="true"><span>Social Media Marketing Intern</span><strong>eClinicalWorks</strong><em>Oct 2025 - May 2026</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Optimized healthtech social and digital content with GA4 KPI tracking, increasing engagement by 15% in 3 months.</li><li>Supported content calendar planning, campaign messaging, and cross-channel execution for a healthcare SaaS brand.</li><li>Tracked platform analytics and engagement trends to improve social content strategy.</li></ul></div></article>
+            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Marketing & Social Media Intern</span><strong>South by Sea</strong><em>Jan 2024 - May 2026</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Managed relationships with 20+ student organizations and campus partners, increasing recurring orders by 25%.</li><li>Built CRM-style follow-up workflows and generated 30+ qualified leads per month.</li><li>Delivered custom partnership presentations that supported a 35% conversion and close rate.</li></ul></div></article>
+            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Freelance Social Media Content Creator</span><strong>Instagram, YouTube & TikTok</strong><em>May 2022 - Present</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Produced and edited 50+ short-form assets across Instagram, TikTok, and YouTube.</li><li>Managed scripting, editing, publishing, community engagement, and performance tracking.</li><li>Collaborated with Sol de Janeiro, JW PEI, and Medix 5.5 on sponsored creator campaigns.</li></ul></div></article>
+            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Marketing & Social Media Intern</span><strong>Adani Wilmar Ltd.</strong><em>May 2025 - Aug 2025</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Developed multi-platform campaigns that improved digital engagement rates by 15-20%.</li><li>Designed branded campaign visuals and content calendar concepts using Adobe Creative Suite.</li><li>Drafted 10+ press releases and media materials supporting PR and outreach initiatives.</li></ul></div></article>
+            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Communication Intern</span><strong>Purdue Marketing & Communication</strong><em>Jan 2025 - May 2025</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Created internal communications that boosted email open rates by 14% across 5,000+ stakeholders.</li><li>Analyzed communication KPIs and audience feedback, driving a 12% lift in click-through rates.</li><li>Conducted 15+ stakeholder interviews and turned findings into audience-centered narratives.</li></ul></div></article>
+            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Student Consultant</span><strong>Boiler Communication</strong><em>Aug 2024 - Dec 2024</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Executed 3 PR campaigns with audience targeting, messaging development, and strategic content planning.</li><li>Analyzed 2,500+ local consumers to support audience segmentation and campaign recommendations.</li><li>Built media lists of 40+ outlets and supported outreach that secured 8 earned media placements.</li></ul></div></article>
           </div>
+        </div>
+      </section>
+
+      <section class="section" id="social-work">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">04 — Social Media</p><h2>Social-first work.</h2></div>
+          <p>Creator content, managed accounts, brand collaborations, and platform-native editing.</p>
+        </div>
+        <div class="editorial-stack">
+          <article class="feature-band reveal">
+            <a class="feature-image" href="https://www.instagram.com/anaaya.shah/?hl=en" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-tiktok-profile-1.png" alt="Anaaya Shah social media reel preview" loading="lazy" /></a>
+            <div class="feature-copy"><p class="eyebrow">Creator Profile</p><h3>@anaaya.shah</h3><div class="big-stat" data-count="50">0</div><p>Short-form creator portfolio across beauty, fashion, lifestyle, and wellness. Built around hooks, editing pace, creator voice, and platform-native storytelling.</p><div class="link-row"><a class="mini-link" href="https://www.instagram.com/reel/DT0nw3Ajso3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">High-view reel →</a><a class="mini-link" href="https://www.instagram.com/reel/DTvQk7hDviz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">Beauty reel →</a><a class="mini-link" href="https://www.tiktok.com/@beautywanaaya" target="_blank" rel="noreferrer">TikTok →</a></div></div>
+          </article>
+          <article class="feature-band reveal">
+            <a class="feature-image" href="https://www.instagram.com/therefore_fashion/?hl=en" target="_blank" rel="noreferrer"><img src="assets/generated/brand-collaborations-cover.png" alt="Social media accounts managed preview" loading="lazy" /></a>
+            <div class="feature-copy"><p class="eyebrow">Accounts Managed</p><h3>Campus + fashion social.</h3><div class="big-stat" data-count="4">0</div><p>Social media work for therefore_fashion, AIF Purdue, NASHA Purdue, and South by Sea Purdue, connecting community content with consistent brand voice.</p><div class="link-row"><a class="mini-link" href="https://www.instagram.com/therefore_fashion/?hl=en" target="_blank" rel="noreferrer">Therefore →</a><a class="mini-link" href="https://www.instagram.com/aif.purdue/?hl=en" target="_blank" rel="noreferrer">AIF Purdue →</a><a class="mini-link" href="https://www.instagram.com/nasha.purdue/?hl=en" target="_blank" rel="noreferrer">NASHA →</a><a class="mini-link" href="https://www.instagram.com/southbysea_purdue/?hl=en" target="_blank" rel="noreferrer">South by Sea →</a></div></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="marketing-work">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">05 — Marketing</p><h2>Campaign thinking.</h2></div>
+          <p>Brand strategy, product marketing, creator partnerships, and audience-led campaign analysis.</p>
+        </div>
+        <div class="case-track" data-case-track>
+          <a class="case-card reveal" href="assets/work-samples/rhode-summer-kit-analysis.png" target="_blank" rel="noreferrer"><img src="assets/work-samples/rhode-summer-kit-analysis.png" alt="Rhode Summer Kit product marketing analysis" loading="lazy" /><div class="case-copy"><span class="eyebrow">Product Marketing</span><h3>Rhode Summer Kit</h3><p>Bundle strategy, customization, scarcity, community, and full-funnel launch thinking.</p></div></a>
+          <a class="case-card reveal" href="assets/work-samples/lululemon-alo-strategy.png" target="_blank" rel="noreferrer"><img src="assets/work-samples/lululemon-alo-strategy.png" alt="Lululemon vs Alo strategy analysis" loading="lazy" /><div class="case-copy"><span class="eyebrow">Brand Strategy</span><h3>Lululemon vs Alo</h3><p>Performance-led positioning versus culture-led aspiration in premium activewear.</p></div></a>
+          <a class="case-card reveal" href="assets/work-samples/rhode-haus-labs-visuals.jpg" target="_blank" rel="noreferrer"><img src="assets/work-samples/rhode-haus-labs-visuals.jpg" alt="Rhode x Haus Labs visual campaign mockup" loading="lazy" /><div class="case-copy"><span class="eyebrow">Supporting Visual</span><h3>Beauty Mockups</h3><p>One supporting creative direction sample, not the main portfolio focus.</p></div></a>
+        </div>
+      </section>
+
+      <section class="section" id="pr-work">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">06 — Public Relations</p><h2>Writing, pitching, media relations.</h2></div>
+          <p>PR work stays PR: media-ready documents, outreach strategy, background context, and audience messaging.</p>
+        </div>
+        <div class="document-grid reveal">
+          <a class="doc-card" href="assets/media-materials/boilermaker-golf-complex-infographic.pdf" target="_blank" rel="noreferrer"><img src="assets/generated/pr-infographic-thumbnail.png" alt="Boilermaker Golf Complex infographic preview" loading="lazy" /><div><p class="eyebrow">Infographic</p><h3>Birck Boilermaker Golf Complex</h3><p>Visual media asset translating facility details into a scannable public-facing brief.</p></div></a>
+          <a class="doc-card" href="assets/media-materials/media-backgrounder.pdf" target="_blank" rel="noreferrer"><img src="assets/generated/pr-backgrounder-cover.jpg" alt="Media backgrounder cover" loading="lazy" /><div><p class="eyebrow">Backgrounder</p><h3>Media Backgrounder</h3><p>Context, facts, and brand details structured for journalist research and outreach.</p></div></a>
+          <a class="doc-card" href="assets/media-materials/media-pitch.pdf" target="_blank" rel="noreferrer"><img src="assets/generated/pr-pitch-cover.jpg" alt="Media pitch cover" loading="lazy" /><div><p class="eyebrow">Pitch</p><h3>Media Pitch</h3><p>Story angle and journalist-ready outreach sample for earned media visibility.</p></div></a>
+          <a class="doc-card" href="assets/media-materials/media-list.pdf" target="_blank" rel="noreferrer"><img src="assets/generated/pr-media-list-cover.jpg" alt="Media list cover" loading="lazy" /><div><p class="eyebrow">Media List</p><h3>Targeted Media Research</h3><p>Outlet and contact research built for organized pitching workflow.</p></div></a>
+        </div>
+      </section>
+
+      <section class="section light" id="how">
+        <span class="section-number">07</span>
+        <div class="section-head reveal">
+          <div><p class="eyebrow">Process</p><h2>The process.</h2></div>
+          <p>A cinematic workflow for turning brand goals into content, campaigns, and press-ready materials.</p>
+        </div>
+        <div class="steps">
+          <article class="step reveal" style="--delay:0ms"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor"/><path d="M16 25h16M24 17v16" stroke="currentColor"/></svg><p class="eyebrow">01</p><h3>Discovery</h3><p>Clarify audience, platform, brand goal, and the behavior the campaign needs to shift.</p></article>
+          <article class="step reveal" style="--delay:180ms"><svg viewBox="0 0 48 48" fill="none"><path d="M14 15h20v18H14z" stroke="currentColor"/><path d="M18 21h12M18 27h8" stroke="currentColor"/></svg><p class="eyebrow">02</p><h3>Direction</h3><p>Build the hook, brief, content plan, press angle, and visual direction before production.</p></article>
+          <article class="step reveal" style="--delay:360ms"><svg viewBox="0 0 48 48" fill="none"><path d="M14 24l7 7 14-15" stroke="currentColor"/><circle cx="24" cy="24" r="18" stroke="currentColor"/></svg><p class="eyebrow">03</p><h3>Delivery</h3><p>Produce, publish, measure, and translate performance into next-step recommendations.</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">08 — Services</p><h2>What I Offer</h2></div>
+          <p>Built around the three disciplines recruiters are evaluating: social media, marketing, and PR.</p>
+        </div>
+        <div class="service-list reveal">
+          <article class="service-row"><h3>Social media strategy + content calendars</h3><span>Social</span></article>
+          <article class="service-row"><h3>Short-form video, UGC, and creator editing</h3><span>Social</span></article>
+          <article class="service-row"><h3>Brand campaigns, partnerships, and audience insights</h3><span>Marketing</span></article>
+          <article class="service-row"><h3>GTM support, KPI tracking, and funnel reporting</h3><span>Marketing</span></article>
+          <article class="service-row"><h3>Press releases, media pitches, and media kits</h3><span>PR</span></article>
+          <article class="service-row"><h3>Media lists, stakeholder interviews, and earned media tracking</h3><span>PR</span></article>
         </div>
       </section>
 
       <section class="section" id="recent">
         <div class="section-head reveal">
-          <div><p class="eyebrow">05 — Recent Work</p><h2>Videography & Visuals</h2></div>
-          <p>Creator content, campaign assets, PR materials, and social-first visuals.</p>
+          <div><p class="eyebrow">09 — Recent Work</p><h2>Visual wall.</h2></div>
+          <p>A quick scan of creator videos, PR materials, brand collaborations, and campaign strategy without repeating the same work twice.</p>
         </div>
         <div class="masonry reveal">
           <a href="https://www.instagram.com/reel/DT0nw3Ajso3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-tiktok-profile-1.png" alt="Creator reel preview" loading="lazy" /></a>
           <a href="https://www.instagram.com/reel/DTvQk7hDviz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-tiktok-profile-2.png" alt="Fashion reel preview" loading="lazy" /></a>
-          <a href="assets/work-samples/huda-nars-visuals.jpg" target="_blank" rel="noreferrer"><img src="assets/work-samples/huda-nars-visuals.jpg" alt="Huda Beauty x NARS mockup" loading="lazy" /></a>
+          <a href="https://youtu.be/tJezH4-1aKE?si=sBs0DrtvwAaPhPjH" target="_blank" rel="noreferrer"><img src="assets/work-samples/product-video-campaigns.jpg" alt="Product video campaign preview" loading="lazy" /></a>
           <a href="assets/generated/pr-infographic-thumbnail.png" target="_blank" rel="noreferrer"><img src="assets/generated/pr-infographic-thumbnail.png" alt="PR infographic thumbnail" loading="lazy" /></a>
           <a href="assets/personal/anaaya-blue-lifestyle.png" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-blue-lifestyle.png" alt="Anaaya Shah lifestyle portrait" loading="lazy" /></a>
           <a href="assets/generated/brand-collaborations-cover.png" target="_blank" rel="noreferrer"><img src="assets/generated/brand-collaborations-cover.png" alt="Brand collaborations cover" loading="lazy" /></a>
