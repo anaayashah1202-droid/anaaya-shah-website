@@ -13,7 +13,7 @@ window.addEventListener("scroll", setHeaderShadow, { passive: true });
 document.documentElement.classList.add("js-reveal");
 
 const revealItems = document.querySelectorAll(
-  ".section, .marquee-strip, .case-file, .visual-card, .pr-card, .youtube-card, .social-work-card, .editorial-card, .campaign-video-card, .campaign-note-card, .managed-grid a, .ugc-intro-card, .reel-phone, .featured-card, .work-row"
+  ".section, .marquee-strip, .case-file, .visual-card, .pr-card, .youtube-card, .social-work-card, .editorial-card, .campaign-video-card, .campaign-note-card, .managed-grid a, .ugc-intro-card, .reel-phone, .featured-card, .work-row, .experience-item"
 );
 
 if ("IntersectionObserver" in window) {
@@ -231,6 +231,27 @@ const scrollPreviewTrack = (direction) => {
 
 previewNext?.addEventListener("click", () => scrollPreviewTrack(1));
 previewPrev?.addEventListener("click", () => scrollPreviewTrack(-1));
+
+const experienceItems = document.querySelectorAll(".experience-item");
+
+experienceItems.forEach((item) => {
+  const trigger = item.querySelector(".experience-trigger");
+
+  trigger?.addEventListener("click", () => {
+    const willOpen = !item.classList.contains("is-open");
+    if (!willOpen) return;
+
+    experienceItems.forEach((entry) => {
+      entry.classList.remove("is-open");
+      entry.querySelector(".experience-trigger")?.setAttribute("aria-expanded", "false");
+    });
+
+    if (willOpen) {
+      item.classList.add("is-open");
+      trigger.setAttribute("aria-expanded", "true");
+    }
+  });
+});
 
 const hero = document.querySelector(".editorial-hero");
 const parallaxTiles = document.querySelectorAll("[data-parallax]");

@@ -3,529 +3,939 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Anaaya Shah | Marketing, Social Media & PR Portfolio</title>
-    <meta
-      name="description"
-      content="Anaaya Shah's visual marketing portfolio for social media, PR, brand strategy, beauty, fashion, and creator marketing roles."
-    />
+    <title>Anaaya Shah | Social Media, PR & Brand Marketing Portfolio</title>
+    <meta name="description" content="Anaaya Shah's luxury editorial portfolio for social media, PR, content creation, brand strategy, creator partnerships, and campaign work." />
     <meta property="og:title" content="Anaaya Shah | Marketing Portfolio" />
-    <meta property="og:description" content="A visual portfolio of marketing strategy, social media, PR, creator content, and brand storytelling." />
+    <meta property="og:description" content="Editorial portfolio featuring social media strategy, PR materials, creator content, brand collaborations, and campaign visuals." />
     <meta property="og:image" content="assets/personal/anaaya-editorial-city.png" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=ugc-visual-redesign" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Cormorant+SC:wght@300;400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #0d0c0b;
+        --surface: #171614;
+        --surface-2: #211b18;
+        --ivory: #f5efe0;
+        --gold: #c8a96e;
+        --muted: #9e9a93;
+        --rose: #c4847a;
+        --line: rgba(245, 239, 224, 0.14);
+        --dark-line: rgba(13, 12, 11, 0.12);
+        --serif: "Cormorant Garamond", Georgia, serif;
+        --sc: "Cormorant SC", Georgia, serif;
+        --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; background: var(--bg); }
+      body {
+        margin: 0;
+        color: var(--ivory);
+        font-family: var(--sans);
+        font-weight: 300;
+        background: var(--bg);
+        cursor: none;
+      }
+      body.is-loading { overflow: hidden; }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; filter: grayscale(20%); transition: filter 0.4s ease, transform 0.5s ease; }
+      img:hover { filter: grayscale(0); }
+      p { margin: 0; color: var(--muted); font-size: clamp(0.95rem, 1.2vw, 1.05rem); line-height: 1.65; }
+      h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 300; line-height: 0.88; letter-spacing: -0.055em; }
+      button { font: inherit; color: inherit; }
+
+      .loader {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: grid;
+        place-items: center;
+        background: var(--bg);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+      }
+      .loader.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+      .loader-word {
+        display: flex;
+        gap: 0.06em;
+        color: var(--ivory);
+        font-family: var(--serif);
+        font-size: clamp(3rem, 9vw, 8rem);
+        font-weight: 300;
+        letter-spacing: 0.12em;
+      }
+      .loader-word span {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: letterIn 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation-delay: calc(var(--i) * 80ms);
+      }
+
+      .cursor {
+        position: fixed;
+        z-index: 250;
+        width: 12px;
+        height: 12px;
+        pointer-events: none;
+        background: var(--ivory);
+        border-radius: 999px;
+        mix-blend-mode: difference;
+        transform: translate(-50%, -50%);
+        transition: width 180ms ease, height 180ms ease, opacity 180ms ease;
+      }
+      .cursor.is-active { width: 40px; height: 40px; }
+
+      .site-nav {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 80;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 20px clamp(18px, 4vw, 48px);
+        color: var(--ivory);
+        background: linear-gradient(180deg, rgba(13, 12, 11, 0.72), transparent);
+        backdrop-filter: blur(12px);
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .brand-mark {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+      }
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: clamp(12px, 2vw, 28px);
+        color: rgba(245, 239, 224, 0.76);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .nav-links a:hover { color: var(--gold); }
+      .nav-toggle { display: none; background: transparent; border: 1px solid var(--line); padding: 10px 12px; }
+
+      .section {
+        position: relative;
+        padding: clamp(86px, 10vw, 150px) clamp(18px, 5vw, 72px);
+        overflow: hidden;
+      }
+      .section::before {
+        position: absolute;
+        inset: 0;
+        opacity: 0.035;
+        pointer-events: none;
+        content: "";
+        background-image:
+          radial-gradient(circle at 20% 30%, var(--ivory) 0 1px, transparent 1px),
+          radial-gradient(circle at 70% 65%, var(--gold) 0 1px, transparent 1px);
+        background-size: 19px 19px, 31px 31px;
+      }
+      .light { color: var(--bg); background: var(--ivory); }
+      .light p { color: #615d57; }
+      .divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(245,239,224,.2), transparent);
+      }
+      .light + .divider { background: linear-gradient(90deg, transparent, rgba(13,12,11,.18), transparent); }
+      .eyebrow {
+        margin: 0 0 22px;
+        color: var(--gold);
+        font-family: var(--sc);
+        font-size: 0.86rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        min-height: 100svh;
+        display: grid;
+        grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.74fr);
+        gap: clamp(28px, 5vw, 80px);
+        align-items: end;
+        padding: clamp(104px, 11vw, 150px) clamp(18px, 5vw, 72px) 52px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 70% 20%, rgba(196, 132, 122, 0.12), transparent 28rem),
+          radial-gradient(circle at 12% 82%, rgba(200, 169, 110, 0.12), transparent 20rem),
+          var(--bg);
+      }
+      .hero::before {
+        position: absolute;
+        inset: 0;
+        opacity: 0.08;
+        content: "";
+        background:
+          repeating-linear-gradient(90deg, rgba(245,239,224,.18) 0 1px, transparent 1px 5px),
+          repeating-linear-gradient(0deg, transparent 0 5px, rgba(200,169,110,.08) 5px 6px);
+        animation: grainShift 7s steps(6) infinite;
+        pointer-events: none;
+      }
+      .hero-type { position: relative; z-index: 1; }
+      .hero-word {
+        display: block;
+        color: var(--ivory);
+        font-family: var(--serif);
+        font-size: clamp(5.8rem, 18vw, 18rem);
+        font-weight: 300;
+        letter-spacing: -0.08em;
+        line-height: 0.74;
+        clip-path: inset(100% 0 0 0);
+        animation: wordReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation-delay: calc(2.05s + var(--d));
+      }
+      .hero-media {
+        position: relative;
+        z-index: 1;
+        align-self: stretch;
+        min-height: 68vh;
+      }
+      .hero-media img {
+        width: 100%;
+        height: 100%;
+        min-height: 520px;
+        object-fit: cover;
+        border: 1px solid var(--line);
+        border-radius: 38vw 38vw 0 0;
+        box-shadow: 0 40px 110px rgba(0,0,0,.42);
+      }
+      .hero-meta {
+        position: absolute;
+        left: clamp(18px, 5vw, 72px);
+        bottom: 22px;
+        z-index: 2;
+        display: grid;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 0.72rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .hero-cta,
+      .ghost-cta,
+      .solid-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 13px 20px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        transition: transform 220ms ease, background 220ms ease, color 220ms ease;
+      }
+      .hero-cta,
+      .solid-cta { color: var(--bg); background: var(--ivory); }
+      .ghost-cta { color: var(--ivory); border: 1px solid var(--line); }
+      .hero-cta:hover,
+      .ghost-cta:hover,
+      .solid-cta:hover { transform: translateY(-3px); }
+      .scroll-indicator {
+        position: absolute;
+        right: clamp(18px, 4vw, 48px);
+        bottom: 34px;
+        z-index: 3;
+        display: grid;
+        justify-items: center;
+        gap: 10px;
+        color: var(--ivory);
+        font-size: 0.62rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .scroll-indicator::after {
+        display: block;
+        width: 1px;
+        height: 54px;
+        background: linear-gradient(var(--gold), transparent);
+        content: "";
+        animation: scrollLine 1.7s ease-in-out infinite;
+      }
+
+      .marquee {
+        overflow: hidden;
+        background: var(--surface);
+        border-block: 1px solid var(--line);
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 26s linear infinite;
+      }
+      .marquee span {
+        flex: 0 0 auto;
+        padding: 18px 24px;
+        color: var(--ivory);
+        font-family: var(--sc);
+        font-size: clamp(1rem, 2vw, 1.4rem);
+        letter-spacing: 0.18em;
+        white-space: nowrap;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: minmax(260px, .8fr) minmax(0, 1fr);
+        gap: clamp(36px, 7vw, 96px);
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .section-number {
+        position: absolute;
+        left: 3vw;
+        top: 2vw;
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: clamp(8rem, 20vw, 22rem);
+        opacity: 0.12;
+        line-height: 1;
+      }
+      .portrait-tall {
+        width: min(430px, 100%);
+        aspect-ratio: 3 / 4.6;
+        object-fit: cover;
+        border-radius: 50vw 50vw 0 0;
+        border: 1px solid var(--dark-line);
+      }
+      .bio-lede {
+        max-width: 760px;
+        margin-bottom: 22px;
+        color: var(--bg);
+        font-family: var(--serif);
+        font-size: clamp(1.85rem, 3vw, 3.2rem);
+        line-height: 1.02;
+      }
+      .stat-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 32px;
+      }
+      .stat-pills span {
+        padding: 10px 14px;
+        color: var(--bg);
+        font-size: 0.74rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: 1px solid rgba(200, 169, 110, .85);
+        border-radius: 999px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(220px, .45fr);
+        gap: 24px;
+        align-items: end;
+        max-width: 1200px;
+        margin: 0 auto 48px;
+      }
+      .section-head h2 {
+        color: inherit;
+        font-size: clamp(4.4rem, 10vw, 10rem);
+      }
+      .services-row {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(230px, 1fr);
+        gap: 1px;
+        max-width: 1320px;
+        margin: 0 auto;
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        background: var(--line);
+      }
+      .service-card {
+        min-height: 430px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 28px;
+        background: var(--surface);
+      }
+      .service-card h3 {
+        color: var(--ivory);
+        font-size: clamp(2.4rem, 4vw, 4rem);
+      }
+      .service-card p {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 400ms ease, transform 400ms ease;
+      }
+      .service-card:hover p { opacity: 1; transform: translateY(0); }
+
+      .steps {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+      .steps::before {
+        position: absolute;
+        top: 40px;
+        left: 16%;
+        right: 16%;
+        height: 1px;
+        background-image: linear-gradient(90deg, var(--gold) 50%, transparent 50%);
+        background-size: 14px 1px;
+        opacity: .55;
+        content: "";
+      }
+      .step {
+        position: relative;
+        z-index: 1;
+        padding: 26px;
+        background: rgba(245,239,224,.04);
+        border: 1px solid var(--line);
+      }
+      .step svg { width: 42px; height: 42px; color: var(--gold); margin-bottom: 28px; }
+      .step h3 { color: var(--ivory); font-size: 2.1rem; }
+
+      .case-track {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(320px, 420px);
+        gap: 22px;
+        overflow-x: auto;
+        padding: 8px max(18px, calc((100vw - 1200px) / 2)) 24px;
+        scroll-snap-type: x proximity;
+      }
+      .case-card {
+        min-height: 620px;
+        display: grid;
+        grid-template-rows: 1.05fr .95fr;
+        overflow: hidden;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        scroll-snap-align: start;
+      }
+      .case-card img { width: 100%; height: 100%; object-fit: cover; }
+      .case-copy { display: grid; gap: 16px; align-content: end; padding: 28px; }
+      .case-copy h3 { color: var(--ivory); font-size: clamp(2.3rem, 4vw, 4rem); }
+      .metric { color: var(--gold); font-family: var(--serif); font-size: clamp(2rem, 5vw, 4rem); line-height: 1; }
+
+      .masonry {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0;
+        max-width: 1300px;
+        margin: 0 auto;
+        border: 1px solid var(--line);
+      }
+      .masonry a { min-height: 260px; overflow: hidden; background: var(--surface); }
+      .masonry img { width: 100%; height: 100%; object-fit: cover; }
+      .masonry:hover img { filter: grayscale(80%) brightness(.7); }
+      .masonry a:hover img { filter: grayscale(0); transform: scale(1.03); }
+      .masonry a:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+      .masonry a:nth-child(4) { grid-column: span 2; }
+      .masonry a:nth-child(6) { grid-column: span 2; }
+
+      .metrics-band {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--line);
+        border-block: 1px solid var(--line);
+      }
+      .metric-tile {
+        min-height: 320px;
+        display: grid;
+        align-content: center;
+        gap: 10px;
+        padding: 38px;
+        background: var(--bg);
+      }
+      .metric-tile strong {
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: clamp(4rem, 9vw, 9rem);
+        font-weight: 300;
+        line-height: .8;
+      }
+      .metric-tile span {
+        color: var(--muted);
+        font-size: .78rem;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+      }
+
+      .testimonials {
+        max-width: 900px;
+        min-height: 260px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .testimonial {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        align-content: center;
+        gap: 22px;
+        opacity: 0;
+        transition: opacity 700ms ease;
+      }
+      .testimonial.is-active { opacity: 1; }
+      .testimonial blockquote {
+        margin: 0;
+        color: var(--ivory);
+        font-family: var(--serif);
+        font-size: clamp(2rem, 4vw, 4rem);
+        font-style: italic;
+        line-height: 1;
+      }
+      .testimonial span {
+        color: var(--gold);
+        font-size: .76rem;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+      }
+
+      .experience-layout {
+        display: grid;
+        grid-template-columns: minmax(260px, .7fr) minmax(0, 1.25fr);
+        gap: clamp(36px, 6vw, 90px);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .experience-sticky { position: sticky; top: 104px; align-self: start; }
+      .experience-sticky h2 { font-size: clamp(4rem, 8vw, 8rem); }
+      .resume-link {
+        display: inline-flex;
+        margin-top: 24px;
+        color: var(--gold);
+        font-size: .78rem;
+        font-weight: 700;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        border-bottom: 1px solid currentColor;
+      }
+      .experience-list { border-top: 1px solid var(--line); }
+      .experience-item { border-bottom: 1px solid var(--line); }
+      .experience-trigger {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        gap: 18px;
+        align-items: center;
+        width: 100%;
+        padding: 24px 0;
+        color: var(--ivory);
+        text-align: left;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+      }
+      .experience-trigger span,
+      .experience-trigger em {
+        color: var(--muted);
+        font-size: .74rem;
+        font-style: normal;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+      }
+      .experience-trigger strong { color: var(--ivory); font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 2.35rem); font-weight: 300; }
+      .experience-trigger b {
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        padding: 7px 10px;
+        color: var(--bg);
+        font-size: .68rem;
+        background: var(--gold);
+        border-radius: 999px;
+        opacity: 0;
+        transform: translateY(7px);
+        transition: .2s ease;
+      }
+      .experience-item:hover { background: rgba(245,239,224,.035); }
+      .experience-item:hover b { opacity: 1; transform: translateY(0); }
+      .experience-panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 360ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .experience-panel ul {
+        display: grid;
+        gap: 10px;
+        min-height: 0;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        list-style: none;
+      }
+      .experience-item.is-open .experience-panel { grid-template-rows: 1fr; }
+      .experience-item.is-open ul { padding-bottom: 24px; }
+      .experience-panel li { color: var(--muted); line-height: 1.55; }
+
+      .contact-section {
+        min-height: 100svh;
+        display: grid;
+        align-content: center;
+      }
+      .contact-section h2 {
+        color: var(--ivory);
+        font-size: clamp(6rem, 15vw, 16rem);
+      }
+      .contact-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+      .footer-line {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        justify-content: space-between;
+        margin-top: clamp(70px, 10vw, 120px);
+        color: var(--muted);
+        font-size: .78rem;
+      }
+
+      .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); transition-delay: var(--delay, 0ms); }
+      .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+      @keyframes letterIn { to { opacity: 1; transform: translateY(0); } }
+      @keyframes wordReveal { to { clip-path: inset(0 0 0 0); } }
+      @keyframes grainShift { 50% { transform: translate3d(2%, -1%, 0); } }
+      @keyframes scrollLine { 0% { transform: scaleY(.25); transform-origin: top; opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(.25); transform-origin: bottom; opacity: .4; } }
+      @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+        .loader { display: none; }
+        .reveal { opacity: 1; transform: none; }
+      }
+
+      @media (max-width: 900px) {
+        body { cursor: auto; }
+        .cursor { display: none; }
+        .nav-toggle { display: inline-flex; }
+        .nav-links {
+          position: fixed;
+          inset: 74px 14px auto;
+          display: grid;
+          padding: 18px;
+          background: rgba(13,12,11,.94);
+          border: 1px solid var(--line);
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(-10px);
+          transition: .22s ease;
+        }
+        .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .hero { grid-template-columns: 1fr; align-items: center; }
+        .hero-media { min-height: auto; }
+        .hero-media img { min-height: 420px; border-radius: 220px 220px 0 0; }
+        .about-grid, .section-head, .experience-layout, .steps, .metrics-band { grid-template-columns: 1fr; }
+        .experience-sticky { position: relative; top: auto; }
+        .services-row, .case-track { grid-auto-flow: row; grid-auto-columns: unset; overflow: visible; }
+        .masonry { grid-template-columns: repeat(2, 1fr); }
+        .masonry a:nth-child(n) { grid-column: auto; grid-row: auto; min-height: 220px; }
+        .experience-trigger { grid-template-columns: 1fr; }
+        .experience-trigger b { position: static; width: fit-content; opacity: 1; transform: none; }
+      }
+    </style>
   </head>
-  <body>
-    <header class="site-header" data-header>
-      <a class="brand" href="#top" aria-label="Anaaya Shah home">
-        <span class="brand-mark">AS</span>
-        <span>Anaaya Shah</span>
-      </a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="primary-nav" aria-expanded="false">
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="nav" id="primary-nav" data-nav aria-label="Primary navigation">
+  <body class="is-loading">
+    <div class="loader" aria-hidden="true">
+      <div class="loader-word" aria-label="Anaaya Shah">
+        <span style="--i:0">A</span><span style="--i:1">N</span><span style="--i:2">A</span><span style="--i:3">A</span><span style="--i:4">Y</span><span style="--i:5">A</span><span style="--i:6">&nbsp;</span><span style="--i:7">S</span><span style="--i:8">H</span><span style="--i:9">A</span><span style="--i:10">H</span>
+      </div>
+    </div>
+    <div class="cursor" data-cursor aria-hidden="true"></div>
+
+    <header class="site-nav">
+      <a class="brand" href="#top"><span class="brand-mark">AS</span><span>Anaaya Shah</span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation">Menu</button>
+      <nav class="nav-links" data-nav>
         <a href="#about">About</a>
-        <a href="#work-bag">Work</a>
-        <a href="#work-bag">Bag</a>
-        <a href="#social">Social</a>
-        <a href="#pr-materials">PR</a>
-        <a href="#skills">Skills</a>
+        <a href="#services">Services</a>
+        <a href="#cases">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#recent">Recent</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a class="header-action" href="#contact">Hire Me</a>
     </header>
 
     <main id="top">
-      <section class="hero editorial-hero">
-        <div class="hero-float-grid" aria-hidden="true">
-          <span class="parallax-tile tile-one" data-parallax></span>
-          <span class="parallax-tile tile-two" data-parallax></span>
-          <span class="parallax-tile tile-three" data-parallax></span>
-          <span class="parallax-tile tile-four" data-parallax></span>
+      <section class="hero">
+        <div class="hero-type">
+          <span class="hero-word" style="--d:0ms">SOCIAL</span>
+          <span class="hero-word" style="--d:150ms">MEDIA</span>
+          <span class="hero-word" style="--d:300ms">MANAGER</span>
         </div>
-        <div class="hero-copy">
-          <p class="eyebrow">Marketing | Social Media | PR | Brand Strategy</p>
-          <h1>Anaaya Shah</h1>
-          <p class="hero-kicker">Creating digital culture through strategic communication.</p>
-          <p class="hero-brief">I transform raw data and fast-moving trends into unforgettable brand stories.</p>
-          <span class="availability-pill">Available August 2026 · Open to Marketing, PR &amp; Social Media Roles</span>
-          <div class="hero-stat-chips" aria-label="Portfolio highlights">
-            <span>332K+ Views</span>
-            <span>Gold Carpet Award</span>
-            <span>Sol de Janeiro · JW Pei · Medix 5.5</span>
-          </div>
+        <figure class="hero-media" data-parallax>
+          <img src="assets/personal/anaaya-editorial-city.png" alt="Anaaya Shah editorial city portrait" />
+        </figure>
+        <div class="hero-meta">
+          <span>US based • Creator • Brand partnerships</span>
           <div class="hero-actions">
-            <a class="button primary" href="#work-bag" data-open-bag data-cursor-label="Open">View My Work</a>
-            <a class="button secondary" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf" data-cursor-label="Download">Download resume</a>
+            <a class="hero-cta" href="#cases">View Work</a>
+            <a class="ghost-cta" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Download Resume</a>
           </div>
         </div>
+        <div class="scroll-indicator">Scroll</div>
       </section>
 
-      <div class="marquee-strip" aria-label="Portfolio highlights">
+      <div class="marquee" aria-label="Portfolio focus">
         <div class="marquee-track">
-          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro · JW Pei · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
-          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro · JW Pei · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
-          <span>332K+ Views · Gold Carpet Award Winner · Sol de Janeiro · JW Pei · Medix 5.5 · Purdue Grad · Muck Rack Certified · 40K+ Reach ·</span>
+          <span>Brand Partnerships • UGC Creation • Social Strategy • Content Direction • PR Writing • Campaign Analytics •</span>
+          <span>Brand Partnerships • UGC Creation • Social Strategy • Content Direction • PR Writing • Campaign Analytics •</span>
+          <span>Brand Partnerships • UGC Creation • Social Strategy • Content Direction • PR Writing • Campaign Analytics •</span>
         </div>
       </div>
 
-      <section class="section about-section" id="about" aria-labelledby="about-title">
-        <div class="about-layout">
-          <div class="about-images">
-            <figure class="about-polaroid">
-              <img src="assets/personal/anaaya-steps-lifestyle.png" alt="Anaaya Shah lifestyle portrait" />
-              <figcaption>Anaaya Shah</figcaption>
-            </figure>
-            <figure class="about-snapshot">
-              <img src="assets/personal/anaaya-blue-lifestyle.png" alt="Anaaya Shah blue dress portrait" />
-            </figure>
-          </div>
-          <div class="about-copy">
-            <p class="eyebrow">Meet me</p>
-            <h2 id="about-title">Purdue Grad. Digital Stylist. Narrative Builder.</h2>
-            <p>I operate where strategic communication meets digital aesthetic. Grounded in media theory at Purdue and fueled by real-world digital creation, I build campaigns tailored for Gen-Z and modern audiences. Less noise, more resonance.</p>
-            <div class="trait-pills" aria-label="Creative traits">
-              <button class="trait-pill" type="button">
-                <span>Trend Forester</span>
-                <em>I watch cultural signals early, then turn them into campaign angles.</em>
-              </button>
-              <button class="trait-pill" type="button">
-                <span>Pop-Culture Obsessed</span>
-                <em>I build content that feels native to beauty, fashion, and lifestyle feeds.</em>
-              </button>
-              <button class="trait-pill" type="button">
-                <span>Data-Driven</span>
-                <em>I use reach, views, saves, and audience behavior to sharpen creative decisions.</em>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section featured-slider-section" id="featured-work" aria-labelledby="featured-title">
-        <div class="section-heading split compact-heading">
+      <section class="section light" id="about">
+        <span class="section-number">01</span>
+        <div class="about-grid reveal">
+          <img class="portrait-tall" src="assets/personal/anaaya-steps-lifestyle.png" alt="Anaaya Shah lifestyle portrait" loading="lazy" data-parallax />
           <div>
-            <p class="eyebrow">Featured work</p>
-            <h2 id="featured-title">Campaigns in one swipe.</h2>
+            <p class="eyebrow">Who Am I</p>
+            <p class="bio-lede">I operate where strategic communication meets digital aesthetic.</p>
+            <p>Grounded in media theory at Purdue and fueled by real-world digital creation, I build campaigns tailored for Gen-Z and modern audiences. My work connects PR writing, creator partnerships, content strategy, and brand storytelling across beauty, fashion, wellness, and consumer brands.</p>
+            <div class="stat-pills">
+              <span>50+ short-form assets</span>
+              <span>Sponsored creator work</span>
+              <span>PR + social strategy</span>
+            </div>
           </div>
-          <p>Short previews. Clear strategy. No endless scroll.</p>
-        </div>
-        <div class="featured-slider" aria-label="Featured portfolio work">
-          <a class="featured-card product" href="#work-bag" data-open-bag data-cursor-label="Open">
-            <span>01</span>
-            <h3>Brand Strategy</h3>
-            <p>Rhode, Lululemon vs Alo, and product launch thinking.</p>
-          </a>
-          <a class="featured-card visual" href="#mockup-visuals" data-cursor-label="View">
-            <span>02</span>
-            <h3>Visual Direction</h3>
-            <p>Beauty mockups, product pairing, and campaign mood.</p>
-          </a>
-          <a class="featured-card pr" href="#pr-materials" data-cursor-label="Read">
-            <span>03</span>
-            <h3>PR Materials</h3>
-            <p>Pitching, media lists, backgrounders, and writing.</p>
-          </a>
-          <a class="featured-card content" href="#social" data-cursor-label="Watch">
-            <span>04</span>
-            <h3>Social Content</h3>
-            <p>Reels, creator partnerships, UGC, and account work.</p>
-          </a>
         </div>
       </section>
 
-      <section class="section hover-showcase" id="showcase" aria-labelledby="showcase-title">
-        <div class="section-heading split compact-heading">
+      <section class="section" id="services">
+        <div class="section-head reveal">
           <div>
-            <p class="eyebrow">Showcase</p>
-            <h2 id="showcase-title">Hover to reveal the proof.</h2>
+            <p class="eyebrow">02 — Services</p>
+            <h2>What I Offer</h2>
           </div>
-          <p>Writing, PR strategy, and content direction in a compact interactive view.</p>
+          <p>Flexible creative support across social media, PR, content production, campaign thinking, and brand partnerships.</p>
         </div>
-        <div class="work-accordion" aria-label="Interactive work categories">
-          <a class="work-row editorial-row" href="https://www.hercampus.com/school/purdue/september-writer-of-the-month-anaaya-shah/" target="_blank" rel="noreferrer" data-cursor-label="Read">
-            <span>01/ Editorial Writing</span>
-            <strong>Published voice with culture-first framing.</strong>
-            <div class="work-preview">
-              <img src="assets/generated/pr-writing-cover.jpg" alt="Published writing preview" />
-              <p>Editorial clarity, voice, and audience-aware storytelling.</p>
-            </div>
-          </a>
-          <a class="work-row pr-row" href="assets/media-materials/media-pitch.pdf" target="_blank" rel="noreferrer" data-cursor-label="Open">
-            <span>02/ Strategic PR</span>
-            <strong>Media-ready pitch, backgrounder, list, and infographic.</strong>
-            <div class="work-preview">
-              <img src="assets/generated/pr-pitch-cover.jpg" alt="PR materials preview" />
-              <p>Angle, hook, context, and journalist-ready outreach.</p>
-            </div>
-          </a>
-          <a class="work-row content-row" href="#social" data-cursor-label="Watch">
-            <span>03/ Digital Content</span>
-            <strong>Reels, UGC, creator work, and account storytelling.</strong>
-            <div class="work-preview">
-              <img src="assets/personal/anaaya-tiktok-profile-2.png" alt="Digital content preview" />
-              <p>Hooks, styling, pacing, and social-native creative judgment.</p>
-            </div>
-          </a>
+        <div class="services-row reveal">
+          <article class="service-card"><span class="eyebrow">01</span><h3>UGC Content</h3><p>Short-form product storytelling built around hooks, native pacing, and platform fit.</p></article>
+          <article class="service-card"><span class="eyebrow">02</span><h3>Social Media Management</h3><p>Content calendars, publishing, community engagement, and account storytelling.</p></article>
+          <article class="service-card"><span class="eyebrow">03</span><h3>Brand Strategy</h3><p>Audience insights, positioning, campaign concepts, and social-first creative direction.</p></article>
+          <article class="service-card"><span class="eyebrow">04</span><h3>Photography</h3><p>Beauty, fashion, lifestyle, and editorial-style visual direction for content systems.</p></article>
+          <article class="service-card"><span class="eyebrow">05</span><h3>Videography</h3><p>Reels, campaign concepts, product detail shots, and creator-led editing workflows.</p></article>
+          <article class="service-card"><span class="eyebrow">06</span><h3>Content Direction</h3><p>Messaging, shot lists, briefs, captions, brand voice, and visual storytelling systems.</p></article>
         </div>
       </section>
 
-      <section class="section bag-section" id="work-bag" aria-labelledby="bag-title">
-        <div class="section-heading split">
-          <div>
-            <p class="eyebrow">What’s in my marketing bag?</p>
-            <h2 id="bag-title">Click an object. Open the work.</h2>
-          </div>
-          <p>A compact interactive view of my strategy, PR, social, creator, and performance work.</p>
+      <section class="section light" id="how">
+        <span class="section-number">03</span>
+        <div class="section-head reveal">
+          <div><p class="eyebrow">How It Works</p><h2>Clean process. Strong output.</h2></div>
+          <p>A simple creative workflow that keeps strategy visible and execution polished.</p>
         </div>
-        <div class="bag-experience">
-          <div class="bag-stage" id="hero-bag-stage" data-bag-stage>
-            <button class="bag-toggle" type="button" data-bag-toggle aria-expanded="false">
-              <img src="assets/generated/luxury-bag.png" alt="" aria-hidden="true" />
-              <span>Open the bag</span>
-            </button>
-            <a class="bag-object object-gloss" href="#mockup-visuals" data-bag-preview="mockups" aria-label="Mockup brand visuals">
-              <span class="object-icon">Gloss</span>
-              <span class="object-label">Mockup Visuals</span>
-              <span class="object-hint">Campaigns</span>
-            </a>
-            <a class="bag-object object-compact" href="#brand-collaborations" data-bag-preview="collabs" aria-label="Brand collaborations">
-              <span class="object-icon">Compact</span>
-              <span class="object-label">Collaborations</span>
-              <span class="object-hint">Brand Collabs</span>
-            </a>
-            <a class="bag-object object-lip" href="#social" data-bag-preview="social" aria-label="Social media content">
-              <span class="object-icon">Lip Oil</span>
-              <span class="object-label">Social Content</span>
-              <span class="object-hint">Social Content</span>
-            </a>
-            <a class="bag-object object-folder" href="#pr-materials" data-bag-preview="pr" aria-label="PR media materials">
-              <span class="object-icon">PR</span>
-              <span class="object-label">PR Materials</span>
-              <span class="object-hint">PR Materials</span>
-            </a>
-            <a class="bag-object object-camera" href="#campaigns" data-bag-preview="video" aria-label="Reels and UGC">
-              <span class="object-icon">Camera</span>
-              <span class="object-label">Video Work</span>
-              <span class="object-hint">Video Work</span>
-            </a>
-            <a class="bag-object object-laptop" href="#contact" data-bag-preview="contact" aria-label="Resume and contact">
-              <span class="object-icon">Card</span>
-              <span class="object-label">Contact</span>
-              <span class="object-hint">Contact</span>
-            </a>
+        <div class="steps">
+          <article class="step reveal" style="--delay:0ms"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor"/><path d="M16 25h16M24 17v16" stroke="currentColor"/></svg><h3>Book Free Call</h3><p>Align on brand goals, audience, platform, and creative direction.</p></article>
+          <article class="step reveal" style="--delay:180ms"><svg viewBox="0 0 48 48" fill="none"><path d="M14 15h20v18H14z" stroke="currentColor"/><path d="M18 21h12M18 27h8" stroke="currentColor"/></svg><h3>Strategy & Brief</h3><p>Build the angle, hook, shot plan, caption direction, and deliverables.</p></article>
+          <article class="step reveal" style="--delay:360ms"><svg viewBox="0 0 48 48" fill="none"><path d="M14 24l7 7 14-15" stroke="currentColor"/><circle cx="24" cy="24" r="18" stroke="currentColor"/></svg><h3>Content Delivery</h3><p>Deliver final assets, links, documents, or campaign materials.</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="cases" data-horizontal>
+        <div class="section-head reveal">
+          <div><p class="eyebrow">04 — Case Studies</p><h2>Selected Work</h2></div>
+          <p>Strategy, visual direction, writing, and creator content in a horizontal editorial gallery.</p>
+        </div>
+        <div class="case-track" data-case-track>
+          <a class="case-card reveal" href="assets/work-samples/rhode-summer-kit-analysis.png" target="_blank" rel="noreferrer"><img src="assets/work-samples/rhode-summer-kit-analysis.png" alt="Rhode Summer Kit product marketing analysis" loading="lazy" /><div class="case-copy"><span class="eyebrow">Product Marketing</span><h3>Rhode Summer Kit</h3><span class="metric" data-count="5">0</span><p>Bundle strategy, customization, scarcity, community, and full-funnel launch thinking.</p></div></a>
+          <a class="case-card reveal" href="assets/work-samples/lululemon-alo-strategy.png" target="_blank" rel="noreferrer"><img src="assets/work-samples/lululemon-alo-strategy.png" alt="Lululemon vs Alo strategy analysis" loading="lazy" /><div class="case-copy"><span class="eyebrow">Brand Strategy</span><h3>Lululemon vs Alo</h3><span class="metric" data-count="2">0</span><p>Performance-led positioning versus culture-led aspiration in premium activewear.</p></div></a>
+          <a class="case-card reveal" href="assets/work-samples/rhode-haus-labs-visuals.jpg" target="_blank" rel="noreferrer"><img src="assets/work-samples/rhode-haus-labs-visuals.jpg" alt="Rhode x Haus Labs visual campaign mockup" loading="lazy" /><div class="case-copy"><span class="eyebrow">Creative Direction</span><h3>Beauty Mockups</h3><span class="metric" data-count="2">0</span><p>Beauty collaboration concepts, product pairing, premium visuals, and launch mood.</p></div></a>
+          <a class="case-card reveal" href="assets/media-materials/media-pitch.pdf" target="_blank" rel="noreferrer"><img src="assets/generated/pr-pitch-cover.jpg" alt="Media pitch cover" loading="lazy" /><div class="case-copy"><span class="eyebrow">PR Writing</span><h3>Pitch-ready Materials</h3><span class="metric" data-count="40">0</span><p>Media lists, pitches, backgrounders, infographic design, and outreach strategy.</p></div></a>
+        </div>
+      </section>
+
+      <section class="section light" id="experience">
+        <div class="experience-layout reveal">
+          <aside class="experience-sticky">
+            <p class="eyebrow">Experience</p>
+            <h2>The Journey</h2>
+            <a class="resume-link" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Get Full Resume →</a>
+          </aside>
+          <div class="experience-list">
+            <article class="experience-item is-open"><button class="experience-trigger" type="button" aria-expanded="true"><span>Marketing Intern</span><strong>eClinicalWorks</strong><em>Oct 2025 - May 2026</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Optimized healthtech content with audience insights and GA4 tracking, increasing engagement by 15% in 3 months.</li><li>Supported GTM, ABM, lifecycle messaging, and demand-generation campaign execution.</li><li>Tracked KPIs, funnel performance, and ROI indicators to sharpen content strategy.</li></ul></div></article>
+            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>PR & Marketing Intern</span><strong>South by Sea</strong><em>Jan 2024 - May 2026</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Managed relationships with 20+ student organizations, helping increase recurring orders by 25%.</li><li>Generated 30+ qualified leads monthly through organized outreach and CRM-style follow-up.</li><li>Built customized partnership presentations that supported a 35% close rate.</li></ul></div></article>
+            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Freelance Creator</span><strong>Instagram, YouTube & TikTok</strong><em>May 2022 - Present</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Produced 50+ short-form assets across creator channels with strong engagement performance.</li><li>Managed scripting, editing, publishing, insights review, and content calendar planning.</li><li>Created sponsored beauty, lifestyle, and fashion content with platform-native hooks.</li></ul></div></article>
+            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Marketing & Social Media Intern</span><strong>Adani Wilmar Ltd.</strong><em>May 2025 - Aug 2025</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Drafted 10+ press releases, media materials, and branded communications for PR outreach.</li><li>Supported multi-platform campaigns that improved engagement rates by 15-20%.</li><li>Designed branded marketing assets and content calendar concepts for consumer audiences.</li></ul></div></article>
+            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Communication Intern</span><strong>Purdue Marketing & Communication</strong><em>Jan 2025 - May 2025</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Created internal communications that lifted email open rates by 14% across 5,000+ stakeholders.</li><li>Analyzed content performance and audience feedback, contributing to a 12% click-through lift.</li><li>Conducted 15+ stakeholder interviews and translated insights into audience-ready narratives.</li></ul></div></article>
+            <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Student Consultant</span><strong>Boiler Communication</strong><em>Aug 2024 - Dec 2024</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Executed 3 PR campaigns with audience targeting, messaging, and strategic content planning.</li><li>Analyzed 2,500+ local consumers to support audience segmentation and recommendations.</li><li>Built media lists of 40+ outlets and supported outreach that secured 8 earned media placements.</li></ul></div></article>
           </div>
         </div>
       </section>
 
-      <section class="section visual-work" id="mockup-visuals" aria-labelledby="visual-title">
-        <div class="section-heading split">
-          <div>
-            <p class="eyebrow">Visual work</p>
-            <h2 id="visual-title">Beauty collaboration mockups.</h2>
-          </div>
-          <p>Beauty visuals designed to show taste, product storytelling, and brand-fit creative direction.</p>
+      <section class="section" id="recent">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">05 — Recent Work</p><h2>Videography & Visuals</h2></div>
+          <p>Creator content, campaign assets, PR materials, and social-first visuals.</p>
         </div>
-        <div class="editorial-scroll" aria-label="Visual work carousel">
-          <a class="editorial-card" href="assets/work-samples/rhode-haus-labs-visuals.jpg" target="_blank" rel="noreferrer" data-cursor-label="View">
-            <img src="assets/work-samples/rhode-haus-labs-visuals.jpg" alt="Rhode x Haus Labs visuals" />
-            <span>Rhode x Haus Labs</span>
-            <p>Complexion glow concept with product pairing and social launch appeal.</p>
-            <strong>View →</strong>
-          </a>
-          <a class="editorial-card" href="assets/work-samples/huda-nars-visuals.jpg" target="_blank" rel="noreferrer" data-cursor-label="View">
-            <img src="assets/work-samples/huda-nars-visuals.jpg" alt="Huda Beauty x NARS visuals" />
-            <span>Huda Beauty x NARS</span>
-            <p>Bold beauty collaboration concept with premium campaign styling.</p>
-            <strong>View →</strong>
-          </a>
+        <div class="masonry reveal">
+          <a href="https://www.instagram.com/reel/DT0nw3Ajso3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-tiktok-profile-1.png" alt="Creator reel preview" loading="lazy" /></a>
+          <a href="https://www.instagram.com/reel/DTvQk7hDviz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-tiktok-profile-2.png" alt="Fashion reel preview" loading="lazy" /></a>
+          <a href="assets/work-samples/huda-nars-visuals.jpg" target="_blank" rel="noreferrer"><img src="assets/work-samples/huda-nars-visuals.jpg" alt="Huda Beauty x NARS mockup" loading="lazy" /></a>
+          <a href="assets/generated/pr-infographic-thumbnail.png" target="_blank" rel="noreferrer"><img src="assets/generated/pr-infographic-thumbnail.png" alt="PR infographic thumbnail" loading="lazy" /></a>
+          <a href="assets/personal/anaaya-blue-lifestyle.png" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-blue-lifestyle.png" alt="Anaaya Shah lifestyle portrait" loading="lazy" /></a>
+          <a href="assets/generated/brand-collaborations-cover.png" target="_blank" rel="noreferrer"><img src="assets/generated/brand-collaborations-cover.png" alt="Brand collaborations cover" loading="lazy" /></a>
         </div>
       </section>
 
-      <section class="section campaigns-section" id="campaigns" aria-labelledby="campaigns-title">
-        <div class="section-heading split">
-          <div>
-            <p class="eyebrow">Campaigns</p>
-            <h2 id="campaigns-title">Product video concepts and creator visuals.</h2>
-          </div>
-          <p>Short-form ideas built around hooks, styling, detail shots, pacing, and product storytelling.</p>
+      <section class="metrics-band" id="metrics">
+        <article class="metric-tile reveal"><strong data-count="332">0</strong><span>K+ creator account views</span></article>
+        <article class="metric-tile reveal"><strong data-count="12">0</strong><span>% engagement rate across creator content</span></article>
+        <article class="metric-tile reveal"><strong data-count="50">0</strong><span>+ short-form assets produced</span></article>
+      </section>
+
+      <section class="section" id="proof">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">06 — Proof Notes</p><h2>Recognition</h2></div>
+          <p>No fake client quotes. Just real signals from the work, awards, and certifications.</p>
         </div>
-        <div class="campaign-grid">
-          <a class="campaign-video-card" href="https://youtu.be/tJezH4-1aKE?si=sBs0DrtvwAaPhPjH" target="_blank" rel="noreferrer" data-cursor-label="Watch">
-            <div class="campaign-art kindly-art" aria-hidden="true">
-              <span></span><span></span><span></span>
-            </div>
-            <div>
-              <span class="play-dot">Play</span>
-              <p>Kindly</p>
-              <strong>Soft beauty product story</strong>
-            </div>
-          </a>
-          <a class="campaign-video-card" href="https://youtu.be/ClEIrnJ8KRI?si=zdH4sM6XNusCTA_R" target="_blank" rel="noreferrer" data-cursor-label="Watch">
-            <div class="campaign-art jewels-art" aria-hidden="true">
-              <span></span><span></span><span></span>
-            </div>
-            <div>
-              <span class="play-dot">Play</span>
-              <p>AH&E Jewels</p>
-              <strong>Elevated lifestyle detail</strong>
-            </div>
-          </a>
-          <article class="campaign-note-card">
-            <span>Creative direction</span>
-            <h3>Hook, style, detail, edit.</h3>
-            <p>Video concepts focused on product framing, pacing, and social-first storytelling.</p>
-            <div class="impact-list" aria-label="Campaign process">
-              <b>Objective</b><em>Make products feel natural in short-form feeds.</em>
-              <b>Process</b><em>Plan hook, styling, close-ups, pacing, and caption direction.</em>
-              <b>Proof</b><em>Finished campaign links show execution and editing judgment.</em>
-            </div>
-          </article>
+        <div class="testimonials reveal" data-testimonials>
+          <article class="testimonial is-active"><blockquote>“Brian Lamb School of Communication’s Gold Carpet Awards — Best Short Form Video.”</blockquote><span>Award</span></article>
+          <article class="testimonial"><blockquote>“Muck Rack Essentials certified: media relations, journalist research, pitching, and PR workflow fundamentals.”</blockquote><span>Certification</span></article>
+          <article class="testimonial"><blockquote>“Published editorial writing sample with Her Campus Purdue.”</blockquote><span>Writing</span></article>
         </div>
       </section>
 
-      <section class="section social-section" id="social" aria-labelledby="social-title">
-        <div class="section-heading split">
-          <div>
-            <p class="eyebrow">Social media</p>
-            <h2 id="social-title">Creator channels and accounts managed.</h2>
-          </div>
-          <p>Personal creator platforms plus social media experience across fashion, campus, culture, and partnership accounts.</p>
+      <section class="section contact-section" id="contact">
+        <p class="eyebrow reveal">Contact</p>
+        <h2 class="reveal">LET'S<br />WORK.</h2>
+        <p class="reveal">Ready to create something extraordinary?</p>
+        <div class="contact-actions reveal">
+          <a class="solid-cta" href="mailto:anaayashah1202@gmail.com">Email Anaaya</a>
+          <a class="ghost-cta" href="https://www.instagram.com/anaaya.shah/?hl=en" target="_blank" rel="noreferrer">View Instagram</a>
+          <a class="ghost-cta" href="https://www.tiktok.com/@beautywanaaya" target="_blank" rel="noreferrer">TikTok</a>
+          <a class="ghost-cta" href="https://www.youtube.com/@anaayashah1111" target="_blank" rel="noreferrer">YouTube</a>
         </div>
-        <div class="reel-showcase" aria-label="High-performing reels">
-          <article class="ugc-intro-card">
-            <div class="creator-profile-top">
-              <span class="creator-avatar">AS</span>
-              <div>
-                <span>Creator profile</span>
-                <h3>@anaaya.shah</h3>
-              </div>
-            </div>
-            <p>Beauty, fashion, lifestyle, reels, UGC, styling, and editing with a social-first point of view.</p>
-            <div class="view-badges" aria-label="Selected reel performance">
-              <b>325K views</b>
-              <b>37.6K views</b>
-              <b>23.8K views</b>
-            </div>
-            <div class="creator-actions">
-              <a class="phone-cta" href="https://www.instagram.com/anaaya.shah/?hl=en" target="_blank" rel="noreferrer">Instagram</a>
-              <a class="phone-cta light" href="https://www.tiktok.com/@beautywanaaya" target="_blank" rel="noreferrer">TikTok</a>
-            </div>
-          </article>
-          <article class="reel-phone">
-            <iframe
-              src="https://www.instagram.com/reel/DT0nw3Ajso3/embed"
-              title="Anaaya Shah Instagram reel"
-              loading="lazy"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            ></iframe>
-            <div class="reel-caption">
-              <span>High-view reel</span>
-              <strong>Style + creator hook</strong>
-              <a href="https://www.instagram.com/reel/DT0nw3Ajso3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">Open reel</a>
-            </div>
-          </article>
-          <article class="reel-phone">
-            <iframe
-              src="https://www.instagram.com/reel/DTvQk7hDviz/embed"
-              title="Anaaya Shah Instagram reel"
-              loading="lazy"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            ></iframe>
-            <div class="reel-caption">
-              <span>High-view reel</span>
-              <strong>Fashion + beauty pacing</strong>
-              <a href="https://www.instagram.com/reel/DTvQk7hDviz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">Open reel</a>
-            </div>
-          </article>
-        </div>
-
-        <div class="managed-accounts" id="brand-collaborations" aria-label="Accounts managed">
-          <div class="mini-heading">
-            <p class="eyebrow">Accounts I’ve managed</p>
-            <h3>Social media work across fashion, campus, and culture accounts.</h3>
-          </div>
-          <div class="managed-grid">
-            <a href="https://www.instagram.com/therefore_fashion/?hl=en" target="_blank" rel="noreferrer">
-              <span>Fashion brand</span>
-              <strong>@therefore_fashion</strong>
-              <p>Founder-led fashion, styling, and social-first brand voice.</p>
-            </a>
-            <a href="https://www.instagram.com/southbysea_purdue/?hl=en" target="_blank" rel="noreferrer">
-              <span>Campus commerce</span>
-              <strong>@southbysea_purdue</strong>
-              <p>Campus partnership content, outreach, and brand awareness.</p>
-            </a>
-            <a href="https://www.instagram.com/aif.purdue/?hl=en" target="_blank" rel="noreferrer">
-              <span>Purdue community</span>
-              <strong>@aif.purdue</strong>
-              <p>Community engagement, event visibility, and student audience fit.</p>
-            </a>
-            <a href="https://www.instagram.com/nasha.purdue/?hl=en" target="_blank" rel="noreferrer">
-              <span>Purdue culture</span>
-              <strong>@nasha.purdue</strong>
-              <p>Culture, events, identity, awareness, and community storytelling.</p>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section pr-materials" id="pr-materials" aria-labelledby="pr-title">
-        <div class="section-heading split">
-          <div>
-            <p class="eyebrow">PR + communications</p>
-            <h2 id="pr-title">Writing, pitching, and media relations work.</h2>
-          </div>
-          <p>Media-ready documents and writing samples that show clear communication and outreach strategy.</p>
-        </div>
-        <div class="pr-grid">
-          <a class="pr-card infographic" href="assets/media-materials/boilermaker-golf-complex-infographic.pdf" target="_blank" rel="noreferrer" data-cursor-label="Open">
-            <img src="assets/generated/pr-infographic-thumbnail.png" alt="Birck Boilermaker Golf Complex infographic" />
-            <span>Infographic</span>
-            <p>Visual media asset for Birck Boilermaker Golf Complex.</p>
-            <strong>View →</strong>
-          </a>
-          <a class="pr-card" href="assets/media-materials/media-backgrounder.pdf" target="_blank" rel="noreferrer" data-cursor-label="Open">
-            <div class="doc-cover"><span>Media Kit</span><strong>Backgrounder</strong><em>Facts · Context · Brand Details</em></div>
-            <span>Media Backgrounder</span>
-            <p>Context, facts, and brand details for media outreach.</p>
-            <strong>View →</strong>
-          </a>
-          <a class="pr-card" href="assets/media-materials/media-pitch.pdf" target="_blank" rel="noreferrer" data-cursor-label="Open">
-            <div class="doc-cover pitch"><span>Pitch File</span><strong>Media Pitch</strong><em>Angle · Hook · Outreach</em></div>
-            <span>Media Pitch</span>
-            <p>Story angle and journalist-ready outreach sample.</p>
-            <strong>View →</strong>
-          </a>
-          <a class="pr-card" href="assets/media-materials/media-list.pdf" target="_blank" rel="noreferrer" data-cursor-label="Open">
-            <div class="doc-cover list"><span>Research File</span><strong>Media List</strong><em>Outlets · Contacts · Targets</em></div>
-            <span>Media List</span>
-            <p>Targeted media research and pitching workflow.</p>
-            <strong>View →</strong>
-          </a>
-          <a class="pr-card" href="https://www.hercampus.com/school/purdue/september-writer-of-the-month-anaaya-shah/" target="_blank" rel="noreferrer" data-cursor-label="Read">
-            <div class="doc-cover writing"><span>Published Writing</span><strong>Her Campus</strong><em>Editorial Feature</em></div>
-            <span>Writing Sample</span>
-            <p>Published editorial writing sample with a clear voice.</p>
-            <strong>View →</strong>
-          </a>
-        </div>
-      </section>
-
-      <section class="section skills-section" id="skills" aria-labelledby="skills-title">
-        <div class="section-heading split">
-          <div>
-            <p class="eyebrow">Skills + tools</p>
-            <h2 id="skills-title">Strategy, production, analytics, and publishing toolkit.</h2>
-          </div>
-          <p>Tool proficiency shown as visual logo-style marks, paired with the marketing skills they support.</p>
-        </div>
-        <div class="skills-layout">
-          <article>
-            <span>Analytics</span>
-            <div class="logo-cloud" aria-label="Analytics tools">
-              <i>Google Analytics 4</i><i>Looker Studio</i><i>Meta Ads Manager</i>
-            </div>
-            <p>KPI tracking, funnel analysis, dashboards, audience insights, and engagement reporting.</p>
-          </article>
-          <article>
-            <span>Creative</span>
-            <div class="logo-cloud" aria-label="Creative tools">
-              <i>Canva</i><i>Adobe Premiere Pro</i><i>CapCut</i><i>Midjourney</i>
-            </div>
-            <p>Short-form editing, branded assets, social layouts, and content production.</p>
-          </article>
-          <article>
-            <span>Social + CRM</span>
-            <div class="logo-cloud" aria-label="Social and CRM tools">
-              <i>Sprout Social</i><i>Hootsuite</i><i>HubSpot</i>
-            </div>
-            <p>Content calendars, publishing, community engagement, outreach, and lead workflows.</p>
-          </article>
-          <article>
-            <span>AI + web</span>
-            <div class="logo-cloud" aria-label="AI and website tools">
-              <i>ChatGPT</i><i>Claude</i><i>GitHub</i><i>Vercel</i>
-            </div>
-            <p>Research, campaign ideation, visual brainstorming, website iteration, and deployment.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section proof-section" id="insights" aria-labelledby="proof-title">
-        <div class="section-heading">
-          <p class="eyebrow">Proof + recognition</p>
-          <h2 id="proof-title">Performance signals without the clutter.</h2>
-        </div>
-        <div class="proof-grid">
-          <article><span>Account views</span><strong>332K+</strong><p>Creator visibility across social-first content.</p></article>
-          <article><span>Reach</span><strong>40K+</strong><p>Discovery across audience segments.</p></article>
-          <article><span>Award</span><strong>Gold Carpet</strong><p>Brian Lamb School of Communication’s Best Short Form Video.</p></article>
-          <article><span>Certificate</span><strong>Muck Rack</strong><p>Media relations, journalist research, pitching, and PR workflow fundamentals.</p></article>
-        </div>
-      </section>
-
-      <section class="section youtube-section" id="youtube" aria-labelledby="youtube-title">
-        <a class="youtube-card" href="https://www.youtube.com/@anaayashah1111" target="_blank" rel="noreferrer">
-          <div>
-            <p class="eyebrow">YouTube</p>
-            <h2 id="youtube-title">Video content and creator storytelling.</h2>
-            <p>Creator channel highlighting on-camera presence, editing instincts, content packaging, and audience-first storytelling.</p>
-          </div>
-          <span>Open @anaayashah1111</span>
-        </a>
-      </section>
-
-      <section class="section contact" id="contact" aria-labelledby="contact-title">
-        <div class="contact-card">
-          <div class="contact-monogram" aria-hidden="true"><span>AS</span></div>
-          <div>
-            <p class="eyebrow">Resume + contact</p>
-            <h2 id="contact-title">Let’s work together.</h2>
-            <p>Target roles: social media marketing, PR, influencer marketing, beauty/fashion marketing, brand marketing, content marketing, and digital marketing.</p>
-            <div class="contact-actions">
-              <a class="button primary" href="mailto:anaayashah1202@gmail.com">Email Anaaya</a>
-              <a class="button secondary" href="https://www.linkedin.com/in/anaaya-shah" target="_blank" rel="noreferrer">LinkedIn</a>
-              <a class="button secondary" href="https://www.instagram.com/anaaya.shah/?hl=en" target="_blank" rel="noreferrer">Instagram</a>
-              <a class="button secondary" href="https://www.tiktok.com/@beautywanaaya" target="_blank" rel="noreferrer">TikTok</a>
-              <a class="button secondary" href="https://www.youtube.com/@anaayashah1111" target="_blank" rel="noreferrer">YouTube</a>
-              <a class="button secondary" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Resume</a>
-            </div>
-          </div>
-        </div>
+        <footer class="footer-line">
+          <span>anaayashah1202@gmail.com</span>
+          <span>765-810-2251</span>
+          <span>Instagram · TikTok · YouTube · LinkedIn</span>
+          <span>© 2026 Anaaya Shah</span>
+        </footer>
       </section>
     </main>
 
-    <footer class="footer">
-      <h2>Let's build something together.</h2>
-      <div class="footer-socials" aria-label="Social links">
-        <a href="mailto:anaayashah1202@gmail.com" aria-label="Email Anaaya">Email</a>
-        <a href="https://www.linkedin.com/in/anaaya-shah" target="_blank" rel="noreferrer" aria-label="Anaaya Shah LinkedIn">in</a>
-        <a href="https://www.instagram.com/anaaya.shah/?hl=en" target="_blank" rel="noreferrer" aria-label="Anaaya Shah Instagram">IG</a>
-        <a href="https://www.tiktok.com/@beautywanaaya" target="_blank" rel="noreferrer" aria-label="Anaaya Shah TikTok">TT</a>
-        <a href="https://www.youtube.com/@anaayashah1111" target="_blank" rel="noreferrer" aria-label="Anaaya Shah YouTube">YT</a>
-      </div>
-      <p>Seeking Social Media, PR & Marketing roles · Available August 2026.</p>
-      <a href="mailto:anaayashah1202@gmail.com">anaayashah1202@gmail.com</a>
-    </footer>
+    <script>
+      const body = document.body;
+      const loader = document.querySelector(".loader");
+      window.addEventListener("load", () => {
+        window.setTimeout(() => {
+          loader?.classList.add("is-hidden");
+          body.classList.remove("is-loading");
+        }, 2000);
+      });
 
-    <aside class="bag-drawer" data-bag-drawer aria-hidden="true" aria-labelledby="bag-drawer-title">
-      <button class="drawer-backdrop" type="button" data-drawer-close aria-label="Close preview"></button>
-      <div class="drawer-panel" role="dialog" aria-modal="true">
-        <button class="drawer-close" type="button" data-drawer-close aria-label="Close preview">×</button>
-        <div class="drawer-media" data-drawer-media></div>
-        <p class="eyebrow" data-drawer-kicker>Portfolio preview</p>
-        <h2 id="bag-drawer-title" data-drawer-title></h2>
-        <p data-drawer-copy></p>
-        <div class="drawer-actions" data-drawer-actions></div>
-      </div>
-    </aside>
+      const nav = document.querySelector("[data-nav]");
+      document.querySelector("[data-nav-toggle]")?.addEventListener("click", () => nav?.classList.toggle("is-open"));
+      nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => nav.classList.remove("is-open")));
 
-    <div class="cursor-bubble" data-cursor-bubble aria-hidden="true">View</div>
-    <script src="script.js"></script>
+      const cursor = document.querySelector("[data-cursor]");
+      let cx = 0, cy = 0, tx = 0, ty = 0;
+      const cursorLoop = () => {
+        cx += (tx - cx) * 0.2;
+        cy += (ty - cy) * 0.2;
+        if (cursor) cursor.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+        requestAnimationFrame(cursorLoop);
+      };
+      cursorLoop();
+      document.addEventListener("pointermove", (event) => { tx = event.clientX; ty = event.clientY; }, { passive: true });
+      document.querySelectorAll("a, button").forEach((item) => {
+        item.addEventListener("pointerenter", () => cursor?.classList.add("is-active"));
+        item.addEventListener("pointerleave", () => cursor?.classList.remove("is-active"));
+      });
+
+      const revealItems = document.querySelectorAll(".reveal, .section, .experience-item");
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14, rootMargin: "0px 0px -10% 0px" });
+      revealItems.forEach((item) => revealObserver.observe(item));
+
+      const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const node = entry.target;
+          const target = Number(node.dataset.count || 0);
+          const suffix = node.textContent.includes("+") ? "+" : "";
+          let value = 0;
+          const step = Math.max(1, Math.ceil(target / 42));
+          const tick = () => {
+            value = Math.min(target, value + step);
+            node.textContent = `${value}${suffix}`;
+            if (value < target) requestAnimationFrame(tick);
+          };
+          tick();
+          countObserver.unobserve(node);
+        });
+      }, { threshold: 0.35 });
+      document.querySelectorAll("[data-count]").forEach((item) => countObserver.observe(item));
+
+      const parallaxItems = document.querySelectorAll("[data-parallax]");
+      window.addEventListener("scroll", () => {
+        const y = window.scrollY;
+        parallaxItems.forEach((item, index) => {
+          item.style.transform = `translateY(${y * (0.018 + index * 0.003)}px)`;
+        });
+      }, { passive: true });
+
+      const expItems = document.querySelectorAll(".experience-item");
+      expItems.forEach((item) => {
+        const trigger = item.querySelector(".experience-trigger");
+        trigger?.addEventListener("click", () => {
+          if (item.classList.contains("is-open")) return;
+          expItems.forEach((entry) => {
+            entry.classList.remove("is-open");
+            entry.querySelector(".experience-trigger")?.setAttribute("aria-expanded", "false");
+          });
+          item.classList.add("is-open");
+          trigger.setAttribute("aria-expanded", "true");
+        });
+      });
+
+      const testimonials = [...document.querySelectorAll(".testimonial")];
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && testimonials.length > 1) {
+        let index = 0;
+        window.setInterval(() => {
+          testimonials[index].classList.remove("is-active");
+          index = (index + 1) % testimonials.length;
+          testimonials[index].classList.add("is-active");
+        }, 4000);
+      }
+
+      const horizontal = document.querySelector("[data-horizontal]");
+      const track = document.querySelector("[data-case-track]");
+      if (horizontal && track && window.matchMedia("(min-width: 901px)").matches) {
+        horizontal.addEventListener("wheel", (event) => {
+          if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+          const atStart = track.scrollLeft <= 0 && event.deltaY < 0;
+          const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2 && event.deltaY > 0;
+          if (atStart || atEnd) return;
+          event.preventDefault();
+          track.scrollLeft += event.deltaY;
+        }, { passive: false });
+      }
+    </script>
   </body>
 </html>

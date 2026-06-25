@@ -2658,7 +2658,7 @@ h3,
 .tile-one {
   top: 17%;
   left: 7%;
-  background-image: url("assets/work-samples/rhode-summer-kit-analysis.png");
+  background-image: url("assets/personal/anaaya-personal-photo-board.png");
   transform: rotate(-9deg);
 }
 
@@ -2672,14 +2672,14 @@ h3,
 .tile-three {
   left: 12%;
   bottom: 10%;
-  background-image: url("assets/generated/pr-infographic-thumbnail.png");
+  background-image: url("assets/generated/brand-collaborations-cover.png");
   transform: rotate(7deg);
 }
 
 .tile-four {
   right: 12%;
   bottom: 9%;
-  background-image: url("assets/work-samples/rhode-haus-labs-visuals.jpg");
+  background-image: url("assets/personal/anaaya-floral-fashion.png");
   transform: rotate(-7deg);
 }
 
@@ -2807,15 +2807,21 @@ h3,
 }
 
 .featured-card.product::before {
-  background-image: url("assets/work-samples/rhode-summer-kit-analysis.png");
+  background:
+    radial-gradient(circle at 18% 22%, rgba(250, 247, 242, 0.42), transparent 22%),
+    linear-gradient(135deg, #1a0f0a, #6f2a31 52%, #c9956c);
 }
 
 .featured-card.visual::before {
-  background-image: url("assets/work-samples/huda-nars-visuals.jpg");
+  background:
+    linear-gradient(90deg, rgba(250, 247, 242, 0.2) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(135deg, #f5d9dc, #8b2e42 58%, #1a0f0a);
 }
 
 .featured-card.pr::before {
-  background-image: url("assets/generated/pr-infographic-thumbnail.png");
+  background:
+    repeating-linear-gradient(0deg, rgba(28, 16, 8, 0.18) 0 1px, transparent 1px 38px),
+    linear-gradient(135deg, #fffdf8, #c9956c 55%, #1a0f0a);
 }
 
 .featured-card.content::before {
@@ -3036,4 +3042,409 @@ h3,
   .work-preview {
     grid-template-columns: 72px 1fr;
   }
+}
+
+/* Luxury editorial contrast pass */
+:root {
+  --editorial-dark: #1a0f0a;
+  --editorial-espresso: #2c1810;
+}
+
+.section + .section {
+  border-top: 1px solid rgba(28, 16, 8, 0.15);
+}
+
+.site-header {
+  background: rgba(250, 247, 242, 0.76);
+}
+
+.nav {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.header-action {
+  color: var(--cream);
+  background: var(--editorial-espresso);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.hero.editorial-hero {
+  min-height: 108svh;
+  margin-bottom: 0;
+  padding-inline: clamp(14px, 3vw, 44px);
+}
+
+.hero.editorial-hero h1 {
+  width: 100%;
+  max-width: 100vw;
+  font-size: clamp(6rem, 18vw, 18rem);
+  letter-spacing: -0.075em;
+}
+
+.hero.editorial-hero .availability-pill {
+  background: transparent;
+  border: 1px solid rgba(250, 247, 242, 0.7);
+  box-shadow: none;
+}
+
+.hero.editorial-hero .hero-stat-chips {
+  display: grid;
+  justify-items: center;
+}
+
+.hero.editorial-hero .hero-stat-chips span:nth-child(2) {
+  transform: translateX(24px);
+}
+
+.hero.editorial-hero .hero-stat-chips span:nth-child(3) {
+  transform: translateX(-12px);
+}
+
+.hero-vertical-text {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  z-index: 3;
+  color: rgba(250, 247, 242, 0.7);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: center;
+}
+
+.marquee-strip {
+  margin-top: 0;
+  background: var(--editorial-dark);
+  border-top: 1px solid rgba(201, 149, 108, 0.55);
+  border-bottom: 1px solid rgba(201, 149, 108, 0.55);
+}
+
+.marquee-track span {
+  color: var(--rose-gold);
+  font-family: var(--sans);
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  letter-spacing: 0.22em;
+}
+
+.about-layout {
+  align-items: center;
+}
+
+.about-copy h2 {
+  max-width: 10ch;
+  font-size: clamp(5.3rem, 9vw, 8.4rem);
+  line-height: 0.78;
+}
+
+.about-polaroid {
+  z-index: 2;
+  transform: rotate(-3deg) translate(18px, 18px);
+}
+
+.about-snapshot {
+  z-index: 1;
+  transform: rotate(2deg) translate(-54px, -42px);
+}
+
+.experience-section {
+  background: linear-gradient(180deg, #fffdf8, #faf7f2);
+}
+
+.experience-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(36px, 6vw, 72px);
+  align-items: start;
+}
+
+.experience-sticky {
+  position: sticky;
+  top: 112px;
+  display: grid;
+  gap: 24px;
+}
+
+.experience-sticky h2 {
+  max-width: 7ch;
+  font-size: clamp(4.4rem, 8vw, 8rem);
+  line-height: 0.82;
+}
+
+.resume-link {
+  display: inline-flex;
+  width: fit-content;
+  color: var(--rose);
+  font-weight: 950;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1px solid currentColor;
+}
+
+.experience-list {
+  border-top: 1px solid rgba(28, 16, 8, 0.18);
+}
+
+.experience-item {
+  border-bottom: 1px solid rgba(28, 16, 8, 0.18);
+}
+
+.experience-trigger {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 18px;
+  align-items: center;
+  width: 100%;
+  padding: 24px 0;
+  color: var(--ink);
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.experience-trigger span,
+.experience-trigger em {
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.experience-trigger strong {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  line-height: 1;
+}
+
+.experience-trigger b {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  padding: 7px 10px;
+  color: var(--cream);
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  background: var(--editorial-dark);
+  border: 1px solid rgba(201, 149, 108, 0.44);
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.experience-item:hover {
+  background: rgba(201, 149, 108, 0.08);
+}
+
+.experience-item:hover .experience-trigger b {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experience-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms cubic-bezier(0.22, 0.84, 0.22, 1);
+}
+
+.experience-panel > ul {
+  display: grid;
+  gap: 10px;
+  min-height: 0;
+  margin: 0;
+  padding: 0 0 0;
+  overflow: hidden;
+  list-style: none;
+}
+
+.experience-item.is-open .experience-panel {
+  grid-template-rows: 1fr;
+}
+
+.experience-item.is-open .experience-panel > ul {
+  padding: 0 0 26px;
+}
+
+.experience-panel li {
+  position: relative;
+  max-width: 72ch;
+  padding-left: 20px;
+  color: var(--muted);
+  font-weight: 650;
+  line-height: 1.55;
+}
+
+.experience-panel li::before {
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 7px;
+  height: 7px;
+  background: var(--rose);
+  border-radius: 50%;
+  content: "";
+}
+
+.bag-section {
+  position: relative;
+  max-width: none;
+  overflow: hidden;
+  color: var(--cream);
+  background:
+    radial-gradient(circle at 20% 25%, rgba(201, 149, 108, 0.16), transparent 24rem),
+    var(--editorial-dark);
+}
+
+.bag-section > * {
+  max-width: var(--max);
+  margin-inline: auto;
+}
+
+.bag-section::before {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  z-index: 0;
+  color: rgba(250, 247, 242, 0.05);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(7rem, 18vw, 15rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+  pointer-events: none;
+  text-transform: uppercase;
+  content: "ANAAYA SHAH";
+  transform: translate(-50%, -50%) rotate(-15deg);
+  white-space: nowrap;
+}
+
+.bag-section .section-heading,
+.bag-experience {
+  position: relative;
+  z-index: 1;
+}
+
+.bag-section h2,
+.bag-section p,
+.bag-section .eyebrow {
+  color: var(--cream);
+}
+
+.managed-grid a {
+  min-height: 240px;
+  color: var(--ink);
+  background: rgba(255, 253, 248, 0.88);
+  border: 1px solid rgba(28, 16, 8, 0.16);
+  border-left: 2px solid var(--editorial-dark);
+  box-shadow: 0 18px 46px rgba(28, 16, 8, 0.08);
+}
+
+.managed-grid a::before {
+  opacity: 0.06;
+}
+
+.managed-grid strong {
+  color: var(--editorial-dark);
+}
+
+.pr-materials {
+  max-width: none;
+  background: #fffdf8;
+}
+
+.pr-materials > * {
+  max-width: var(--max);
+  margin-inline: auto;
+}
+
+.footer,
+.contact {
+  max-width: none;
+  color: var(--cream);
+  background: var(--editorial-dark);
+}
+
+.contact > * {
+  max-width: var(--max);
+  margin-inline: auto;
+}
+
+.contact-card {
+  background: rgba(250, 247, 242, 0.06);
+  border-color: rgba(201, 149, 108, 0.34);
+}
+
+.contact h2,
+.contact p,
+.contact .eyebrow {
+  color: var(--cream);
+}
+
+@media (max-width: 900px) {
+  .experience-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-sticky {
+    position: relative;
+    top: auto;
+  }
+
+  .experience-trigger {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .experience-trigger b {
+    position: static;
+    width: fit-content;
+    opacity: 1;
+    transform: none;
+  }
+
+  .about-copy h2 {
+    font-size: clamp(4rem, 15vw, 6rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero.editorial-hero h1 {
+    font-size: clamp(4.8rem, 24vw, 7rem);
+  }
+
+  .hero-vertical-text {
+    display: none;
+  }
+
+  .hero.editorial-hero .hero-stat-chips span:nth-child(n) {
+    transform: none;
+  }
+
+  .about-polaroid,
+  .about-snapshot {
+    transform: none;
+  }
+}
+
+.js-reveal .experience-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 400ms ease, transform 400ms ease, background 220ms ease;
+}
+
+.js-reveal .experience-item.in-view {
+  opacity: 1;
+  transform: translateY(0);
 }
