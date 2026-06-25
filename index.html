@@ -492,6 +492,34 @@
       .feature-copy h3 { color: var(--ivory); font-size: clamp(3rem, 7vw, 7rem); line-height: .92; }
       .feature-copy .big-stat { color: var(--gold); font-family: var(--serif); font-size: clamp(3rem, 8vw, 8rem); line-height: .75; }
       .feature-copy .link-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+      .creator-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .creator-metrics span {
+        display: grid;
+        gap: 4px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        background: rgba(245, 239, 224, 0.04);
+      }
+      .creator-metrics strong {
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: clamp(2.2rem, 4vw, 3.6rem);
+        font-weight: 300;
+        line-height: .85;
+        white-space: nowrap;
+      }
+      .creator-metrics em {
+        color: var(--muted);
+        font-size: .75rem;
+        font-style: normal;
+        line-height: 1.35;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+      }
       .reel-pair {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1180,7 +1208,7 @@
                 <small>Open reel →</small>
               </a>
             </div>
-            <div class="feature-copy"><p class="eyebrow">Creator Profile</p><h3>@anaaya.shah</h3><div class="big-stat" data-count="50">0</div><p>Short-form creator portfolio across beauty, fashion, lifestyle, and wellness. Built around hooks, editing pace, creator voice, and platform-native storytelling.</p><div class="link-row"><a class="mini-link" href="https://www.instagram.com/reel/DT0nw3Ajso3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">High-view reel →</a><a class="mini-link" href="https://www.instagram.com/reel/DTvQk7hDviz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">Beauty reel →</a><a class="mini-link" href="https://www.tiktok.com/@beautywanaaya" target="_blank" rel="noreferrer">TikTok →</a></div></div>
+            <div class="feature-copy"><p class="eyebrow">Creator Profile</p><h3>@anaaya.shah</h3><div class="creator-metrics" aria-label="Creator performance highlights"><span><strong>332K+</strong><em>creator account views</em></span><span><strong>12%</strong><em>engagement rate across creator content</em></span></div><p>Short-form creator portfolio across beauty, fashion, lifestyle, and wellness. Built around hooks, editing pace, creator voice, and platform-native storytelling.</p><div class="link-row"><a class="mini-link" href="https://www.instagram.com/reel/DT0nw3Ajso3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">High-view reel →</a><a class="mini-link" href="https://www.instagram.com/reel/DTvQk7hDviz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">Beauty reel →</a><a class="mini-link" href="https://www.tiktok.com/@beautywanaaya" target="_blank" rel="noreferrer">TikTok →</a></div></div>
           </article>
           <article class="feature-band reveal">
             <div class="account-grid" aria-label="Accounts managed">
