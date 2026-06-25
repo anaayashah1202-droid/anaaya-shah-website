@@ -444,6 +444,66 @@
       .feature-copy h3 { color: var(--ivory); font-size: clamp(3rem, 7vw, 7rem); }
       .feature-copy .big-stat { color: var(--gold); font-family: var(--serif); font-size: clamp(3rem, 8vw, 8rem); line-height: .75; }
       .feature-copy .link-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+      .reel-pair {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .reel-card {
+        position: relative;
+        min-height: 520px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: var(--surface);
+      }
+      .reel-card img {
+        width: 100%;
+        height: 100%;
+        min-height: 520px;
+        object-fit: cover;
+      }
+      .play-mark {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        width: 72px;
+        height: 72px;
+        display: grid;
+        place-items: center;
+        color: var(--bg);
+        background: rgba(245, 239, 224, 0.9);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+      }
+      .play-mark::before {
+        width: 0;
+        height: 0;
+        margin-left: 5px;
+        border-top: 13px solid transparent;
+        border-bottom: 13px solid transparent;
+        border-left: 19px solid currentColor;
+        content: "";
+      }
+      .reel-card span,
+      .instagram-placeholder span {
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        z-index: 2;
+        color: var(--ivory);
+        font-family: var(--sc);
+        font-size: .8rem;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+      }
+      .reel-card::after {
+        position: absolute;
+        inset: auto 0 0;
+        height: 45%;
+        background: linear-gradient(transparent, rgba(13, 12, 11, 0.86));
+        content: "";
+      }
       .mini-link {
         display: inline-flex;
         align-items: center;
@@ -564,6 +624,30 @@
       }
       .masonry a { min-height: 260px; overflow: hidden; background: var(--surface); }
       .masonry img { width: 100%; height: 100%; object-fit: cover; }
+      .instagram-placeholder {
+        position: relative;
+        display: grid;
+        place-items: center;
+        min-height: 260px;
+        color: var(--ivory);
+        background:
+          radial-gradient(circle at 25% 20%, rgba(200,169,110,.12), transparent 32%),
+          radial-gradient(circle at 82% 75%, rgba(196,132,122,.12), transparent 30%),
+          var(--surface);
+        border: 1px solid var(--line);
+      }
+      .instagram-placeholder::before {
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: 2rem;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        content: "IG";
+      }
       .masonry:hover img { filter: grayscale(80%) brightness(.7); }
       .masonry a:hover img { filter: grayscale(0); transform: scale(1.03); }
       .masonry a:nth-child(1) { grid-column: span 2; grid-row: span 2; }
@@ -765,6 +849,8 @@
         .about-grid, .section-head, .experience-layout, .steps, .metrics-band, .discipline-grid, .feature-band, .feature-band:nth-child(even), .document-grid { grid-template-columns: 1fr; }
         .discipline-card, .discipline-card:last-child { border-right: 0; border-bottom: 1px solid var(--line); }
         .feature-band:nth-child(even) .feature-image { order: 0; }
+        .reel-pair { grid-template-columns: 1fr; }
+        .reel-card, .reel-card img { min-height: 420px; }
         .experience-sticky { position: relative; top: auto; }
         .services-row, .case-track { grid-auto-flow: row; grid-auto-columns: unset; overflow: visible; }
         .masonry { grid-template-columns: repeat(2, 1fr); }
@@ -880,7 +966,18 @@
         </div>
         <div class="editorial-stack">
           <article class="feature-band reveal">
-            <a class="feature-image" href="https://www.instagram.com/anaaya.shah/?hl=en" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-tiktok-profile-1.png" alt="Anaaya Shah social media reel preview" loading="lazy" /></a>
+            <div class="reel-pair" aria-label="Featured Instagram reels">
+              <a class="reel-card" href="https://www.instagram.com/reel/DT0nw3Ajso3/" target="_blank" rel="noreferrer">
+                <img src="assets/personal/instagram-reel-glow-up.png" alt="High-view Instagram reel preview" loading="lazy" />
+                <i class="play-mark" aria-hidden="true"></i>
+                <span>High-view reel</span>
+              </a>
+              <a class="reel-card" href="https://www.instagram.com/reel/DTvQk7hDviz/" target="_blank" rel="noreferrer">
+                <img src="assets/personal/instagram-reel-beauty.png" alt="Beauty Instagram reel preview" loading="lazy" />
+                <i class="play-mark" aria-hidden="true"></i>
+                <span>Beauty reel</span>
+              </a>
+            </div>
             <div class="feature-copy"><p class="eyebrow">Creator Profile</p><h3>@anaaya.shah</h3><div class="big-stat" data-count="50">0</div><p>Short-form creator portfolio across beauty, fashion, lifestyle, and wellness. Built around hooks, editing pace, creator voice, and platform-native storytelling.</p><div class="link-row"><a class="mini-link" href="https://www.instagram.com/reel/DT0nw3Ajso3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">High-view reel →</a><a class="mini-link" href="https://www.instagram.com/reel/DTvQk7hDviz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">Beauty reel →</a><a class="mini-link" href="https://www.tiktok.com/@beautywanaaya" target="_blank" rel="noreferrer">TikTok →</a></div></div>
           </article>
           <article class="feature-band reveal">
@@ -951,10 +1048,11 @@
         <div class="masonry reveal">
           <a href="https://www.instagram.com/reel/DT0nw3Ajso3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-tiktok-profile-1.png" alt="Creator reel preview" loading="lazy" /></a>
           <a href="https://www.instagram.com/reel/DTvQk7hDviz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-tiktok-profile-2.png" alt="Fashion reel preview" loading="lazy" /></a>
-          <a href="https://youtu.be/tJezH4-1aKE?si=sBs0DrtvwAaPhPjH" target="_blank" rel="noreferrer"><img src="assets/work-samples/product-video-campaigns.jpg" alt="Product video campaign preview" loading="lazy" /></a>
-          <a href="assets/generated/pr-infographic-thumbnail.png" target="_blank" rel="noreferrer"><img src="assets/generated/pr-infographic-thumbnail.png" alt="PR infographic thumbnail" loading="lazy" /></a>
-          <a href="assets/personal/anaaya-blue-lifestyle.png" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-blue-lifestyle.png" alt="Anaaya Shah lifestyle portrait" loading="lazy" /></a>
-          <a href="assets/generated/brand-collaborations-cover.png" target="_blank" rel="noreferrer"><img src="assets/generated/brand-collaborations-cover.png" alt="Brand collaborations cover" loading="lazy" /></a>
+          <!-- REPLACE: swap these 4 placeholder tiles with actual screenshot images from @anaaya.shah Instagram -->
+          <a class="instagram-placeholder" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><span>View on Instagram</span></a>
+          <a class="instagram-placeholder" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><span>View on Instagram</span></a>
+          <a class="instagram-placeholder" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><span>View on Instagram</span></a>
+          <a class="instagram-placeholder" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><span>View on Instagram</span></a>
         </div>
       </section>
 
