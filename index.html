@@ -32,7 +32,7 @@
       }
 
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; background: var(--bg); }
+      html { scroll-behavior: smooth; background: var(--bg); overflow-x: hidden; }
       body {
         margin: 0;
         color: var(--ivory);
@@ -40,12 +40,19 @@
         font-weight: 300;
         background: var(--bg);
         cursor: auto;
+        width: 100%;
         overflow-x: hidden;
       }
       body.is-loading { overflow: visible; }
       a { color: inherit; text-decoration: none; }
       img { display: block; max-width: 100%; filter: grayscale(20%); transition: filter 0.4s ease, transform 0.5s ease; }
       img:hover { filter: grayscale(0); }
+      img.is-missing {
+        min-height: 260px;
+        object-fit: contain;
+        background: #E8E0D8;
+        opacity: .92;
+      }
       p { margin: 0; color: var(--muted); font-size: clamp(0.95rem, 1.2vw, 1.05rem); line-height: 1.65; }
       h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 300; line-height: 0.88; letter-spacing: -0.055em; overflow-wrap: anywhere; }
       button { font: inherit; color: inherit; }
@@ -161,6 +168,7 @@
         position: relative;
         padding: clamp(86px, 10vw, 150px) clamp(18px, 5vw, 72px);
         overflow: hidden;
+        scroll-margin-top: 130px;
       }
       .section::before {
         position: absolute;
@@ -273,6 +281,29 @@
         border: 1px solid var(--line);
         backdrop-filter: blur(8px);
       }
+      .hero-persona {
+        margin-top: 8px;
+        color: rgba(245, 239, 224, 0.7);
+        font-family: var(--serif);
+        font-size: 1.12rem;
+        font-style: italic;
+        letter-spacing: 0;
+        line-height: 1.35;
+        text-transform: none;
+      }
+      .hero-vertical-signature {
+        position: absolute;
+        right: clamp(14px, 2vw, 32px);
+        top: 50%;
+        z-index: 2;
+        color: rgba(245, 239, 224, .4);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .28em;
+        text-transform: uppercase;
+        transform: translateY(-50%) rotate(90deg);
+        transform-origin: center;
+      }
       .hero-actions {
         display: flex;
         flex-wrap: wrap;
@@ -345,7 +376,7 @@
 
       .about-grid {
         display: grid;
-        grid-template-columns: minmax(260px, .8fr) minmax(0, 1fr);
+        grid-template-columns: minmax(300px, .78fr) minmax(0, 1fr);
         gap: clamp(36px, 7vw, 96px);
         align-items: center;
         max-width: 1200px;
@@ -368,13 +399,58 @@
         border-radius: 50vw 50vw 0 0;
         border: 1px solid var(--dark-line);
       }
+      .about-polaroids {
+        position: relative;
+        min-height: 560px;
+      }
+      .about-polaroid {
+        position: absolute;
+        display: grid;
+        gap: 10px;
+        width: min(280px, 72vw);
+        padding: 10px 10px 24px;
+        background: #fffaf0;
+        border: 1px solid rgba(44, 24, 16, .12);
+        box-shadow: 0 20px 50px rgba(44, 24, 16, .16);
+      }
+      .about-polaroid img {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        filter: grayscale(8%);
+      }
+      .about-polaroid span {
+        color: var(--bg);
+        font-family: var(--serif);
+        font-size: 1.2rem;
+        font-style: italic;
+        text-align: center;
+      }
+      .about-polaroid:nth-child(1) {
+        left: 0;
+        top: 34px;
+        z-index: 3;
+        transform: rotate(-4deg);
+      }
+      .about-polaroid:nth-child(2) {
+        right: 0;
+        top: 0;
+        z-index: 2;
+        transform: rotate(3deg);
+      }
+      .about-polaroid:nth-child(3) {
+        left: 24%;
+        bottom: 0;
+        z-index: 4;
+        transform: rotate(4deg);
+      }
       .bio-lede {
         max-width: 760px;
         margin-bottom: 22px;
         color: var(--bg);
         font-family: var(--serif);
-        font-size: clamp(1.85rem, 3vw, 3.2rem);
-        line-height: 1.02;
+        font-size: clamp(3.5rem, 7vw, 6rem);
+        line-height: .92;
       }
       .stat-pills {
         display: flex;
@@ -390,6 +466,68 @@
         text-transform: uppercase;
         border: 1px solid rgba(200, 169, 110, .85);
         border-radius: 999px;
+      }
+      .belief-pills span {
+        color: var(--bg);
+        background: transparent;
+        border-color: rgba(44, 24, 16, .78);
+      }
+
+      .moodboard-grid {
+        column-count: 3;
+        column-gap: 18px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .mood-card {
+        position: relative;
+        display: block;
+        break-inside: avoid;
+        margin: 0 0 18px;
+        padding: 8px;
+        background: var(--ivory);
+        border: 1px solid var(--line);
+        box-shadow: 0 18px 50px rgba(0,0,0,.22);
+        transform: rotate(var(--tilt, 0deg));
+        transition: transform .3s ease, box-shadow .3s ease;
+      }
+      .mood-card img {
+        width: 100%;
+        min-height: var(--h, 260px);
+        object-fit: cover;
+      }
+      .mood-card:hover {
+        transform: rotate(var(--tilt, 0deg)) translateY(-5px) scale(1.015);
+        box-shadow: 0 28px 70px rgba(0,0,0,.3);
+      }
+      .mood-card::after {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        padding: 8px 10px;
+        color: var(--ivory);
+        font-family: var(--serif);
+        font-size: 1.05rem;
+        font-style: italic;
+        background: rgba(26, 15, 10, .72);
+        opacity: 0;
+        transform: translateY(8px);
+        transition: .22s ease;
+        content: attr(data-caption);
+      }
+      .mood-card:hover::after {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .mood-note {
+        max-width: 760px;
+        margin: 28px auto 0;
+        color: rgba(245,239,224,.72);
+        font-family: var(--serif);
+        font-size: clamp(1.35rem, 2vw, 1.9rem);
+        font-style: italic;
+        text-align: center;
       }
 
       .discipline-grid {
@@ -613,6 +751,61 @@
         border-color: rgba(200,169,110,.55);
         box-shadow: 0 22px 60px rgba(0,0,0,.25);
       }
+      .collab-linen {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(16px, 2.4vw, 28px);
+        padding: clamp(26px, 4vw, 46px);
+        background:
+          repeating-linear-gradient(135deg, rgba(44,24,16,.03) 0 1px, transparent 1px 8px),
+          #faf8f4;
+        border: 1px solid var(--dark-line);
+        box-shadow: 0 26px 70px rgba(0,0,0,.25);
+      }
+      .frame-card {
+        position: relative;
+        display: grid;
+        min-height: 320px;
+        overflow: hidden;
+        background: #fff;
+        border: 8px solid #fff;
+        box-shadow: 0 2px 12px rgba(0,0,0,.10);
+        transform: rotate(var(--r, 0deg));
+        transition: transform .28s ease, box-shadow .28s ease;
+      }
+      .frame-card:hover {
+        transform: rotate(var(--r, 0deg)) translateY(-6px);
+        box-shadow: 0 20px 50px rgba(0,0,0,.18);
+      }
+      .frame-card img {
+        width: 100%;
+        height: 100%;
+        min-height: 320px;
+        object-fit: cover;
+      }
+      .frame-card .frame-label {
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        z-index: 2;
+        padding: 7px 10px;
+        color: var(--bg);
+        font-size: .65rem;
+        font-weight: 800;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        background: rgba(255,250,240,.9);
+      }
+      .collab-note {
+        max-width: 900px;
+        margin: 24px auto 0;
+        color: rgba(245,239,224,.72);
+        font-family: var(--serif);
+        font-size: 1.25rem;
+        font-style: italic;
+        text-align: center;
+      }
       .reel-card img {
         width: 100%;
         height: 100%;
@@ -704,6 +897,40 @@
       }
       .doc-card h3 { color: var(--ivory); font-size: clamp(1.8rem, 3vw, 3rem); line-height: .98; }
 
+      .pov-strip {
+        background: #1A0F0A;
+      }
+      .pov-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .pov-card {
+        min-height: 320px;
+        display: grid;
+        align-content: space-between;
+        gap: 24px;
+        padding: clamp(24px, 3vw, 34px);
+        color: var(--ivory);
+        background: #2C1810;
+        border: 1px solid #B8924A;
+      }
+      .pov-card small {
+        color: var(--gold);
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .17em;
+        text-transform: uppercase;
+      }
+      .pov-card p {
+        color: rgba(245,239,224,.82);
+        font-family: var(--serif);
+        font-size: clamp(1.6rem, 2.6vw, 2.45rem);
+        line-height: 1.05;
+      }
+
       .service-list {
         max-width: 1050px;
         margin: 0 auto;
@@ -774,15 +1001,30 @@
       .metric { color: var(--gold); font-family: var(--serif); font-size: clamp(2rem, 5vw, 4rem); line-height: 1; }
 
       .masonry {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 0;
+        column-count: 3;
+        column-gap: 18px;
         max-width: 1300px;
         margin: 0 auto;
-        border: 1px solid var(--line);
+        border: 0;
       }
-      .masonry a { min-height: 260px; overflow: hidden; background: var(--surface); }
-      .masonry img { width: 100%; height: 100%; object-fit: cover; }
+      .masonry a {
+        position: relative;
+        display: block;
+        break-inside: avoid;
+        min-height: 260px;
+        margin: 0 0 18px;
+        overflow: hidden;
+        padding: 8px;
+        background: white;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+        transform: rotate(var(--tilt, 0deg));
+        transition: transform .28s ease, box-shadow .28s ease;
+      }
+      .masonry img {
+        width: 100%;
+        min-height: var(--h, 310px);
+        object-fit: cover;
+      }
       .instagram-placeholder {
         position: relative;
         display: grid;
@@ -811,11 +1053,33 @@
         border-radius: 18px;
         content: "IG";
       }
-      .masonry:hover img { filter: grayscale(80%) brightness(.7); }
-      .masonry a:hover img { filter: grayscale(0); transform: scale(1.03); }
-      .masonry a:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-      .masonry a:nth-child(4) { grid-column: span 2; }
-      .masonry a:nth-child(6) { grid-column: span 2; }
+      .masonry:hover img { filter: grayscale(45%) brightness(.82); }
+      .masonry a:hover {
+        transform: rotate(var(--tilt, 0deg)) scale(1.03);
+        box-shadow: 0 18px 46px rgba(0,0,0,.22);
+      }
+      .masonry a:hover img { filter: grayscale(0); transform: none; }
+      .masonry a span {
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        z-index: 2;
+        padding: 10px 12px;
+        color: var(--ivory);
+        font-family: var(--sc);
+        font-size: .8rem;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        background: rgba(44, 24, 16, .78);
+        opacity: 0;
+        transform: translateY(8px);
+        transition: .22s ease;
+      }
+      .masonry a:hover span {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
       .metrics-band {
         display: grid;
@@ -1039,16 +1303,21 @@
           margin-top: -8px;
         }
         .scroll-indicator { display: none; }
-        .about-grid, .section-head, .experience-layout, .steps, .metrics-band, .discipline-grid, .feature-band, .feature-band:nth-child(even), .document-grid { grid-template-columns: 1fr; }
+        .about-grid, .section-head, .experience-layout, .steps, .metrics-band, .discipline-grid, .feature-band, .feature-band:nth-child(even), .document-grid, .pov-grid { grid-template-columns: 1fr; }
+        .about-polaroids { min-height: 620px; }
+        .about-polaroid:nth-child(1) { left: 4%; }
+        .about-polaroid:nth-child(2) { right: 2%; }
+        .about-polaroid:nth-child(3) { left: 18%; }
         .discipline-card, .discipline-card:last-child { border-right: 0; border-bottom: 1px solid var(--line); }
         .feature-band:nth-child(even) .feature-image { order: 0; }
         .reel-pair { grid-template-columns: 1fr; }
+        .collab-linen { grid-template-columns: 1fr; }
         .account-grid { grid-template-columns: 1fr; }
         .reel-card, .reel-card img { min-height: 420px; }
         .experience-sticky { position: relative; top: auto; }
         .services-row, .case-track { grid-auto-flow: row; grid-auto-columns: unset; overflow: visible; }
-        .masonry { grid-template-columns: repeat(2, 1fr); }
-        .masonry a:nth-child(n) { grid-column: auto; grid-row: auto; min-height: 220px; }
+        .moodboard-grid, .masonry { column-count: 2; }
+        .masonry a:nth-child(n) { min-height: 220px; }
         .experience-trigger { grid-template-columns: 1fr; }
         .experience-trigger b { position: static; width: fit-content; opacity: 1; transform: none; }
       }
@@ -1058,6 +1327,7 @@
         .site-nav { padding: 14px 16px; }
         .brand span:last-child { display: none; }
         .hero { gap: 22px; padding-top: 98px; }
+        .hero-vertical-signature { display: none; }
         .hero-word { font-size: clamp(2.75rem, 14vw, 4.5rem); }
         .hero-word:nth-child(3) { font-size: clamp(2.05rem, 9vw, 3.5rem); }
         .hero-media img { min-height: 340px; }
@@ -1068,6 +1338,9 @@
         .instagram-reel-link { min-height: 260px; }
         .section-head h2 { font-size: clamp(3rem, 17vw, 5.8rem); }
         .bio-lede { font-size: clamp(1.8rem, 9vw, 2.8rem); }
+        .about-polaroids { min-height: auto; display: grid; gap: 14px; }
+        .about-polaroid { position: relative; inset: auto !important; width: 100%; transform: none !important; }
+        .moodboard-grid, .masonry { column-count: 1; }
         .discipline-card, .service-card, .doc-card, .metric-tile, .step, .case-copy { padding: 22px; }
         .discipline-card h3, .service-card h3, .feature-copy h3, .service-row h3, .experience-sticky h2 { font-size: clamp(2.35rem, 12vw, 4rem); }
         .feature-copy .big-stat, .metric-tile strong { font-size: clamp(3rem, 16vw, 5.5rem); line-height: .86; }
@@ -1075,7 +1348,6 @@
         .doc-card { min-height: auto; }
         .case-track { grid-auto-columns: minmax(270px, 84vw); }
         .case-card { min-height: 540px; }
-        .masonry { grid-template-columns: 1fr; }
         .masonry a:nth-child(n), .instagram-placeholder { min-height: 280px; }
         .contact-section { min-height: auto; }
         .contact-section h2 { font-size: clamp(4rem, 21vw, 7.5rem); }
@@ -1114,6 +1386,7 @@
           <span class="hero-word" style="--d:300ms">PUBLIC RELATIONS</span>
           <div class="hero-meta">
             <span>United States • Creator • Brand partnerships</span>
+            <p class="hero-persona">Currently: deep in a matcha phase and a campaign for a brand I genuinely love.</p>
             <div class="hero-actions">
               <a class="hero-cta" href="#experience">View Experience</a>
               <a class="ghost-cta" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Download Resume</a>
@@ -1123,6 +1396,7 @@
         <figure class="hero-media" data-parallax>
           <img src="assets/personal/anaaya-editorial-city.png" alt="Anaaya Shah editorial city portrait" fetchpriority="high" decoding="async" />
         </figure>
+        <div class="hero-vertical-signature">ANAAYA SHAH © 2026</div>
         <div class="scroll-indicator">Scroll</div>
       </section>
 
@@ -1146,18 +1420,39 @@
       <section class="section light" id="about">
         <span class="section-number">01</span>
         <div class="about-grid reveal">
-          <img class="portrait-tall" src="assets/personal/anaaya-steps-lifestyle.png" alt="Anaaya Shah lifestyle portrait" loading="lazy" data-parallax />
+          <div class="about-polaroids" aria-label="Anaaya Shah editorial photo collage">
+            <figure class="about-polaroid"><img src="assets/personal/anaaya-steps-lifestyle.png" alt="Anaaya Shah lifestyle portrait" loading="lazy" /><span>presence</span></figure>
+            <figure class="about-polaroid"><img src="assets/personal/anaaya-floral-fashion.png" alt="Anaaya Shah fashion portrait" loading="lazy" /><span>culture</span></figure>
+            <figure class="about-polaroid"><img src="assets/personal/anaaya-editorial-city.png" alt="Anaaya Shah editorial city portrait" loading="lazy" /><span>taste</span></figure>
+          </div>
           <div>
             <p class="eyebrow">Who Am I</p>
-            <p class="bio-lede">I operate where strategic communication meets digital aesthetic.</p>
-            <p>I'm someone who genuinely loves what I do. I'm drawn to beautiful things — the way a campaign can feel like art, the way a brand voice can make someone feel seen. I studied communication at Purdue, but my real education has been in the scroll — learning what stops people, what moves them, and what makes them come back. Outside of work, you'll find me deep in a wellness routine or obsessing over something new in fashion and beauty. That curiosity about culture is what keeps my work fresh.</p>
-            <div class="stat-pills">
-              <span>50+ short-form assets</span>
-              <span>Sponsored creator work</span>
-              <span>PR + social strategy</span>
+            <p class="bio-lede">I think good marketing should feel like a conversation you didn't know you needed.</p>
+            <p>I'm Anaaya. I grew up between cultures — India and the US — which means I've always been fluent in two kinds of beauty, two kinds of storytelling. I'm obsessed with the moment a brand stops feeling like a brand and starts feeling like a person. I found yoga before I found marketing, and honestly both taught me the same thing: presence is everything. I care about aesthetics the way some people care about data — deeply, personally, with receipts. I also happen to have the data.</p>
+            <div class="stat-pills belief-pills" aria-label="I believe in">
+              <span>content that earns the scroll</span>
+              <span>brands that have a point of view</span>
+              <span>wellness as a creative practice</span>
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="section" id="moodboard">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">What I'm Drawn To</p><h2>The stuff that lives rent-free in my head.</h2></div>
+          <p>Campaign references, creator moments, personal style, and brand worlds that shape my taste.</p>
+        </div>
+        <div class="moodboard-grid reveal" aria-label="Anaaya Shah visual moodboard">
+          <a class="mood-card" style="--tilt:-1.5deg; --h:360px" data-caption="movement" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-blue-lifestyle.png" alt="Anaaya Shah blue dress lifestyle photo" loading="lazy" /></a>
+          <a class="mood-card" style="--tilt:1deg; --h:270px" data-caption="texture" href="assets/work-samples/rhode-summer-kit-analysis.png" target="_blank" rel="noreferrer"><img src="assets/work-samples/rhode-summer-kit-analysis.png" alt="Rhode Summer Kit strategy visual" loading="lazy" /></a>
+          <a class="mood-card" style="--tilt:2.5deg; --h:420px" data-caption="colour" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-floral-fashion.png" alt="Anaaya Shah floral fashion photo" loading="lazy" /></a>
+          <a class="mood-card" style="--tilt:-2deg; --h:280px" data-caption="brand story" href="assets/work-samples/lululemon-alo-strategy.png" target="_blank" rel="noreferrer"><img src="assets/work-samples/lululemon-alo-strategy.png" alt="Lululemon versus Alo brand strategy visual" loading="lazy" /></a>
+          <a class="mood-card" style="--tilt:1.8deg; --h:330px" data-caption="ritual" href="https://www.instagram.com/therefore_fashion/?hl=en" target="_blank" rel="noreferrer"><img src="assets/work-samples/brand-collaborations.jpg" alt="Therefore and brand collaboration visual sample" loading="lazy" /></a>
+          <a class="mood-card" style="--tilt:-.8deg; --h:380px" data-caption="aesthetic" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-personal-photo-board.png" alt="Anaaya Shah creator photo board" loading="lazy" /></a>
+          <a class="mood-card" style="--tilt:2deg; --h:310px" data-caption="campaign" href="assets/work-samples/rhode-haus-labs-visuals.jpg" target="_blank" rel="noreferrer"><img src="assets/work-samples/rhode-haus-labs-visuals.jpg" alt="Beauty brand campaign mockup collage" loading="lazy" /></a>
+        </div>
+        <p class="mood-note reveal">I save things that make me feel something. This is what's in my camera roll, my saved folder, my notes app. It's also what ends up in the work.</p>
       </section>
 
       <section class="section" id="disciplines">
@@ -1198,15 +1493,16 @@
         </div>
         <div class="editorial-stack">
           <article class="feature-band reveal">
-            <div class="reel-pair" aria-label="Featured Instagram reels">
-              <a class="instagram-reel-link" href="https://www.instagram.com/reel/DT0nw3Ajso3/" target="_blank" rel="noreferrer">
-                <span><small>Instagram Reel</small><strong>Glow-up content hook</strong><em>Beauty and lifestyle storytelling built for discovery, retention, and saves.</em></span>
-                <small>Open reel →</small>
-              </a>
-              <a class="instagram-reel-link" href="https://www.instagram.com/reel/DTvQk7hDviz/" target="_blank" rel="noreferrer">
-                <span><small>Instagram Reel</small><strong>Beauty pacing sample</strong><em>Short-form editing with creator voice, beauty framing, and native platform rhythm.</em></span>
-                <small>Open reel →</small>
-              </a>
+            <div>
+              <div class="collab-linen" aria-label="Collab Wall">
+                <a class="frame-card" style="--r:-2deg" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><span class="frame-label">Sol de Janeiro · UGC</span><img src="assets/work-samples/content-examples.jpg" alt="Sol de Janeiro inspired creator content frame" loading="lazy" /></a>
+                <a class="frame-card" style="--r:2deg" href="https://www.instagram.com/p/DCIIUuFpFuw/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer"><span class="frame-label">JW PEI · Creator</span><img src="assets/work-samples/brand-collaborations.jpg" alt="JW PEI creator collaboration frame" loading="lazy" /></a>
+                <a class="frame-card" style="--r:-1deg" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><span class="frame-label">Medix 5.5 · Skincare</span><img src="assets/personal/instagram-reel-beauty.png" alt="Medix 5.5 skincare creator content frame" loading="lazy" /></a>
+                <a class="frame-card" style="--r:3deg" href="https://www.instagram.com/therefore_fashion/?hl=en" target="_blank" rel="noreferrer"><span class="frame-label">Therefore · Founder</span><img src="assets/personal/anaaya-current-phone-issue.png" alt="Therefore Fashion founder content frame" loading="lazy" /></a>
+                <a class="frame-card" style="--r:-1.5deg" href="https://youtu.be/ClEIrnJ8KRI?si=zdH4sM6XNusCTA_R" target="_blank" rel="noreferrer"><span class="frame-label">AH&E Jewels · Lifestyle</span><img src="assets/work-samples/product-video-campaigns.jpg" alt="AH&E Jewels lifestyle video frame" loading="lazy" /></a>
+                <a class="frame-card" style="--r:1.5deg" href="https://youtu.be/tJezH4-1aKE?si=sBs0DrtvwAaPhPjH" target="_blank" rel="noreferrer"><span class="frame-label">Kindly · Beauty</span><img src="assets/work-samples/original-screenshot-assets/product-video-campaigns.jpg" alt="Kindly beauty product video frame" loading="lazy" /></a>
+              </div>
+              <p class="collab-note">All collaborations are organic or disclosed paid partnerships. I only work with brands I'd actually use.</p>
             </div>
             <div class="feature-copy"><p class="eyebrow">Creator Profile</p><h3>@anaaya.shah</h3><div class="creator-metrics" aria-label="Creator performance highlights"><span><strong>332K+</strong><em>creator account views</em></span><span><strong>12%</strong><em>engagement rate across creator content</em></span></div><p>Short-form creator portfolio across beauty, fashion, lifestyle, and wellness. Built around hooks, editing pace, creator voice, and platform-native storytelling.</p><div class="link-row"><a class="mini-link" href="https://www.instagram.com/reel/DT0nw3Ajso3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">High-view reel →</a><a class="mini-link" href="https://www.instagram.com/reel/DTvQk7hDviz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noreferrer">Beauty reel →</a><a class="mini-link" href="https://www.tiktok.com/@beautywanaaya" target="_blank" rel="noreferrer">TikTok →</a></div></div>
           </article>
@@ -1231,6 +1527,18 @@
           <a class="case-card reveal" href="assets/work-samples/rhode-summer-kit-analysis.png" target="_blank" rel="noreferrer"><img src="assets/work-samples/rhode-summer-kit-analysis.png" alt="Rhode Summer Kit product marketing analysis" loading="lazy" /><div class="case-copy"><span class="eyebrow">Product Marketing</span><h3>Rhode Summer Kit</h3><p>Bundle strategy, customization, scarcity, community, and full-funnel launch thinking.</p></div></a>
           <a class="case-card reveal" href="assets/work-samples/lululemon-alo-strategy.png" target="_blank" rel="noreferrer"><img src="assets/work-samples/lululemon-alo-strategy.png" alt="Lululemon vs Alo strategy analysis" loading="lazy" /><div class="case-copy"><span class="eyebrow">Brand Strategy</span><h3>Lululemon vs Alo</h3><p>Performance-led positioning versus culture-led aspiration in premium activewear.</p></div></a>
           <a class="case-card reveal" href="assets/work-samples/rhode-haus-labs-visuals.jpg" target="_blank" rel="noreferrer"><img src="assets/work-samples/rhode-haus-labs-visuals.jpg" alt="Rhode x Haus Labs visual campaign mockup" loading="lazy" /><div class="case-copy"><span class="eyebrow">Supporting Visual</span><h3>Beauty Mockups</h3><p>One supporting creative direction sample, not the main portfolio focus.</p></div></a>
+        </div>
+      </section>
+
+      <section class="section pov-strip" id="pov">
+        <div class="section-head reveal">
+          <div><p class="eyebrow">My POV</p><h2>Hot takes from someone who actually watches the content.</h2></div>
+          <p>Short notes on what I think is actually working across beauty, social, wellness, and brand storytelling.</p>
+        </div>
+        <div class="pov-grid reveal">
+          <article class="pov-card"><small>On Beauty Brands</small><p>The brands winning right now aren't the ones with the biggest budgets. They're the ones that made you feel like they were talking to just you.</p></article>
+          <article class="pov-card"><small>On Content</small><p>Aesthetic without strategy is just a pretty Instagram. Strategy without aesthetic is just a spreadsheet. The magic is always in the middle.</p></article>
+          <article class="pov-card"><small>On Wellness Marketing</small><p>Wellness content that performs is never about the product. It's always about the feeling the product promises. Sell the ritual, not the item.</p></article>
         </div>
       </section>
 
@@ -1278,15 +1586,18 @@
       <section class="section" id="recent">
         <div class="section-head reveal">
           <div><p class="eyebrow">09 — Recent Work</p><h2>Visual wall.</h2></div>
-          <p>A quick scan of creator videos, PR materials, brand collaborations, and campaign strategy without repeating the same work twice.</p>
+          <p>A quick scan of creator videos, personal style, social content, and campaign visuals with the feel of a saved-folder moodboard.</p>
         </div>
         <div class="masonry reveal">
-          <a href="https://www.instagram.com/reel/DT0nw3Ajso3/" target="_blank" rel="noreferrer"><img src="assets/personal/instagram-reel-glow-up.png" alt="Instagram reel glow-up content screenshot" loading="lazy" /><span>Instagram Reel</span></a>
-          <a href="https://www.instagram.com/reel/DTvQk7hDviz/" target="_blank" rel="noreferrer"><img src="assets/personal/instagram-reel-beauty.png" alt="Instagram beauty reel screenshot" loading="lazy" /><span>Beauty Reel</span></a>
-          <a href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/work-samples/content-examples.jpg" alt="Social media content examples" loading="lazy" /><span>Content Examples</span></a>
-          <a href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/work-samples/brand-collaborations.jpg" alt="Brand collaboration content examples" loading="lazy" /><span>Brand Collaborations</span></a>
-          <a href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-personal-photo-board.png" alt="Anaaya creator photo board" loading="lazy" /><span>Creator Portfolio</span></a>
-          <a href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/anaaya-instagram-profile.png" alt="Anaaya Shah Instagram profile image" loading="lazy" /><span>@anaaya.shah</span></a>
+          <a style="--tilt:-1.2deg; --h:520px" href="https://www.instagram.com/reel/DT0nw3Ajso3/" target="_blank" rel="noreferrer"><img src="assets/personal/instagram-reel-glow-up.png" alt="Instagram reel glow-up content screenshot" loading="lazy" /><span>Instagram Reel</span></a>
+          <a style="--tilt:1deg; --h:420px" href="https://www.instagram.com/reel/DTvQk7hDviz/" target="_blank" rel="noreferrer"><img src="assets/personal/instagram-reel-beauty.png" alt="Instagram beauty reel screenshot" loading="lazy" /><span>Beauty Reel</span></a>
+          <a style="--tilt:2deg; --h:310px" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/work-samples/content-examples.jpg" alt="Social media content examples" loading="lazy" /><span>Content Examples</span></a>
+          <a style="--tilt:-2deg; --h:360px" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-blue-lifestyle.png" alt="Anaaya Shah blue lifestyle portrait" loading="lazy" /><span>Creator Style</span></a>
+          <a style="--tilt:1.8deg; --h:300px" href="assets/work-samples/rhode-summer-kit-analysis.png" target="_blank" rel="noreferrer"><img src="assets/work-samples/rhode-summer-kit-analysis.png" alt="Rhode Summer Kit campaign analysis" loading="lazy" /><span>Campaign Thinking</span></a>
+          <a style="--tilt:-.6deg; --h:380px" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-steps-lifestyle.png" alt="Anaaya Shah lifestyle portrait on steps" loading="lazy" /><span>Personal POV</span></a>
+          <a style="--tilt:2.4deg; --h:330px" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-floral-fashion.png" alt="Anaaya Shah floral fashion portrait" loading="lazy" /><span>Fashion Eye</span></a>
+          <a style="--tilt:-1deg; --h:340px" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/personal/anaaya-personal-photo-board.png" alt="Anaaya creator photo board" loading="lazy" /><span>Creator Portfolio</span></a>
+          <a style="--tilt:1.4deg; --h:300px" href="https://www.instagram.com/anaaya.shah/" target="_blank" rel="noreferrer"><img src="assets/work-samples/brand-collaborations.jpg" alt="Brand collaboration content examples" loading="lazy" /><span>Brand Collaborations</span></a>
         </div>
       </section>
 
@@ -1324,6 +1635,13 @@
     <script>
       const body = document.body;
       const loader = document.querySelector(".loader");
+      document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("error", () => {
+          img.classList.add("is-missing");
+          img.alt = img.alt || "Portfolio image placeholder";
+          img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23E8E0D8'/%3E%3Ctext x='400' y='300' dominant-baseline='middle' text-anchor='middle' fill='%232C1810' font-family='Georgia,serif' font-size='34'%3EPortfolio visual%3C/text%3E%3C/svg%3E";
+        }, { once: true });
+      });
       window.addEventListener("load", () => {
         window.setTimeout(() => {
           loader?.classList.add("is-hidden");
