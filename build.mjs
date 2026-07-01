@@ -14,6 +14,7 @@ const localReferences = [...html.matchAll(/\b(?:src|href)="([^"]+)"/g)]
       ref.startsWith("#") ||
       ref.startsWith("http://") ||
       ref.startsWith("https://") ||
+      ref.startsWith("//") ||
       ref.startsWith("mailto:") ||
       ref.startsWith("tel:") ||
       ref.startsWith("data:")
