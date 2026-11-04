@@ -92,12 +92,11 @@ const drawerContent = {
     ],
   },
   contact: {
-    kicker: "Resume + contact",
+    kicker: "Contact",
     title: "Let’s work together",
     copy: "Open to social media, PR, influencer marketing, brand marketing, content marketing, and digital marketing roles.",
     media: '<div class="drawer-doc-icon">AS</div>',
     actions: [
-      { label: "Download resume", href: "assets/anaaya-shah-resume.pdf", download: "Anaaya-Shah-Resume.pdf" },
       { label: "Contact", href: "#contact" },
     ],
   },
