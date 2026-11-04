@@ -13,7 +13,7 @@ for (const page of pages) {
   for (const [, ref] of html.matchAll(/\b(?:src|href)="([^"]+)"/g)) {
     if (/^(#|https?:|\/\/|mailto:|tel:|data:)/.test(ref)) continue;
     const path = ref.split('#')[0].split('?')[0];
-    const target = path.startsWith('/') ? join(root, path) : resolve(root, dirname(page), path);
+    const target = /^\/entrepreneurship\/?$/.test(path) ? join(root, 'entrepreneurship.html') : path.startsWith('/') ? join(root, path) : resolve(root, dirname(page), path);
     if (!existsSync(target) || (statSync(target).isDirectory() && !existsSync(join(target, 'index.html')))) missing.push(`${page}: ${ref}`);
   }
 }
