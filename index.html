@@ -1063,16 +1063,7 @@
       }
       .experience-sticky { position: sticky; top: 104px; align-self: start; }
       .experience-sticky h2 { font-size: clamp(4rem, 8vw, 8rem); line-height: .9; }
-      .resume-link {
-        display: inline-flex;
-        margin-top: 24px;
-        color: var(--gold);
-        font-size: .78rem;
-        font-weight: 700;
-        letter-spacing: .16em;
-        text-transform: uppercase;
-        border-bottom: 1px solid currentColor;
-      }
+
       .experience-list { border-top: 1px solid var(--line); }
       .experience-item { border-bottom: 1px solid var(--line); }
       .experience-trigger {
@@ -1798,7 +1789,14 @@
 
       #pr-work .document-grid { align-items: stretch; }
       .work-card img:not(.work-card-bg) { display: none; }
+      #experience .experience-trigger strong { color: var(--bg); }
+      #experience .experience-trigger span,
+      #experience .experience-trigger em,
+      #experience .experience-panel li { color: #625e57; }
+      #experience .experience-trigger:focus-visible,
+      #experience .experience-panel a:focus-visible { outline: 2px solid #725b31; outline-offset: 4px; }
     </style>
+    <link rel="stylesheet" href="/navigation.css" />
   </head>
   <body>
     <div class="loader" aria-hidden="true">
@@ -1810,10 +1808,11 @@
 
     <header class="site-nav">
       <a class="brand" href="#top"><span class="brand-mark">AS</span><span>Anaaya Shah</span></a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation">Menu</button>
-      <nav class="nav-links" data-nav>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+      <nav class="nav-links" id="primary-navigation" aria-label="Main navigation" data-nav>
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
+        <a href="/entrepreneurship/">Entrepreneurship</a>
         <a href="#marketing-work">Marketing</a>
         <a href="#social-work">Social</a>
         <a href="#pr-work">PR</a>
@@ -1833,7 +1832,6 @@
             <p class="hero-persona">Currently: deep in a matcha phase and a campaign for a brand I genuinely love.</p>
             <div class="hero-actions">
               <a class="hero-cta" href="#experience">View Experience</a>
-              <a class="ghost-cta" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Download Resume</a>
             </div>
           </div>
         </div>
@@ -1895,10 +1893,9 @@
           <aside class="experience-sticky">
             <p class="eyebrow">03 — Experience</p>
             <h2>The Journey</h2>
-            <a class="resume-link" href="assets/anaaya-shah-resume.pdf" download="Anaaya-Shah-Resume.pdf">Get Full Resume →</a>
-            <a class="resume-link" href="assets/anaaya-shah-social-media-resume.pdf" download="Anaaya-Shah-Social-Media-Resume.pdf">Social Resume →</a>
           </aside>
           <div class="experience-list">
+            <article class="experience-item" id="therefore-experience"><button class="experience-trigger" type="button" aria-expanded="false" aria-controls="therefore-experience-panel"><span>Co-Founder</span><strong>Therefore Fashion</strong><em>Present</em><b>Expand +</b></button><div class="experience-panel" id="therefore-experience-panel"><ul><li>Building a women’s athleisure and lifestyle brand alongside my mother, connecting creative direction with the day-to-day work of running a business.</li><li>Contributed remotely to design ideas and brand direction during my senior year at Purdue; became more involved in daily operations after graduating in May 2026.</li><li>Contribute across brand marketing, creator relations, partnerships, business development, hiring coordination, and team communication.</li><li><a href="/entrepreneurship/" style="color:inherit;text-decoration:underline;text-underline-offset:4px">Read my co-founder story →</a></li></ul></div></article>
             <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Social Media Marketing Intern</span><strong>eClinicalWorks</strong><em>Oct 2025 - May 2026</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Optimized healthtech social and digital content with GA4 KPI tracking, increasing engagement by 15% in 3 months.</li><li>Supported content calendar planning, campaign messaging, and cross-channel execution for a healthcare SaaS brand.</li><li>Tracked platform analytics and engagement trends to improve social content strategy.</li></ul></div></article>
             <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Marketing & Social Media Intern</span><strong>South by Sea</strong><em>Jan 2024 - May 2026</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Managed relationships with 20+ student organizations and campus partners, increasing recurring orders by 25%.</li><li>Built CRM-style follow-up workflows and generated 30+ qualified leads per month.</li><li>Delivered custom partnership presentations that supported a 35% conversion and close rate.</li></ul></div></article>
             <article class="experience-item"><button class="experience-trigger" type="button" aria-expanded="false"><span>Freelance Social Media Content Creator</span><strong>Instagram, YouTube & TikTok</strong><em>May 2022 - Present</em><b>展开 / Expand +</b></button><div class="experience-panel"><ul><li>Produced and edited 50+ short-form assets across Instagram, TikTok, and YouTube.</li><li>Managed scripting, editing, publishing, community engagement, and performance tracking.</li><li>Collaborated with Sol de Janeiro, JW PEI, and Medix 5.5 on sponsored creator campaigns.</li></ul></div></article>
@@ -2227,10 +2224,6 @@
         }, 350);
       });
 
-      const nav = document.querySelector("[data-nav]");
-      document.querySelector("[data-nav-toggle]")?.addEventListener("click", () => nav?.classList.toggle("is-open"));
-      nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => nav.classList.remove("is-open")));
-
       const cursor = document.querySelector("[data-cursor]");
       if (cursor && window.matchMedia("(pointer:fine)").matches) {
         cursor.remove();
@@ -2354,5 +2347,6 @@
         }
       })();
     </script>
+    <script src="/navigation.js" defer></script>
   </body>
 </html>

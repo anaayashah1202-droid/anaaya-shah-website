@@ -1,40 +1,28 @@
-import { cpSync, existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync, statSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 const root = dirname(fileURLToPath(import.meta.url));
-const dist = join(root, "dist");
-const htmlPath = join(root, "index.html");
-const html = readFileSync(htmlPath, "utf8");
-
-const localReferences = [...html.matchAll(/\b(?:src|href)="([^"]+)"/g)]
-  .map((match) => match[1])
-  .filter((ref) => {
-    return !(
-      ref.startsWith("#") ||
-      ref.startsWith("http://") ||
-      ref.startsWith("https://") ||
-      ref.startsWith("//") ||
-      ref.startsWith("mailto:") ||
-      ref.startsWith("tel:") ||
-      ref.startsWith("data:")
-    );
-  })
-  .map((ref) => ref.split("#")[0].split("?")[0]);
-
-const missing = [...new Set(localReferences)].filter((ref) => !existsSync(join(root, ref)));
-
-if (missing.length > 0) {
-  console.error("Missing local asset references:");
-  for (const ref of missing) console.error(`- ${ref}`);
-  process.exit(1);
+const dist = join(root, 'dist');
+const pages = ['index.html', 'entrepreneurship.html'];
+// Keep the founder page on the homepage's existing design system.
+const homepage = readFileSync(join(root, 'index.html'), 'utf8');
+writeFileSync(join(root, 'portfolio-base.css'), homepage.match(/<style>([\s\S]*?)<\/style>/)[1]);
+const missing = [];
+for (const page of pages) {
+  const html = readFileSync(join(root, page), 'utf8');
+  for (const [, ref] of html.matchAll(/\b(?:src|href)="([^"]+)"/g)) {
+    if (/^(#|https?:|\/\/|mailto:|tel:|data:)/.test(ref)) continue;
+    const path = ref.split('#')[0].split('?')[0];
+    const target = path.startsWith('/') ? join(root, path) : resolve(root, dirname(page), path);
+    if (!existsSync(target) || (statSync(target).isDirectory() && !existsSync(join(target, 'index.html')))) missing.push(`${page}: ${ref}`);
+  }
 }
-
+if (missing.length) throw new Error(`Missing local references:\n${missing.join('\n')}`);
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist, { recursive: true });
-
-for (const entry of ["index.html", "styles.css", "script.js", "assets"]) {
-  cpSync(join(root, entry), join(dist, entry), { recursive: true });
+for (const entry of ['index.html','styles.css','script.js','assets','portfolio-base.css','founder.css','navigation.css','navigation.js']) {
+  cpSync(join(root, entry), join(dist, entry), { recursive: true, filter: source => !/anaaya-shah(?:-social-media)?-resume\.pdf$/.test(source) });
 }
-
-console.log("Build complete: dist/");
+mkdirSync(join(dist, 'entrepreneurship'), { recursive: true });
+cpSync(join(root, 'entrepreneurship.html'), join(dist, 'entrepreneurship/index.html'));
+console.log('Build complete: both pages and all local references verified.');
